@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef } from 'react';
-import ScrollingLinks from "@/components/ScrollingLinks";
 
 export default function Home() {
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
@@ -32,11 +31,12 @@ export default function Home() {
     <div className="flex flex-col min-h-[500vh] font-[family-name:var(--font-geist-sans)]">
       <section ref={el => { sectionRefs.current[0] = el }} className="section h-screen flex flex-col justify-center items-start pl-8 pr-[calc(30%+2rem)] relative">
         <div className="max-w-[calc(70%-2rem)]">
-          <h1 className="text-5xl font-bold mb-4">Your Name</h1>
+          <h1 className="text-5xl font-bold mb-4">Rishik Sarkar</h1>
           <p className="text-xl">
-            Brief introduction line 1.<br />
-            Brief introduction line 2.<br />
-            Brief introduction line 3.
+            M.Eng. in Computer Science at Cornell University<br />
+            B.S. in Computer Science (Honors) at Rutgers University-New Brunswick<br />
+            B.S. in Cognitive Science at Rutgers University-New Brunswick<br /><br />
+            Specializing in NLP-driven mental healthcare solutions
           </p>
         </div>
         <div className="diagonal-line" style={{top: '25%'}}>
@@ -49,8 +49,10 @@ export default function Home() {
         <div className="max-w-[calc(70%-2rem)]">
           <h2 className="text-3xl mb-4">About Me</h2>
           <p className="text-xl leading-relaxed">
-            Longer introduction paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            "If you could train an AI to be a Buddhist, it would probably be pretty good." - Reid Hoffman<br /><br />
+            I am currently pursuing a Master of Engineering in Computer Science at Cornell University. Prior to this, I graduated Summa Cum Laude with honors from Rutgers University-New Brunswick with a B.S. in Computer Science and Cognitive Science and was inducted into Phi Beta Kappa. I also worked as an ML Full-Stack Developer Intern at a fintech scaleup and as a research assistant at a joint Rutgers-Princeton laboratory, where I focused on data integration and machine learning.<br /><br />
+            My passions lie at the intersection of artificial intelligence and psychology, and I am keen to explore computational linguistics, cognitive neuropsychiatry, and new LLM frameworks for natural language understanding, including transformer models and fine-tuning for sentiment and emotional analysis. In the future, I aim to establish a startup and develop NLP-driven solutions in the mental healthcare space.<br /><br />
+            I also speak English, Bengali, Hindi, and some Japanese and German. If you know any of these languages, feel free to say hi in your native tongue!
           </p>
         </div>
         <div className="diagonal-line" style={{top: '20%'}}>
@@ -61,7 +63,6 @@ export default function Home() {
 
       <section ref={el => { sectionRefs.current[2] = el }} className="section h-screen flex flex-col justify-center items-start pl-[15%] pr-8">
         <h2 className="text-3xl mb-4">Connect With Me</h2>
-        <ScrollingLinks />
         <div className="diagonal-line" style={{top: '15%'}}>
           <div className="diagonal-line-node-right"></div>
           <div className="diagonal-line-node-left"></div>

@@ -42,7 +42,7 @@ html {
 .vertical-line::after {
   content: '';
   position: absolute;
-  top: 50%;  /* Start from the center */
+  top: 50%;
   left: 0;
   width: 100%;
   height: var(--bottom-fill-percentage, 0%);
@@ -53,7 +53,7 @@ html {
 .scrolling-links {
   position: fixed;
   top: 0;
-  left: calc(var(--line-position) - 200px); /* Position to the left of the vertical line */
+  left: calc(var(--line-position) - 200px);
   height: 100vh;
   width: 200px;
   pointer-events: none;
@@ -79,7 +79,7 @@ html {
   width: var(--line-width, 0%);
   height: 2px;
   background-color: #fff;
-  margin-right: 10px; /* Changed from margin-left to margin-right */
+  margin-right: 10px;
   transition: width 0.5s ease-out;
 }
 
@@ -99,7 +99,7 @@ html {
 
 .diagonal-line {
   position: absolute;
-  top: 25%; /* Changed from 50% to 25% to shift it higher */
+  top: 25%;
   left: calc(var(--line-position) - 15%);
   width: 15%;
   height: 2px;
@@ -113,7 +113,7 @@ html {
   content: '';
   position: absolute;
   top: 0;
-  right: 0;  /* Changed back to right */
+  right: 0;
   width: var(--fill-percentage, 0%);
   height: 100%;
   background-color: white;
@@ -129,14 +129,12 @@ html {
   height: 14px;
   background-color: #333333;
   border-radius: 50%;
-  /* Remove the transition for instantaneous color change */
 }
 
 .diagonal-line-node.filled {
   background-color: white;
 }
 
-/* Add this new style for the left node */
 .diagonal-line-node-left {
   position: absolute;
   left: 0;
@@ -152,7 +150,6 @@ html {
   background-color: white;
 }
 
-/* Modify the existing .diagonal-line-node class to specify it's for the right node */
 .diagonal-line-node-right {
   position: absolute;
   right: 0;
@@ -206,7 +203,7 @@ html {
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.7);
   transform: translate(-50%, -50%) scale(1);
-  animation: pulse 1.5s infinite; /* Reduced from 2s to 1.5s for faster animation */
+  animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
@@ -228,4 +225,12 @@ html {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.vertical-line::before {
+  box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.2);
+}
+
+.diagonal-line::before {
+  box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.2);
 }

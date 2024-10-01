@@ -15,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Your Portfolio",
+  title: "Rishik Sarkar | Portfolio",
   description: "A showcase of my work and skills",
 };
 
