@@ -3,21 +3,132 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #000000;
+  --foreground: #ffffff;
+  --line-position: 70%;
+  --fill-percentage: 0;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.vertical-line {
+  position: fixed;
+  top: 0;
+  left: var(--line-position);
+  width: 2px;
+  height: 100vh;
+  background-color: #333333;
+  overflow: visible;
+}
+
+.vertical-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(min(var(--fill-percentage) * 1%, 50%));
+  background-color: white;
+  transition: height 0.3s ease-out;
+}
+
+.vertical-line::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: calc(max((var(--fill-percentage) - 50) * 1%, 0px));
+  background-color: white;
+  transition: height 0.3s ease-out;
+}
+
+.scrolling-links {
+  position: fixed;
+  top: 0;
+  left: calc(var(--line-position) - 200px); /* Position to the left of the vertical line */
+  height: 100vh;
+  width: 200px;
+  pointer-events: none;
+}
+
+.link-container {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  pointer-events: auto;
+}
+
+.link-container.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.link-line {
+  width: var(--line-width, 0%);
+  height: 2px;
+  background-color: #fff;
+  margin-right: 10px; /* Changed from margin-left to margin-right */
+  transition: width 0.5s ease-out;
+}
+
+.link-container.visible .link-line {
+  width: var(--line-width, 100%);
+}
+
+.section {
+  opacity: 0.3;
+  transition: opacity 0.5s ease-out;
+  position: relative;
+}
+
+.section.visible {
+  opacity: 1;
+}
+
+.diagonal-line {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--line-position) - 15%);
+  width: 15%;
+  height: 2px;
+  background-color: #333333;
+  transform-origin: right center;
+  transform: rotate(-45deg);
+  overflow: hidden;
+}
+
+.diagonal-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;  /* Changed back to right */
+  width: var(--fill-percentage, 0%);
+  height: 100%;
+  background-color: white;
+  transition: width 0.3s ease-out;
+}
+
+.diagonal-line::after {
+  content: '';
+  position: absolute;
+  right: -5px;  /* Changed back to right */
+  top: -5px;
+  width: 10px;
+  height: 10px;
+  background-color: #333333;
+  border-radius: 50%;
 }
 
 @layer utilities {
