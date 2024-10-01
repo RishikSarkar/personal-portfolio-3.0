@@ -28,9 +28,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-[500vh] font-[family-name:var(--font-geist-sans)]">
-      <section ref={el => { sectionRefs.current[0] = el }} className="section h-screen flex flex-col justify-center items-start pl-16 pr-16 mb-8 relative">
-        <div className="max-w-[calc(70%-20rem)]">
+    <div className="flex flex-col font-[family-name:var(--font-geist-sans)]">
+      <section ref={el => { sectionRefs.current[0] = el }} className="section h-screen flex items-center relative">
+        <div className="max-w-[calc(70%-20rem)] pl-16 pr-4">
           <h1 className="text-5xl font-bold mb-4">Rishik Sarkar</h1>
           <p className="text-xl">
             M.Eng. in Computer Science at Cornell University<br />
@@ -39,14 +39,14 @@ export default function Home() {
             Specializing in NLP-driven mental healthcare solutions
           </p>
         </div>
-        <div className="diagonal-line" style={{top: '25%'}}>
+        <div className="diagonal-line absolute left-[55%] top-1/2 -translate-y-1/2">
           <div className="diagonal-line-node-right"></div>
           <div className="diagonal-line-node-left"></div>
         </div>
       </section>
       
-      <section ref={el => { sectionRefs.current[1] = el }} className="section h-screen flex flex-col justify-center items-start pl-16 pr-16">
-        <div className="max-w-[calc(70%-20rem)]">
+      <section ref={el => { sectionRefs.current[1] = el }} className="section h-screen flex items-center relative">
+        <div className="max-w-[calc(70%-20rem)] pl-16 pr-4">
           <h2 className="text-3xl mb-4">About Me</h2>
           <p className="text-lg leading-relaxed">
             "If you could train an AI to be a Buddhist, it would probably be pretty good."<br /> - Reid Hoffman<br /><br />
@@ -54,36 +54,43 @@ export default function Home() {
             My passions lie at the intersection of artificial intelligence and psychology, and I am keen to explore computational linguistics, cognitive neuropsychiatry, and new LLM frameworks for natural language understanding, including transformer models and fine-tuning for sentiment and emotional analysis. In the future, I aim to establish a startup and develop NLP-driven solutions in the mental healthcare space.
           </p>
         </div>
-        <div className="diagonal-line" style={{top: '25%'}}>
+        <div className="diagonal-line absolute left-[55%] top-1/2 -translate-y-1/2">
           <div className="diagonal-line-node-right"></div>
           <div className="diagonal-line-node-left"></div>
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[2] = el }} className="section h-screen flex flex-col justify-center items-start pl-16 pr-16">
-        <h2 className="text-3xl -mt-24 mb-4">Resume</h2>
-        <p className="text-xl mb-4">Check out my professional experience and qualifications:</p>
-        <ul className="text-lg list-disc list-inside mb-4">
-          <li>View my <a href="#" className="text-gray-300 hover:text-gray-500">Resume</a></li>
-          <li>Download my full <a href="#" className="text-gray-300 hover:text-gray-500">CV</a></li>
-        </ul>
-        <div className="diagonal-line" style={{top: '15%'}}>
+      <section ref={el => { sectionRefs.current[2] = el }} className="section h-screen flex items-center relative">
+        <div className="pl-16 pr-16">
+          <h2 className="text-3xl mb-4">Resume</h2>
+          <p className="text-xl mb-4">Check out my professional experience and qualifications:</p>
+          <ul className="text-lg list-disc list-inside mb-4">
+            <li>View my <a href="#" className="text-gray-300 hover:text-gray-500">Resume</a></li>
+            <li>Download my full <a href="#" className="text-gray-300 hover:text-gray-500">CV</a></li>
+          </ul>
+        </div>
+        <div className="diagonal-line absolute left-[55%] top-1/2 -translate-y-1/2">
           <div className="diagonal-line-node-right"></div>
           <div className="diagonal-line-node-left"></div>
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[3] = el }} className="section h-screen flex flex-col justify-center items-start pl-[15%] pr-8">
-        <h2 className="text-3xl -mt-64 mb-4">Connect With Me</h2>
-        <div className="diagonal-line" style={{top: '10%'}}>
+      <section ref={el => { sectionRefs.current[3] = el }} className="section h-screen flex items-center relative">
+        <div className="pl-16 pr-16">
+          <h2 className="text-3xl mb-4">Connect With Me</h2>
+          {/* Add your connect content here */}
+        </div>
+        <div className="diagonal-line absolute left-[55%] top-1/2 -translate-y-1/2">
           <div className="diagonal-line-node-right"></div>
           <div className="diagonal-line-node-left"></div>
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[4] = el }} className="section h-screen flex flex-col justify-center items-start pl-[15%] pr-8">
-        <h2 className="text-3xl mb-4">Projects</h2>
-        <p className="text-xl">Neural network brain visualization coming soon...</p>
+      <section ref={el => { sectionRefs.current[4] = el }} className="section h-screen flex items-center relative">
+        <div className="pl-16 pr-16">
+          <h2 className="text-3xl mb-4">Projects</h2>
+          <p className="text-xl">Neural network brain visualization coming soon...</p>
+        </div>
       </section>
     </div>
   );
