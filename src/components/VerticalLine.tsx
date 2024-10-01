@@ -16,10 +16,10 @@ const VerticalLine: React.FC = () => {
     const diagonalLines = document.querySelectorAll('.diagonal-line');
     diagonalLines.forEach((line) => {
       (line as HTMLElement).style.setProperty('--fill-percentage', '0%');
-      const node = line.querySelector('.diagonal-line-node') as HTMLElement;
-      if (node) {
-        node.classList.remove('filled');
-      }
+      const rightNode = line.querySelector('.diagonal-line-node-right') as HTMLElement;
+      const leftNode = line.querySelector('.diagonal-line-node-left') as HTMLElement;
+      if (rightNode) rightNode.classList.remove('filled');
+      if (leftNode) leftNode.classList.remove('filled');
     });
 
     diagonalLinesFilledRef.current = [];
@@ -61,7 +61,10 @@ const VerticalLine: React.FC = () => {
         const lineCenter = (lineTop + lineBottom) / 2;
         
         let lineFillPercentage;
-        if (lineBottom <= viewportCenter) {
+        if (index === 0) {
+          // Special handling for the first diagonal line
+          lineFillPercentage = Math.max(0, Math.min(100, (centerLineWhiteY - lineTop) / (lineBottom - lineTop) * 100));
+        } else if (lineBottom <= viewportCenter) {
           lineFillPercentage = 100;
         } else if (lineTop >= viewportCenter) {
           lineFillPercentage = 0;
@@ -72,28 +75,32 @@ const VerticalLine: React.FC = () => {
         if (lineFillPercentage === 100) {
           diagonalLinesFilledRef.current[index] = true;
         } else if (diagonalLinesFilledRef.current[index]) {
-          if (index < 2) {
-            if (centerLineWhiteY < lineBottom) {
-              diagonalLinesFilledRef.current[index] = false;
-              lineFillPercentage = Math.max(0, (centerLineWhiteY - lineTop) / (lineBottom - lineTop) * 100);
-            }
-          } else {
-            if (centerLineWhiteY > lineBottom) {
-              diagonalLinesFilledRef.current[index] = false;
-            }
+          if (centerLineWhiteY < lineBottom) {
+            diagonalLinesFilledRef.current[index] = false;
+            lineFillPercentage = Math.max(0, (centerLineWhiteY - lineTop) / (lineBottom - lineTop) * 100);
           }
         }
 
         const finalFillPercentage = diagonalLinesFilledRef.current[index] ? 100 : lineFillPercentage;
         (line as HTMLElement).style.setProperty('--fill-percentage', `${finalFillPercentage}%`);
 
-        // Handle the node color change
-        const node = line.querySelector('.diagonal-line-node') as HTMLElement;
-        if (node) {
+        // Handle the node color changes and pulsating effect
+        const rightNode = line.querySelector('.diagonal-line-node-right') as HTMLElement;
+        const leftNode = line.querySelector('.diagonal-line-node-left') as HTMLElement;
+        
+        if (rightNode) {
           if (centerLineWhiteY >= lineCenter) {
-            node.classList.add('filled');
+            rightNode.classList.add('filled');
           } else {
-            node.classList.remove('filled');
+            rightNode.classList.remove('filled');
+          }
+        }
+        
+        if (leftNode) {
+          if (finalFillPercentage === 100) {
+            leftNode.classList.add('filled');
+          } else {
+            leftNode.classList.remove('filled');
           }
         }
       });

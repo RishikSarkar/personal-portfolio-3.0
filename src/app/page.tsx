@@ -39,8 +39,9 @@ export default function Home() {
             Brief introduction line 3.
           </p>
         </div>
-        <div className="diagonal-line">
-          <div className="diagonal-line-node"></div>
+        <div className="diagonal-line" style={{top: '25%'}}>
+          <div className="diagonal-line-node-right"></div>
+          <div className="diagonal-line-node-left"></div>
         </div>
       </section>
       
@@ -52,31 +53,33 @@ export default function Home() {
             Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
-        <div className="diagonal-line">
-          <div className="diagonal-line-node"></div>
+        <div className="diagonal-line" style={{top: '20%'}}>
+          <div className="diagonal-line-node-right"></div>
+          <div className="diagonal-line-node-left"></div>
         </div>
       </section>
 
       <section ref={el => { sectionRefs.current[2] = el }} className="section h-screen flex flex-col justify-center items-start pl-[15%] pr-8">
         <h2 className="text-3xl mb-4">Connect With Me</h2>
         <ScrollingLinks />
-        <div className="diagonal-line">
-          <div className="diagonal-line-node"></div>
+        <div className="diagonal-line" style={{top: '15%'}}>
+          <div className="diagonal-line-node-right"></div>
+          <div className="diagonal-line-node-left"></div>
         </div>
       </section>
 
       <section ref={el => { sectionRefs.current[3] = el }} className="section h-screen flex flex-col justify-center items-start pl-[15%] pr-8">
         <h2 className="text-3xl mb-4">Resume</h2>
-        <a href="/resume.pdf" className="text-xl hover:underline">View My Resume</a>
-        <div className="diagonal-line">
-          <div className="diagonal-line-node"></div>
+        <p className="text-xl">Resume information or a brief summary can go here.</p>
+        <div className="diagonal-line" style={{top: '10%'}}>
+          <div className="diagonal-line-node-right"></div>
+          <div className="diagonal-line-node-left"></div>
         </div>
       </section>
 
       <section ref={el => { sectionRefs.current[4] = el }} className="section h-screen flex flex-col justify-center items-start pl-[15%] pr-8">
         <h2 className="text-3xl mb-4">Projects</h2>
         <p className="text-xl">Neural network brain visualization coming soon...</p>
-        {/* Remove the diagonal-line div from this section */}
       </section>
     </div>
   );
