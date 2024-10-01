@@ -58,11 +58,10 @@ const VerticalLine: React.FC = () => {
         const rect = line.getBoundingClientRect();
         const lineTop = rect.top;
         const lineBottom = rect.bottom;
-        const lineCenter = (lineTop + lineBottom) / 2;
+        const lineHeight = lineBottom - lineTop;
         
         let lineFillPercentage;
         if (index === 0) {
-          // Special handling for the first diagonal line
           lineFillPercentage = Math.max(0, Math.min(100, (centerLineWhiteY - lineTop) / (lineBottom - lineTop) * 100));
         } else if (lineBottom <= viewportCenter) {
           lineFillPercentage = 100;
@@ -84,12 +83,11 @@ const VerticalLine: React.FC = () => {
         const finalFillPercentage = diagonalLinesFilledRef.current[index] ? 100 : lineFillPercentage;
         (line as HTMLElement).style.setProperty('--fill-percentage', `${finalFillPercentage}%`);
 
-        // Handle the node color changes and pulsating effect
         const rightNode = line.querySelector('.diagonal-line-node-right') as HTMLElement;
         const leftNode = line.querySelector('.diagonal-line-node-left') as HTMLElement;
         
         if (rightNode) {
-          if (centerLineWhiteY >= lineCenter) {
+          if (centerLineWhiteY >= lineTop - lineHeight * 0.1) {
             rightNode.classList.add('filled');
           } else {
             rightNode.classList.remove('filled');
