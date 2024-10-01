@@ -39,7 +39,9 @@ export default function Home() {
             Brief introduction line 3.
           </p>
         </div>
-        <div className="diagonal-line"></div>
+        <div className="diagonal-line">
+          <div className="diagonal-line-node"></div>
+        </div>
       </section>
       
       <section ref={el => { sectionRefs.current[1] = el }} className="section h-screen flex flex-col justify-center items-start pl-8 pr-[calc(30%+2rem)]">
@@ -50,19 +52,25 @@ export default function Home() {
             Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
-        <div className="diagonal-line"></div>
+        <div className="diagonal-line">
+          <div className="diagonal-line-node"></div>
+        </div>
       </section>
 
       <section ref={el => { sectionRefs.current[2] = el }} className="section h-screen flex flex-col justify-center items-start pl-[15%] pr-8">
         <h2 className="text-3xl mb-4">Connect With Me</h2>
         <ScrollingLinks />
-        <div className="diagonal-line"></div>
+        <div className="diagonal-line">
+          <div className="diagonal-line-node"></div>
+        </div>
       </section>
 
       <section ref={el => { sectionRefs.current[3] = el }} className="section h-screen flex flex-col justify-center items-start pl-[15%] pr-8">
         <h2 className="text-3xl mb-4">Resume</h2>
         <a href="/resume.pdf" className="text-xl hover:underline">View My Resume</a>
-        <div className="diagonal-line"></div>
+        <div className="diagonal-line">
+          <div className="diagonal-line-node"></div>
+        </div>
       </section>
 
       <section ref={el => { sectionRefs.current[4] = el }} className="section h-screen flex flex-col justify-center items-start pl-[15%] pr-8">

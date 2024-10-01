@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import VerticalLine from '@/components/VerticalLine';
-import { useEffect } from 'react';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,13 +24,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  useEffect(() => {
-    if (!sessionStorage.getItem('hasLoaded')) {
-      window.scrollTo(0, 0);
-      sessionStorage.setItem('hasLoaded', 'true');
-    }
-  }, []);
-
   return (
     <html lang="en">
       <body

@@ -34,7 +34,7 @@ html {
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(min(var(--fill-percentage) * 1%, 50%));
+  height: var(--top-fill-percentage, 0%);
   background-color: white;
   transition: height 0.3s ease-out;
 }
@@ -42,10 +42,10 @@ html {
 .vertical-line::after {
   content: '';
   position: absolute;
-  top: 50%;
+  top: 50%;  /* Start from the center */
   left: 0;
   width: 100%;
-  height: calc(max((var(--fill-percentage) - 50) * 1%, 0px));
+  height: var(--bottom-fill-percentage, 0%);
   background-color: white;
   transition: height 0.3s ease-out;
 }
@@ -106,7 +106,7 @@ html {
   background-color: #333333;
   transform-origin: right center;
   transform: rotate(-45deg);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .diagonal-line::before {
@@ -120,15 +120,20 @@ html {
   transition: width 0.3s ease-out;
 }
 
-.diagonal-line::after {
-  content: '';
+.diagonal-line-node {
   position: absolute;
-  right: -5px;  /* Changed back to right */
-  top: -5px;
-  width: 10px;
-  height: 10px;
+  right: 0;
+  top: 50%;
+  transform: translate(50%, -50%);
+  width: 14px;
+  height: 14px;
   background-color: #333333;
   border-radius: 50%;
+  /* Remove the transition for instantaneous color change */
+}
+
+.diagonal-line-node.filled {
+  background-color: white;
 }
 
 @layer utilities {
