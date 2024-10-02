@@ -12,10 +12,16 @@ const NetworkLine: React.FC = () => {
   const middleVerticalLineRef = useRef<HTMLDivElement>(null);
   const middleHorizontalLineRef = useRef<HTMLDivElement>(null);
   const secondDiagonalLineRef = useRef<HTMLDivElement>(null);
+  const secondVerticalLineRef = useRef<HTMLDivElement>(null);
 
   const linesRef = useRef<LineType[]>([]);
 
   useEffect(() => {
+    const linePosition = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--line-position'));
+    const secondDiagWidth = linePosition - 30;
+    const secondDiagEndX = window.innerWidth * (0.4 + secondDiagWidth / 100 * Math.cos(Math.PI / 4));
+    const secondDiagEndY = window.innerHeight * (0.87 + secondDiagWidth / 100 * Math.sin(Math.PI / 4));
+
     linesRef.current = [
       {
         id: 'vertical',
@@ -49,6 +55,13 @@ const NetworkLine: React.FC = () => {
         id: 'second-diagonal',
         start: { x: window.innerWidth * 0.75, y: window.innerHeight * 1.87 },
         end: { x: window.innerWidth * 0.9, y: window.innerHeight * 2.1 }, // Arbitrary end point
+        isPointOn: false,
+        fillPercentage: 0,
+      },
+      {
+        id: 'second-vertical',
+        start: { x: secondDiagEndX, y: secondDiagEndY },
+        end: { x: secondDiagEndX, y: secondDiagEndY + window.innerHeight * 2 }, // Extend the line
         isPointOn: false,
         fillPercentage: 0,
       },
@@ -97,6 +110,11 @@ const NetworkLine: React.FC = () => {
       const leftNode = secondDiagonalLineRef.current.querySelector('.diagonal-line-node-left') as HTMLElement;
       if (rightNode) rightNode.classList.remove('filled');
       if (leftNode) leftNode.classList.remove('filled');
+    }
+
+    if (secondVerticalLineRef.current) {
+      secondVerticalLineRef.current.style.setProperty('--top-fill-percentage', '0%');
+      secondVerticalLineRef.current.style.setProperty('--bottom-fill-percentage', '0%');
     }
   }, []);
 
@@ -330,6 +348,22 @@ const NetworkLine: React.FC = () => {
           if (rightNode) rightNode.classList.remove('filled');
         }
       }
+
+      // Handle second vertical line
+      const secondVerticalLine = linesRef.current[6]; // Assuming it's the 7th line in the array
+      if (secondVerticalLineRef.current) {
+        const secondDiagonalLine = linesRef.current[4];
+        if (secondDiagonalLine.fillPercentage >= 100) {
+          secondVerticalLineRef.current.classList.add('active');
+          const verticalLineFillPercentage = Math.min((scrollPercentage - 0.2) * 200, 100);
+          secondVerticalLine.fillPercentage = verticalLineFillPercentage;
+          secondVerticalLineRef.current.style.setProperty('--fill-percentage', `${verticalLineFillPercentage}%`);
+        } else {
+          secondVerticalLineRef.current.classList.remove('active');
+          secondVerticalLine.fillPercentage = 0;
+          secondVerticalLineRef.current.style.setProperty('--fill-percentage', '0%');
+        }
+      }
     });
   }, []);
 
@@ -403,6 +437,7 @@ const NetworkLine: React.FC = () => {
         <div className="diagonal-line-node-left"></div>
         <div className="diagonal-line-node-right"></div>
       </div>
+      <div ref={secondVerticalLineRef} className="second-vertical-line"></div>
       <div id="svg-container" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}></div>
     </>
   );
