@@ -9,6 +9,7 @@ const NetworkLine: React.FC = () => {
   const rafRef = useRef<number | null>(null);
   const svgRef = useRef<SVGElement | null>(null);
   const horizontalLineRef = useRef<HTMLDivElement>(null);
+  const middleVerticalLineRef = useRef<HTMLDivElement>(null);
 
   const linesRef = useRef<LineType[]>([]);
 
@@ -25,6 +26,13 @@ const NetworkLine: React.FC = () => {
         id: 'horizontal',
         start: { x: 0, y: 0 },
         end: { x: window.innerWidth * 0.08, y: 0 },
+        isPointOn: false,
+        fillPercentage: 0,
+      },
+      {
+        id: 'middle-vertical',
+        start: { x: window.innerWidth * 0.25, y: window.innerHeight },
+        end: { x: window.innerWidth * 0.25, y: window.innerHeight * 2 },
         isPointOn: false,
         fillPercentage: 0,
       },
@@ -58,6 +66,10 @@ const NetworkLine: React.FC = () => {
         fillPercentage: 0,
       });
     });
+
+    if (middleVerticalLineRef.current) {
+      middleVerticalLineRef.current.style.setProperty('--fill-percentage', '0%');
+    }
   }, []);
 
   const handleScroll = useCallback(() => {
@@ -140,11 +152,50 @@ const NetworkLine: React.FC = () => {
         }
       });
 
-      const horizontalLine = linesRef.current[1];
+      const middleVerticalLine = linesRef.current[2];
+      if (middleVerticalLineRef.current) {
+        const rect = middleVerticalLineRef.current.getBoundingClientRect();
+        const horizontalLine = linesRef.current[1];
+        if (horizontalLine.fillPercentage >= 100) {
+          const additionalScroll = Math.max(0, scrollPercentage - 0.05);
+          const verticalLineFillPercentage = Math.min(additionalScroll * 2000, 100);
+          middleVerticalLine.fillPercentage = verticalLineFillPercentage;
+          middleVerticalLineRef.current.style.setProperty('--fill-percentage', `${verticalLineFillPercentage}%`);
+          
+          const topNode = middleVerticalLineRef.current.querySelector('.middle-vertical-line-node-top') as HTMLElement;
+          const bottomNode = middleVerticalLineRef.current.querySelector('.middle-vertical-line-node-bottom') as HTMLElement;
+          
+          if (topNode) {
+            if (verticalLineFillPercentage > 0) {
+              topNode.classList.add('filled');
+            } else {
+              topNode.classList.remove('filled');
+            }
+          }
+          
+          if (bottomNode) {
+            if (verticalLineFillPercentage >= 100) {
+              bottomNode.classList.add('filled');
+            } else {
+              bottomNode.classList.remove('filled');
+            }
+          }
+        } else {
+          middleVerticalLine.fillPercentage = 0;
+          middleVerticalLineRef.current.style.setProperty('--fill-percentage', '0%');
+          
+          const topNode = middleVerticalLineRef.current.querySelector('.middle-vertical-line-node-top') as HTMLElement;
+          const bottomNode = middleVerticalLineRef.current.querySelector('.middle-vertical-line-node-bottom') as HTMLElement;
+          if (topNode) topNode.classList.remove('filled');
+          if (bottomNode) bottomNode.classList.remove('filled');
+        }
+      }
+
       if (horizontalLineRef.current) {
         const firstDiagonalLine = document.querySelector('.diagonal-line');
         if (firstDiagonalLine) {
           const rect = firstDiagonalLine.getBoundingClientRect();
+          const horizontalLine = linesRef.current[1];
           horizontalLine.start = { x: rect.left, y: rect.bottom };
           horizontalLine.end = { x: window.innerWidth, y: rect.bottom };
           
@@ -237,6 +288,10 @@ const NetworkLine: React.FC = () => {
       <div ref={lineRef} className="vertical-line"></div>
       <div ref={horizontalLineRef} className="horizontal-line">
         <div className="horizontal-line-node"></div>
+      </div>
+      <div ref={middleVerticalLineRef} className="middle-vertical-line">
+        <div className="middle-vertical-line-node-top"></div>
+        <div className="middle-vertical-line-node-bottom"></div>
       </div>
       <div id="svg-container" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}></div>
     </>

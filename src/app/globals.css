@@ -206,21 +206,6 @@ html {
   animation: pulse 1.5s infinite;
 }
 
-@keyframes pulse {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.7;
-  }
-  70% {
-    transform: translate(-50%, -50%) scale(2.5);
-    opacity: 0;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0;
-  }
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -237,7 +222,7 @@ html {
 
 .horizontal-line {
   position: fixed;
-  width: 8vw; /* Adjust this value to change the line length */
+  width: 8vw;
   height: 2px;
   background-color: #333333;
   overflow: visible;
@@ -281,6 +266,76 @@ html {
   background-color: rgba(255, 255, 255, 0.7);
   transform: translate(-50%, -50%) scale(1);
   animation: pulse 1.5s infinite;
+}
+
+.horizontal-line::before {
+  box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.2);
+}
+
+.middle-vertical-line {
+  position: absolute;
+  left: 25%;
+  top: 72vh;
+  height: 30vh;
+  width: 2px;
+  background-color: #333333;
+  overflow: visible;
+}
+
+.middle-vertical-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--fill-percentage, 0%);
+  background-color: white;
+  transition: height 0.3s ease-out;
+  box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.2);
+}
+
+.middle-vertical-line-node-top,
+.middle-vertical-line-node-bottom {
+  position: absolute;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  background-color: #333333;
+  border-radius: 50%;
+  transition: background-color 0.3s ease-out;
+  transform: translate(-50%, -50%);
+}
+
+.middle-vertical-line-node-top {
+  top: 0;
+}
+
+.middle-vertical-line-node-bottom {
+  bottom: 0;
+  transform: translate(-50%, 50%);
+}
+
+.middle-vertical-line-node-top.filled,
+.middle-vertical-line-node-bottom.filled {
+  background-color: white;
+}
+
+.middle-vertical-line-node-top.filled::after,
+.middle-vertical-line-node-bottom.filled::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: translate(-50%, -50%) scale(1);
+  animation: pulse 1.5s infinite;
+}
+
+.middle-vertical-line::before {
+  box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.2);
 }
 
 @keyframes pulse {
