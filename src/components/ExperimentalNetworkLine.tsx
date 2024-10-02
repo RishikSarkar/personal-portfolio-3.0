@@ -7,10 +7,10 @@ const ExperimentalNetworkLine: React.FC = () => {
   const { lines, addLine, scrollY } = useNetworkLines();
 
   useEffect(() => {
-    const verticalLine = addLine({
+    const mainLine = addLine({
       startCoords: { x: window.innerWidth * 0.7, y: 0 },
-      endCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 8 },
-      tag: 'vertical-line',
+      endCoords: { x: window.innerWidth * 0.7, y: window.innerHeight },
+      tag: 'main-line',
       fillSpeed: 100,
       thickness: 2,
       nodeLeft: false,
@@ -24,7 +24,7 @@ const ExperimentalNetworkLine: React.FC = () => {
       fillSpeed: 2000,
       thickness: 2,
       nodeLeft: true,
-      nodeRight: true
+      nodeRight: true,
     });
 
     const horiz1 = addLine({
@@ -46,9 +46,11 @@ const ExperimentalNetworkLine: React.FC = () => {
           key={line.id}
           className={`experimental-line ${line.tag}`}
           style={{
-            position: 'fixed',
+            position: line.tag === 'main-line' ? 'fixed' : 'absolute',
             left: `${line.startCoords.x}px`,
-            top: `${line.startCoords.y - scrollY}px`,
+            top: line.tag === 'main-line' 
+              ? '0px' 
+              : `${line.startCoords.y}px`,
             width: `${Math.hypot(
               line.endCoords.x - line.startCoords.x,
               line.endCoords.y - line.startCoords.y
@@ -70,7 +72,7 @@ const ExperimentalNetworkLine: React.FC = () => {
               width: `${line.fillPercentage}%`,
               height: '100%',
               backgroundColor: 'white',
-              boxShadow: line.fillPercentage > 0 ? '0 0 8px 4px rgba(255, 255, 255, 0.2)' : 'none'
+              boxShadow: line.fillPercentage > 0 ? '0 0 8px 2px rgba(255, 255, 255, 0.2)' : 'none'
             }}
           />
           {line.nodeLeft && (

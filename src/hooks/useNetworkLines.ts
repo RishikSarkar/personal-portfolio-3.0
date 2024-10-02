@@ -76,6 +76,7 @@ export const useNetworkLines = () => {
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
     const maxScroll = documentHeight - windowHeight;
+    const scrollPercentage = newScrollY / maxScroll;
 
     setLines(prevLines => {
       const updatedLines = prevLines.map(line => {
@@ -96,6 +97,23 @@ export const useNetworkLines = () => {
 
       return updatedLines.map(line => {
         if (!line.previousLineId) {
+          if (line.tag === 'main-line') {
+            let fillPercentage;
+            if (scrollPercentage <= 0.1) {
+              fillPercentage = Math.min(scrollPercentage * 500, 50);
+            } else if (scrollPercentage > 0.5) {
+              fillPercentage = 50 + Math.min((scrollPercentage - 0.5) * 200, 50);
+            } else {
+              fillPercentage = 50;
+            }
+            return { 
+              ...line, 
+              fillPercentage, 
+              isFilled: fillPercentage === 100,
+              startCoords: { x: line.startCoords.x, y: 0 },
+              endCoords: { x: line.endCoords.x, y: windowHeight }
+            };
+          }
           const nextLine = updatedLines.find(l => l.previousLineId === line.id);
           if (nextLine) {
             if (scrollDelta > 0 || (scrollDelta < 0 && nextLine.fillPercentage === 0)) {
