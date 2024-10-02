@@ -39,10 +39,7 @@ export default function Home() {
             Specializing in NLP-driven mental healthcare solutions
           </p>
         </div>
-        <div className="diagonal-line absolute left-[55%] top-1/2 -translate-y-1/2">
-          <div className="diagonal-line-node-right"></div>
-          <div className="diagonal-line-node-left"></div>
-        </div>
+        {/* Diagonal line removed */}
       </section>
       
       <section ref={el => { sectionRefs.current[1] = el }} className="section h-screen flex items-center relative">
@@ -54,10 +51,7 @@ export default function Home() {
             My passions lie at the intersection of artificial intelligence and psychology, and I am keen to explore computational linguistics, cognitive neuropsychiatry, and new LLM frameworks for natural language understanding, including transformer models and fine-tuning for sentiment and emotional analysis. In the future, I aim to establish a startup and develop NLP-driven solutions in the mental healthcare space.
           </p>
         </div>
-        <div className="diagonal-line absolute left-[55%] top-1/2 -translate-y-1/2">
-          <div className="diagonal-line-node-right"></div>
-          <div className="diagonal-line-node-left"></div>
-        </div>
+        {/* Diagonal line removed */}
       </section>
 
       <section ref={el => { sectionRefs.current[2] = el }} className="section h-screen flex items-center relative">
@@ -69,10 +63,7 @@ export default function Home() {
             <li>Download my full <a href="#" className="text-gray-300 hover:text-gray-500">CV</a></li>
           </ul>
         </div>
-        <div className="diagonal-line absolute left-[55%] top-1/2 -translate-y-1/2">
-          <div className="diagonal-line-node-right"></div>
-          <div className="diagonal-line-node-left"></div>
-        </div>
+        {/* Diagonal line removed */}
       </section>
 
       <section ref={el => { sectionRefs.current[3] = el }} className="section h-screen flex items-center relative">
@@ -80,10 +71,7 @@ export default function Home() {
           <h2 className="text-3xl mb-4">Connect With Me</h2>
           {/* Add your connect content here */}
         </div>
-        <div className="diagonal-line absolute left-[55%] top-1/2 -translate-y-1/2">
-          <div className="diagonal-line-node-right"></div>
-          <div className="diagonal-line-node-left"></div>
-        </div>
+        {/* Diagonal line removed */}
       </section>
 
       <section ref={el => { sectionRefs.current[4] = el }} className="section h-screen flex items-center relative">

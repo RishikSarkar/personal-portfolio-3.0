@@ -5,6 +5,94 @@
 :root {
   --background: #000000;
   --foreground: #ffffff;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.experimental-line {
+  position: fixed;
+  /* transition: background 0.3s ease-out; */
+}
+
+.node {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: #333333;
+  border-radius: 50%;
+  transition: background-color 0.3s ease-out;
+}
+
+.node.left {
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.node.right {
+  right: 0;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+
+.node.filled {
+  background-color: white;
+}
+
+.node.filled::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: translate(-50%, -50%) scale(1);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 10px 8px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0);
+  }
+}
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
   --line-position: 70%;
   --fill-percentage: 0;
 }
@@ -341,13 +429,14 @@ html {
 .middle-horizontal-line {
   position: absolute;
   left: 25%;
-  /* right: calc(75% - 16vw); */
+  /* right: calc(75% - 16vw);
   right: 30%;
   top: 87vh;
   bottom: calc(13vh - 2px);
   background-color: #333333;
   overflow: visible;
 }
+
 
 .middle-horizontal-line::before {
   content: '';
@@ -518,4 +607,4 @@ html {
   height: var(--fill-percentage, 0%);
   background-color: white;
   transition: height 0.3s ease-out;
-}
+} */
