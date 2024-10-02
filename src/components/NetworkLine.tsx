@@ -11,6 +11,7 @@ const NetworkLine: React.FC = () => {
   const horizontalLineRef = useRef<HTMLDivElement>(null);
   const middleVerticalLineRef = useRef<HTMLDivElement>(null);
   const middleHorizontalLineRef = useRef<HTMLDivElement>(null);
+  const secondDiagonalLineRef = useRef<HTMLDivElement>(null);
 
   const linesRef = useRef<LineType[]>([]);
 
@@ -41,6 +42,13 @@ const NetworkLine: React.FC = () => {
         id: 'middle-horizontal',
         start: { x: window.innerWidth * 0.25, y: window.innerHeight * 1.87 },
         end: { x: window.innerWidth * 0.75, y: window.innerHeight * 1.87 },
+        isPointOn: false,
+        fillPercentage: 0,
+      },
+      {
+        id: 'second-diagonal',
+        start: { x: window.innerWidth * 0.75, y: window.innerHeight * 1.87 },
+        end: { x: window.innerWidth * 0.9, y: window.innerHeight * 2.1 }, // Arbitrary end point
         isPointOn: false,
         fillPercentage: 0,
       },
@@ -81,6 +89,14 @@ const NetworkLine: React.FC = () => {
 
     if (middleHorizontalLineRef.current) {
       middleHorizontalLineRef.current.style.setProperty('--fill-percentage', '0%');
+    }
+
+    if (secondDiagonalLineRef.current) {
+      secondDiagonalLineRef.current.style.setProperty('--fill-percentage', '0%');
+      const rightNode = secondDiagonalLineRef.current.querySelector('.diagonal-line-node-right') as HTMLElement;
+      const leftNode = secondDiagonalLineRef.current.querySelector('.diagonal-line-node-left') as HTMLElement;
+      if (rightNode) rightNode.classList.remove('filled');
+      if (leftNode) leftNode.classList.remove('filled');
     }
   }, []);
 
@@ -276,6 +292,44 @@ const NetworkLine: React.FC = () => {
           }
         }
       }
+
+      // Handle second diagonal line
+      const secondDiagonalLine = linesRef.current[4]; // Assuming it's the 5th line in the array
+      if (secondDiagonalLineRef.current) {
+        const middleHorizontalLine = linesRef.current[3];
+        if (middleHorizontalLine.fillPercentage >= 100) {
+          const additionalScroll = Math.max(0, scrollPercentage - 0.1); // Adjust this value as needed
+          const diagonalLineFillPercentage = Math.min(additionalScroll * 1000, 100);
+          secondDiagonalLine.fillPercentage = diagonalLineFillPercentage;
+          secondDiagonalLineRef.current.style.setProperty('--fill-percentage', `${diagonalLineFillPercentage}%`);
+
+          const leftNode = secondDiagonalLineRef.current.querySelector('.diagonal-line-node-left') as HTMLElement;
+          const rightNode = secondDiagonalLineRef.current.querySelector('.diagonal-line-node-right') as HTMLElement;
+
+          if (leftNode) {
+            if (diagonalLineFillPercentage > 0) {
+              leftNode.classList.add('filled');
+            } else {
+              leftNode.classList.remove('filled');
+            }
+          }
+
+          if (rightNode) {
+            if (diagonalLineFillPercentage >= 100) {
+              rightNode.classList.add('filled');
+            } else {
+              rightNode.classList.remove('filled');
+            }
+          }
+        } else {
+          secondDiagonalLine.fillPercentage = 0;
+          secondDiagonalLineRef.current.style.setProperty('--fill-percentage', '0%');
+          const leftNode = secondDiagonalLineRef.current.querySelector('.diagonal-line-node-left') as HTMLElement;
+          const rightNode = secondDiagonalLineRef.current.querySelector('.diagonal-line-node-right') as HTMLElement;
+          if (leftNode) leftNode.classList.remove('filled');
+          if (rightNode) rightNode.classList.remove('filled');
+        }
+      }
     });
   }, []);
 
@@ -344,6 +398,10 @@ const NetworkLine: React.FC = () => {
       <div ref={middleHorizontalLineRef} className="middle-horizontal-line">
         <div className="middle-horizontal-line-node-left"></div>
         <div className="middle-horizontal-line-node-right"></div>
+      </div>
+      <div ref={secondDiagonalLineRef} className="second-diagonal-line">
+        <div className="diagonal-line-node-left"></div>
+        <div className="diagonal-line-node-right"></div>
       </div>
       <div id="svg-container" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}></div>
     </>
