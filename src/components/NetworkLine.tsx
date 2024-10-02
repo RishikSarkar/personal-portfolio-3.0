@@ -10,22 +10,26 @@ const NetworkLine: React.FC = () => {
   const svgRef = useRef<SVGElement | null>(null);
   const horizontalLineRef = useRef<HTMLDivElement>(null);
 
-  const linesRef = useRef<LineType[]>([
-    {
-      id: 'vertical',
-      start: { x: 0, y: 0 },
-      end: { x: 0, y: window.innerHeight },
-      isPointOn: false,
-      fillPercentage: 0,
-    },
-    {
-      id: 'horizontal',
-      start: { x: 0, y: 0 },
-      end: { x: window.innerWidth * 0.08, y: 0 },
-      isPointOn: false,
-      fillPercentage: 0,
-    },
-  ]);
+  const linesRef = useRef<LineType[]>([]);
+
+  useEffect(() => {
+    linesRef.current = [
+      {
+        id: 'vertical',
+        start: { x: 0, y: 0 },
+        end: { x: 0, y: window.innerHeight },
+        isPointOn: false,
+        fillPercentage: 0,
+      },
+      {
+        id: 'horizontal',
+        start: { x: 0, y: 0 },
+        end: { x: window.innerWidth * 0.08, y: 0 },
+        isPointOn: false,
+        fillPercentage: 0,
+      },
+    ];
+  }, []);
 
   const resetLines = useCallback(() => {
     linesRef.current.forEach(line => {
