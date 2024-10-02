@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useCallback } from 'react';
 import { SVG, extend as SVGextend, Element as SVGElement, Line } from '@svgdotjs/svg.js';
 import { LineType } from '@/types';
 
-const VerticalLine: React.FC = () => {
+const NetworkLine: React.FC = () => {
   const lineRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
   const svgRef = useRef<SVGElement | null>(null);
@@ -239,4 +239,4 @@ const VerticalLine: React.FC = () => {
   );
 };
 
-export default VerticalLine;
+export default NetworkLine;
