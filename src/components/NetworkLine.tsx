@@ -10,6 +10,7 @@ const NetworkLine: React.FC = () => {
   const svgRef = useRef<SVGElement | null>(null);
   const horizontalLineRef = useRef<HTMLDivElement>(null);
   const middleVerticalLineRef = useRef<HTMLDivElement>(null);
+  const middleHorizontalLineRef = useRef<HTMLDivElement>(null);
 
   const linesRef = useRef<LineType[]>([]);
 
@@ -33,6 +34,13 @@ const NetworkLine: React.FC = () => {
         id: 'middle-vertical',
         start: { x: window.innerWidth * 0.25, y: window.innerHeight },
         end: { x: window.innerWidth * 0.25, y: window.innerHeight * 2 },
+        isPointOn: false,
+        fillPercentage: 0,
+      },
+      {
+        id: 'middle-horizontal',
+        start: { x: window.innerWidth * 0.25, y: window.innerHeight * 1.87 },
+        end: { x: window.innerWidth * 0.75, y: window.innerHeight * 1.87 },
         isPointOn: false,
         fillPercentage: 0,
       },
@@ -69,6 +77,10 @@ const NetworkLine: React.FC = () => {
 
     if (middleVerticalLineRef.current) {
       middleVerticalLineRef.current.style.setProperty('--fill-percentage', '0%');
+    }
+
+    if (middleHorizontalLineRef.current) {
+      middleHorizontalLineRef.current.style.setProperty('--fill-percentage', '0%');
     }
   }, []);
 
@@ -180,6 +192,33 @@ const NetworkLine: React.FC = () => {
               bottomNode.classList.remove('filled');
             }
           }
+
+          // Handle middle horizontal line
+          const middleHorizontalLine = linesRef.current[3];
+          if (middleHorizontalLineRef.current) {
+            const horizontalLineFillPercentage = Math.max(0, (verticalLineFillPercentage - 50) * 2);
+            middleHorizontalLine.fillPercentage = horizontalLineFillPercentage;
+            middleHorizontalLineRef.current.style.setProperty('--fill-percentage', `${horizontalLineFillPercentage}%`);
+
+            const leftNode = middleHorizontalLineRef.current.querySelector('.middle-horizontal-line-node-left') as HTMLElement;
+            const rightNode = middleHorizontalLineRef.current.querySelector('.middle-horizontal-line-node-right') as HTMLElement;
+
+            if (leftNode) {
+              if (horizontalLineFillPercentage > 0) {
+                leftNode.classList.add('filled');
+              } else {
+                leftNode.classList.remove('filled');
+              }
+            }
+
+            if (rightNode) {
+              if (horizontalLineFillPercentage >= 100) {
+                rightNode.classList.add('filled');
+              } else {
+                rightNode.classList.remove('filled');
+              }
+            }
+          }
         } else {
           middleVerticalLine.fillPercentage = 0;
           middleVerticalLineRef.current.style.setProperty('--fill-percentage', '0%');
@@ -188,6 +227,15 @@ const NetworkLine: React.FC = () => {
           const bottomNode = middleVerticalLineRef.current.querySelector('.middle-vertical-line-node-bottom') as HTMLElement;
           if (topNode) topNode.classList.remove('filled');
           if (bottomNode) bottomNode.classList.remove('filled');
+
+          // Reset middle horizontal line
+          if (middleHorizontalLineRef.current) {
+            middleHorizontalLineRef.current.style.setProperty('--fill-percentage', '0%');
+            const leftNode = middleHorizontalLineRef.current.querySelector('.middle-horizontal-line-node-left') as HTMLElement;
+            const rightNode = middleHorizontalLineRef.current.querySelector('.middle-horizontal-line-node-right') as HTMLElement;
+            if (leftNode) leftNode.classList.remove('filled');
+            if (rightNode) rightNode.classList.remove('filled');
+          }
         }
       }
 
@@ -292,6 +340,10 @@ const NetworkLine: React.FC = () => {
       <div ref={middleVerticalLineRef} className="middle-vertical-line">
         <div className="middle-vertical-line-node-top"></div>
         <div className="middle-vertical-line-node-bottom"></div>
+      </div>
+      <div ref={middleHorizontalLineRef} className="middle-horizontal-line">
+        <div className="middle-horizontal-line-node-left"></div>
+        <div className="middle-horizontal-line-node-right"></div>
       </div>
       <div id="svg-container" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}></div>
     </>
