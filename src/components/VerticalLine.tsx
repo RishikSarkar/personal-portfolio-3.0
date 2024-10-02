@@ -1,11 +1,14 @@
 'use client'
 
 import React, { useEffect, useRef, useCallback } from 'react';
+import { SVG, extend as SVGextend, Element as SVGElement, Line } from '@svgdotjs/svg.js';
 
 const VerticalLine: React.FC = () => {
   const lineRef = useRef<HTMLDivElement>(null);
   const diagonalLinesFilledRef = useRef<boolean[]>([]);
   const rafRef = useRef<number | null>(null);
+  const svgRef = useRef<SVGElement | null>(null);
+  const horizontalLineRef = useRef<HTMLDivElement>(null);
 
   const resetLines = useCallback(() => {
     if (lineRef.current) {
@@ -102,6 +105,41 @@ const VerticalLine: React.FC = () => {
           }
         }
       });
+
+      // Update horizontal line position and fill
+      if (horizontalLineRef.current) {
+        const firstDiagonalLine = document.querySelector('.diagonal-line');
+        if (firstDiagonalLine) {
+          const rect = firstDiagonalLine.getBoundingClientRect();
+          const startX = rect.left;
+          const startY = rect.bottom;
+          
+          horizontalLineRef.current.style.top = `${startY}px`;
+          horizontalLineRef.current.style.right = `${window.innerWidth - startX}px`;
+
+          const bottomLeftNode = firstDiagonalLine.querySelector('.diagonal-line-node-left');
+          if (bottomLeftNode && bottomLeftNode.classList.contains('filled')) {
+            const fillPercentage = Math.min(scrollPercentage * 2000, 100);
+            horizontalLineRef.current.style.setProperty('--fill-percentage', `${fillPercentage}%`);
+            
+            // Update the horizontal line node
+            const horizontalNode = horizontalLineRef.current.querySelector('.horizontal-line-node');
+            if (horizontalNode) {
+              if (fillPercentage >= 100) {
+                horizontalNode.classList.add('filled');
+              } else {
+                horizontalNode.classList.remove('filled');
+              }
+            }
+          } else {
+            horizontalLineRef.current.style.setProperty('--fill-percentage', '0%');
+            const horizontalNode = horizontalLineRef.current.querySelector('.horizontal-line-node');
+            if (horizontalNode) {
+              horizontalNode.classList.remove('filled');
+            }
+          }
+        }
+      }
     });
   }, []);
 
@@ -131,7 +169,43 @@ const VerticalLine: React.FC = () => {
     };
   }, [handleScroll, resetLines]);
 
-  return <div ref={lineRef} className="vertical-line"></div>;
+  useEffect(() => {
+    // Create SVG canvas
+    const draw = SVG().addTo('#svg-container').size('100%', '100%');
+    
+    // Create the horizontal line
+    const horizontalLine = draw.line(0, 0, 0, 0).stroke({ color: '#333333', width: 2 });
+    
+    svgRef.current = horizontalLine;
+
+    return () => {
+      draw.remove();
+    };
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, [handleScroll]);
+
+  return (
+    <>
+      <div ref={lineRef} className="vertical-line"></div>
+      <div ref={horizontalLineRef} className="horizontal-line">
+        <div className="horizontal-line-node"></div>
+      </div>
+      <div id="svg-container" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}></div>
+    </>
+  );
 };
 
 export default VerticalLine;
