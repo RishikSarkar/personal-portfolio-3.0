@@ -275,9 +275,9 @@ html {
 .middle-vertical-line {
   position: absolute;
   left: 25%;
+  right: calc(75% - 2px);
   top: 72vh;
-  height: 30vh;
-  width: 2px;
+  bottom: -2vh;
   background-color: #333333;
   overflow: visible;
 }
@@ -341,9 +341,9 @@ html {
 .middle-horizontal-line {
   position: absolute;
   left: 25%;
+  right: calc(75% - 16vw);
   top: 87vh;
-  width: 16vw;
-  height: 2px;
+  bottom: calc(13vh - 2px);
   background-color: #333333;
   overflow: visible;
 }
