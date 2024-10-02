@@ -16,6 +16,27 @@ const ExperimentalNetworkLine: React.FC = () => {
       nodeLeft: false,
       nodeRight: false
     });
+
+    const diag1 = addLine({
+      startCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 0.3 },
+      endCoords: { x: window.innerWidth * 0.6, y: window.innerHeight * 0.5 },
+      tag: 'diagonal-1',
+      fillSpeed: 2000,
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true
+    });
+
+    const horiz1 = addLine({
+      startCoords: { x: window.innerWidth * 0.6, y: window.innerHeight * 0.5 },
+      endCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 0.5 },
+      tag: 'horizontal-1',
+      fillSpeed: 2000,
+      thickness: 2,
+      nodeLeft: false,
+      nodeRight: true,
+      previousLineId: diag1.id
+    });
   }, [addLine]);
 
   return (
@@ -28,18 +49,16 @@ const ExperimentalNetworkLine: React.FC = () => {
             position: 'fixed',
             left: `${line.startCoords.x}px`,
             top: `${line.startCoords.y - scrollY}px`,
-            width: line.tag === 'vertical-line' ? `${line.thickness}px` : `${Math.hypot(
+            width: `${Math.hypot(
               line.endCoords.x - line.startCoords.x,
               line.endCoords.y - line.startCoords.y
             )}px`,
-            height: line.tag === 'vertical-line' ? `${line.endCoords.y - line.startCoords.y}px` : `${line.thickness}px`,
+            height: `${line.thickness}px`,
             backgroundColor: '#333333',
-            transform: line.tag !== 'vertical-line' 
-              ? `rotate(${Math.atan2(
-                  line.endCoords.y - line.startCoords.y,
-                  line.endCoords.x - line.startCoords.x
-                )}rad)`
-              : 'none',
+            transform: `rotate(${Math.atan2(
+              line.endCoords.y - line.startCoords.y,
+              line.endCoords.x - line.startCoords.x
+            )}rad)`,
             transformOrigin: 'top left'
           }}
         >
@@ -48,9 +67,10 @@ const ExperimentalNetworkLine: React.FC = () => {
               position: 'absolute',
               top: 0,
               left: 0,
-              width: '100%',
-              height: `${line.fillPercentage}%`,
-              backgroundColor: 'white'
+              width: `${line.fillPercentage}%`,
+              height: '100%',
+              backgroundColor: 'white',
+              boxShadow: line.fillPercentage > 0 ? '0 0 8px 4px rgba(255, 255, 255, 0.2)' : 'none'
             }}
           />
           {line.nodeLeft && (

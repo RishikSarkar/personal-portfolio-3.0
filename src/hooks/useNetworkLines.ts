@@ -70,36 +70,49 @@ export const useNetworkLines = () => {
 
   const handleScroll = useCallback(() => {
     const newScrollY = window.scrollY;
-    const scrollDelta = newScrollY - scrollY; // Calculate scroll direction and amount
+    const scrollDelta = newScrollY - scrollY;
     setScrollY(newScrollY);
 
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
     const maxScroll = documentHeight - windowHeight;
-    const scrollPercentage = Math.min(newScrollY / maxScroll, 1);
 
-    setLines(prevLines => prevLines.map(line => {
-      let fillPercentage = line.fillPercentage;
-      
-      if (line.previousLineId) {
-        const previousLine = prevLines.find(l => l.id === line.previousLineId);
-        if (previousLine && previousLine.isFilled) {
-          fillPercentage += (scrollDelta / maxScroll) * line.fillSpeed; // Adjust based on scroll direction
+    setLines(prevLines => {
+      const updatedLines = prevLines.map(line => {
+        if (line.previousLineId) {
+          const previousLine = prevLines.find(l => l.id === line.previousLineId);
+          if (previousLine && previousLine.isFilled && scrollDelta > 0) {
+            let fillPercentage = line.fillPercentage + (scrollDelta / maxScroll) * line.fillSpeed;
+            fillPercentage = Math.min(fillPercentage, 100);
+            return { ...line, fillPercentage, isFilled: fillPercentage === 100 };
+          } else if (scrollDelta < 0) {
+            let fillPercentage = line.fillPercentage + (scrollDelta / maxScroll) * line.fillSpeed;
+            fillPercentage = Math.max(fillPercentage, 0);
+            return { ...line, fillPercentage, isFilled: fillPercentage === 100 };
+          }
         }
-      } else {
-        fillPercentage += (scrollDelta / maxScroll) * line.fillSpeed; // Adjust based on scroll direction
-      }
+        return line;
+      });
 
-      // Ensure fillPercentage stays within 0-100 range
-      fillPercentage = Math.max(0, Math.min(fillPercentage, 100));
-
-      return {
-        ...line,
-        fillPercentage,
-        isFilled: fillPercentage === 100
-      };
-    }));
-  }, [scrollY]); // Add scrollY to the dependency array
+      return updatedLines.map(line => {
+        if (!line.previousLineId) {
+          const nextLine = updatedLines.find(l => l.previousLineId === line.id);
+          if (nextLine) {
+            if (scrollDelta > 0 || (scrollDelta < 0 && nextLine.fillPercentage === 0)) {
+              let fillPercentage = line.fillPercentage + (scrollDelta / maxScroll) * line.fillSpeed;
+              fillPercentage = Math.max(0, Math.min(fillPercentage, 100));
+              return { ...line, fillPercentage, isFilled: fillPercentage === 100 };
+            }
+          } else {
+            let fillPercentage = line.fillPercentage + (scrollDelta / maxScroll) * line.fillSpeed;
+            fillPercentage = Math.max(0, Math.min(fillPercentage, 100));
+            return { ...line, fillPercentage, isFilled: fillPercentage === 100 };
+          }
+        }
+        return line;
+      });
+    });
+  }, [scrollY]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
