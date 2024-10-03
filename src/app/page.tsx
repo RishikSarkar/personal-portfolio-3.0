@@ -20,12 +20,14 @@ export default function Home() {
       });
     }, { threshold: 0.5 });
 
-    sectionRefs.current.forEach(section => {
+    const currentRefs = sectionRefs.current;
+
+    currentRefs.forEach(section => {
       if (section) observer.observe(section);
     });
 
     return () => {
-      sectionRefs.current.forEach(section => {
+      currentRefs.forEach(section => {
         if (section) observer.unobserve(section);
       });
     };
@@ -49,7 +51,7 @@ export default function Home() {
         <div className="max-w-[calc(70%-20rem)] pl-16 pr-4">
           <h2 className="text-3xl mb-4">About Me</h2>
           <p className="text-lg font-light leading-relaxed">
-            "If you could train an AI to be a Buddhist, it would probably be pretty good."<br /> - Reid Hoffman<br /><br />
+            &ldquo;If you could train an AI to be a Buddhist, it would probably be pretty good.&rdquo;<br /> - Reid Hoffman<br /><br />
             I am currently pursuing a Master of Engineering in Computer Science at Cornell University. Prior to this, I graduated Summa Cum Laude with honors from Rutgers University-New Brunswick with a B.S. in Computer Science and Cognitive Science and was inducted into Phi Beta Kappa. I also worked as an ML Full-Stack Developer Intern at a fintech scaleup and as a research assistant at a joint Rutgers-Princeton laboratory, where I focused on data integration and machine learning.<br /><br />
             My passions lie at the intersection of artificial intelligence and psychology, and I am keen to explore computational linguistics, cognitive neuropsychiatry, and new LLM frameworks for natural language understanding, including transformer models and fine-tuning for sentiment and emotional analysis. In the future, I aim to establish a startup and develop NLP-driven solutions in the mental healthcare space.
           </p>

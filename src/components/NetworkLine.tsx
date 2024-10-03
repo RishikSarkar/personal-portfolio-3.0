@@ -9,7 +9,7 @@ const NetworkLine: React.FC = () => {
 
   useEffect(() => {
     // Main Line
-    const mainLine = addLine({
+    addLine({
       startCoords: { x: window.innerWidth * 0.7, y: 0 },
       endCoords: { x: window.innerWidth * 0.7, y: window.innerHeight },
       tag: 'main-line',
