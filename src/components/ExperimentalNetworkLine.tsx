@@ -85,7 +85,7 @@ const ExperimentalNetworkLine: React.FC = () => {
       nodeLeft: true,
       nodeRight: true,
       previousLineId: h2.id,
-      nextLineId: null
+      nextLineId: mainLine.id
     });
 
     d1.nextLineId = h1.id;
@@ -93,7 +93,6 @@ const ExperimentalNetworkLine: React.FC = () => {
     v1.nextLineId = v2.id;
     v1.nextLineId = h2.id;
     h2.nextLineId = d2.id;
-    d2.nextLineId = mainLine.id;
   }, [addLine]);
 
   return (
@@ -105,8 +104,8 @@ const ExperimentalNetworkLine: React.FC = () => {
           style={{
             position: line.tag === 'main-line' ? 'fixed' : 'absolute',
             left: `${line.startCoords.x}px`,
-            top: line.tag === 'main-line' 
-              ? '0px' 
+            top: line.tag === 'main-line'
+              ? '0px'
               : `${line.startCoords.y}px`,
             width: `${Math.hypot(
               line.endCoords.x - line.startCoords.x,
@@ -121,7 +120,7 @@ const ExperimentalNetworkLine: React.FC = () => {
             transformOrigin: 'top left'
           }}
         >
-          <div 
+          <div
             style={{
               position: 'absolute',
               top: 0,
