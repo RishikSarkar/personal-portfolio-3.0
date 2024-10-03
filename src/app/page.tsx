@@ -10,8 +10,12 @@ export default function Home() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+          if (entry.target.classList.contains('last-section')) {
+            entry.target.classList.add('visible-last');
+          }
         } else {
           entry.target.classList.remove('visible');
+          entry.target.classList.remove('visible-last');
         }
       });
     }, { threshold: 0.5 });
@@ -39,7 +43,6 @@ export default function Home() {
             Specializing in NLP-driven mental healthcare solutions
           </p>
         </div>
-        {/* Diagonal line removed */}
       </section>
       
       <section ref={el => { sectionRefs.current[1] = el }} className="section h-screen flex items-center relative">
@@ -51,7 +54,6 @@ export default function Home() {
             My passions lie at the intersection of artificial intelligence and psychology, and I am keen to explore computational linguistics, cognitive neuropsychiatry, and new LLM frameworks for natural language understanding, including transformer models and fine-tuning for sentiment and emotional analysis. In the future, I aim to establish a startup and develop NLP-driven solutions in the mental healthcare space.
           </p>
         </div>
-        {/* Diagonal line removed */}
       </section>
 
       <section ref={el => { sectionRefs.current[2] = el }} className="section h-screen flex items-center relative">
@@ -63,22 +65,25 @@ export default function Home() {
             <li>Download my full <a href="#" className="text-gray-300 hover:text-gray-500">CV</a></li>
           </ul>
         </div>
-        {/* Diagonal line removed */}
       </section>
 
       <section ref={el => { sectionRefs.current[3] = el }} className="section h-screen flex items-center relative">
         <div className="pl-16 pr-16">
-          <h2 className="text-3xl mb-4 font-light">Connect With Me</h2>
-          {/* Add your connect content here */}
+          <h2 className="text-3xl font-light mb-4">Projects</h2>
+          <h4 className="text-lg font-light mb-4">Coming Soon...</h4>
         </div>
-        {/* Diagonal line removed */}
       </section>
 
       <section ref={el => { sectionRefs.current[4] = el }} className="section h-screen flex items-center relative">
         <div className="pl-16 pr-16">
-          {/* <h2 className="text-3xl mb-4">Projects</h2> */}
+          <h2 className="text-3xl mb-4 font-light">Connect With Me</h2>
         </div>
       </section>
+
+      <section 
+        ref={el => { sectionRefs.current[5] = el }} 
+        className="section last-section h-[200px] flex items-center relative bg-white"
+      />
     </div>
   );
 }

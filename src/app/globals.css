@@ -87,14 +87,21 @@ html {
 
 .section {
   transition: box-shadow 0.3s ease, opacity 0.3s ease;
-}
-
-.section {
   box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.95);
   opacity: 0.1;
 }
 
 .section.visible {
+  box-shadow: none;
+  opacity: 1;
+}
+
+.last-section {
+  opacity: 1;
+  box-shadow: none;
+}
+
+.last-section.visible-last {
   box-shadow: none;
   opacity: 1;
 }

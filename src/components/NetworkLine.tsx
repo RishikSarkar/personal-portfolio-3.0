@@ -225,14 +225,14 @@ const NetworkLine: React.FC = () => {
       nodeRight: true,
     });
 
-    addLine({
-      startCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 1.125 },
-      endCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 5 },
-      tag: 'vertical',
-      thickness: 0,
-      nodeLeft: false,
-      nodeRight: false,
-    });
+    // addLine({
+    //   startCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 1.125 },
+    //   endCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 3.5 },
+    //   tag: 'vertical',
+    //   thickness: 0,
+    //   nodeLeft: false,
+    //   nodeRight: false,
+    // });
 
     addLine({
       startCoords: { x: window.innerWidth * 0.475, y: window.innerHeight * 1 },
@@ -252,7 +252,7 @@ const NetworkLine: React.FC = () => {
       nodeRight: true,
     });
 
-    // About to Connect
+    // About to Resume
     addLine({
       startCoords: { x: window.innerWidth * 0.55, y: window.innerHeight * 2.0 },
       endCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 2.0 },
@@ -388,28 +388,39 @@ const NetworkLine: React.FC = () => {
       nodeRight: true,
     });
 
-    addLine({
-      startCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 2.55 },
-      endCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 5 },
-      tag: 'vertical',
-      thickness: 0,
-      nodeLeft: false,
-      nodeRight: false,
-    });
+    // addLine({
+    //   startCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 2.55 },
+    //   endCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 3.5 },
+    //   tag: 'vertical',
+    //   thickness: 0,
+    //   nodeLeft: false,
+    //   nodeRight: false,
+    // });
 
-    // Brain Outline
+    // Resume to Brain
     addLine({
-      startCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 4.5 },
-      endCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 4.5 },
-      tag: 'horizontal',
+      startCoords: { x: window.innerWidth * 0.5125, y: window.innerHeight * 2.4 },
+      endCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 3.33 },
+      tag: 'diagonal',
       thickness: 2,
       nodeLeft: true,
       nodeRight: true,
     });
 
+    // Brain Outline
+    
+    // addLine({
+    //   startCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 3.5 },
+    //   endCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 3.5 },
+    //   tag: 'horizontal',
+    //   thickness: 2,
+    //   nodeLeft: true,
+    //   nodeRight: true,
+    // });
+
     addLine({
-      startCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 4.5 },
-      endCoords: { x: window.innerWidth * 0.49, y: window.innerHeight * 4.62 },
+      startCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 3.5 },
+      endCoords: { x: window.innerWidth * 0.49, y: window.innerHeight * 3.62 },
       tag: '1',
       thickness: 2,
       nodeLeft: true,
@@ -417,8 +428,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.49, y: window.innerHeight * 4.62 },
-      endCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 4.72 },
+      startCoords: { x: window.innerWidth * 0.49, y: window.innerHeight * 3.62 },
+      endCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 3.72 },
       tag: '2',
       thickness: 2,
       nodeLeft: true,
@@ -426,8 +437,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 4.72 },
-      endCoords: { x: window.innerWidth * 0.42, y: window.innerHeight * 4.74 },
+      startCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 3.72 },
+      endCoords: { x: window.innerWidth * 0.42, y: window.innerHeight * 3.74 },
       tag: '3',
       thickness: 2,
       nodeLeft: true,
@@ -435,8 +446,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.42, y: window.innerHeight * 4.74 },
-      endCoords: { x: window.innerWidth * 0.418, y: window.innerHeight * 4.84 },
+      startCoords: { x: window.innerWidth * 0.42, y: window.innerHeight * 3.74 },
+      endCoords: { x: window.innerWidth * 0.418, y: window.innerHeight * 3.84 },
       tag: '4',
       thickness: 2,
       nodeLeft: true,
@@ -444,8 +455,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.38, y: window.innerHeight * 4.70 },
-      endCoords: { x: window.innerWidth * 0.418, y: window.innerHeight * 4.84 },
+      startCoords: { x: window.innerWidth * 0.38, y: window.innerHeight * 3.70 },
+      endCoords: { x: window.innerWidth * 0.418, y: window.innerHeight * 3.84 },
       tag: '5',
       thickness: 2,
       nodeLeft: true,
@@ -453,8 +464,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.38, y: window.innerHeight * 4.70 },
-      endCoords: { x: window.innerWidth * 0.42, y: window.innerHeight * 4.74 },
+      startCoords: { x: window.innerWidth * 0.38, y: window.innerHeight * 3.70 },
+      endCoords: { x: window.innerWidth * 0.42, y: window.innerHeight * 3.74 },
       tag: '6',
       thickness: 2,
       nodeLeft: true,
@@ -462,8 +473,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.34, y: window.innerHeight * 4.69 },
-      endCoords: { x: window.innerWidth * 0.38, y: window.innerHeight * 4.70 },
+      startCoords: { x: window.innerWidth * 0.34, y: window.innerHeight * 3.69 },
+      endCoords: { x: window.innerWidth * 0.38, y: window.innerHeight * 3.70 },
       tag: '7',
       thickness: 2,
       nodeLeft: true,
@@ -471,8 +482,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.31, y: window.innerHeight * 4.62 },
-      endCoords: { x: window.innerWidth * 0.34, y: window.innerHeight * 4.69 },
+      startCoords: { x: window.innerWidth * 0.31, y: window.innerHeight * 3.62 },
+      endCoords: { x: window.innerWidth * 0.34, y: window.innerHeight * 3.69 },
       tag: '8',
       thickness: 2,
       nodeLeft: true,
@@ -480,8 +491,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 4.6 },
-      endCoords: { x: window.innerWidth * 0.31, y: window.innerHeight * 4.62 },
+      startCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 3.6 },
+      endCoords: { x: window.innerWidth * 0.31, y: window.innerHeight * 3.62 },
       tag: '9',
       thickness: 2,
       nodeLeft: true,
@@ -489,8 +500,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.24, y: window.innerHeight * 4.5 },
-      endCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 4.6 },
+      startCoords: { x: window.innerWidth * 0.24, y: window.innerHeight * 3.5 },
+      endCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 3.6 },
       tag: '10',
       thickness: 2,
       nodeLeft: true,
@@ -498,8 +509,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.27, y: window.innerHeight * 4.4 },
-      endCoords: { x: window.innerWidth * 0.24, y: window.innerHeight * 4.5 },
+      startCoords: { x: window.innerWidth * 0.27, y: window.innerHeight * 3.4 },
+      endCoords: { x: window.innerWidth * 0.24, y: window.innerHeight * 3.5 },
       tag: '11',
       thickness: 2,
       nodeLeft: true,
@@ -507,8 +518,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.32, y: window.innerHeight * 4.34 },
-      endCoords: { x: window.innerWidth * 0.27, y: window.innerHeight * 4.4 },
+      startCoords: { x: window.innerWidth * 0.32, y: window.innerHeight * 3.34 },
+      endCoords: { x: window.innerWidth * 0.27, y: window.innerHeight * 3.4 },
       tag: '12',
       thickness: 2,
       nodeLeft: true,
@@ -516,8 +527,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 4.33 },
-      endCoords: { x: window.innerWidth * 0.32, y: window.innerHeight * 4.34 },
+      startCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 3.33 },
+      endCoords: { x: window.innerWidth * 0.32, y: window.innerHeight * 3.34 },
       tag: '13',
       thickness: 2,
       nodeLeft: true,
@@ -525,8 +536,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 4.33 },
-      endCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 4.38 },
+      startCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 3.33 },
+      endCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 3.38 },
       tag: '14',
       thickness: 2,
       nodeLeft: true,
@@ -534,8 +545,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 4.38 },
-      endCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 4.5 },
+      startCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 3.38 },
+      endCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 3.5 },
       tag: '15',
       thickness: 2,
       nodeLeft: true,
@@ -544,8 +555,8 @@ const NetworkLine: React.FC = () => {
 
     // Brain Connections
     addLine({
-      startCoords: { x: window.innerWidth * 0.27, y: window.innerHeight * 4.4 },
-      endCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 4.5 },
+      startCoords: { x: window.innerWidth * 0.27, y: window.innerHeight * 3.4 },
+      endCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 3.5 },
       tag: '1a',
       thickness: 2,
       nodeLeft: true,
@@ -553,8 +564,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 4.5 },
-      endCoords: { x: window.innerWidth * 0.31, y: window.innerHeight * 4.62 },
+      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 3.5 },
+      endCoords: { x: window.innerWidth * 0.31, y: window.innerHeight * 3.62 },
       tag: '1b',
       thickness: 2,
       nodeLeft: true,
@@ -562,8 +573,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 4.5 },
-      endCoords: { x: window.innerWidth * 0.24, y: window.innerHeight * 4.5 },
+      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 3.5 },
+      endCoords: { x: window.innerWidth * 0.24, y: window.innerHeight * 3.5 },
       tag: '1c',
       thickness: 2,
       nodeLeft: true,
@@ -571,8 +582,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 4.5 },
-      endCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 4.6 },
+      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 3.5 },
+      endCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 3.6 },
       tag: '1d',
       thickness: 2,
       nodeLeft: true,
@@ -580,8 +591,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 4.5 },
-      endCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 4.6 },
+      startCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 3.5 },
+      endCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 3.6 },
       tag: '2a',
       thickness: 2,
       nodeLeft: true,
@@ -589,8 +600,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 4.6 },
-      endCoords: { x: window.innerWidth * 0.38, y: window.innerHeight * 4.70 },
+      startCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 3.6 },
+      endCoords: { x: window.innerWidth * 0.38, y: window.innerHeight * 3.70 },
       tag: '2b',
       thickness: 2,
       nodeLeft: true,
@@ -598,8 +609,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 4.6 },
-      endCoords: { x: window.innerWidth * 0.49, y: window.innerHeight * 4.62 },
+      startCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 3.6 },
+      endCoords: { x: window.innerWidth * 0.49, y: window.innerHeight * 3.62 },
       tag: '2c',
       thickness: 2,
       nodeLeft: true,
@@ -607,8 +618,8 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 4.6 },
-      endCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 4.72 },
+      startCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 3.6 },
+      endCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 3.72 },
       tag: '2d',
       thickness: 2,
       nodeLeft: true,
@@ -616,9 +627,153 @@ const NetworkLine: React.FC = () => {
     });
 
     addLine({
-      startCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 4.6 },
-      endCoords: { x: window.innerWidth * 0.42, y: window.innerHeight * 4.74 },
+      startCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 3.6 },
+      endCoords: { x: window.innerWidth * 0.42, y: window.innerHeight * 3.74 },
       tag: '2e',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 3.33 },
+      endCoords: { x: window.innerWidth * 0.43, y: window.innerHeight * 3.46 },
+      tag: '3a',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.43, y: window.innerHeight * 3.46 },
+      endCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 3.6 },
+      tag: '3b',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 3.38 },
+      endCoords: { x: window.innerWidth * 0.43, y: window.innerHeight * 3.46 },
+      tag: '3c',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.43, y: window.innerHeight * 3.46 },
+      endCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 3.5 },
+      tag: '3d',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.36, y: window.innerHeight * 3.42 },
+      endCoords: { x: window.innerWidth * 0.43, y: window.innerHeight * 3.46 },
+      tag: '4a',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.27, y: window.innerHeight * 3.4 },
+      endCoords: { x: window.innerWidth * 0.36, y: window.innerHeight * 3.42 },
+      tag: '4b',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 3.33 },
+      endCoords: { x: window.innerWidth * 0.36, y: window.innerHeight * 3.42 },
+      tag: '4c',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.32, y: window.innerHeight * 3.34 },
+      endCoords: { x: window.innerWidth * 0.36, y: window.innerHeight * 3.42 },
+      tag: '4d',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.36, y: window.innerHeight * 3.42 },
+      endCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 3.5 },
+      tag: '4e',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.375, y: window.innerHeight * 3.56 },
+      endCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 3.6 },
+      tag: '5a',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 3.5 },
+      endCoords: { x: window.innerWidth * 0.375, y: window.innerHeight * 3.56 },
+      tag: '5b',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.36, y: window.innerHeight * 3.42 },
+      endCoords: { x: window.innerWidth * 0.375, y: window.innerHeight * 3.56 },
+      tag: '5c',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.43, y: window.innerHeight * 3.46 },
+      endCoords: { x: window.innerWidth * 0.375, y: window.innerHeight * 3.56 },
+      tag: '5d',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.375, y: window.innerHeight * 3.56 },
+      endCoords: { x: window.innerWidth * 0.38, y: window.innerHeight * 3.70 },
+      tag: '5e',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.375, y: window.innerHeight * 3.56 },
+      endCoords: { x: window.innerWidth * 0.31, y: window.innerHeight * 3.62 },
+      tag: '5f',
+      thickness: 2,
+      nodeLeft: true,
+      nodeRight: true,
+    });
+
+    addLine({
+      startCoords: { x: window.innerWidth * 0.375, y: window.innerHeight * 3.56 },
+      endCoords: { x: window.innerWidth * 0.34, y: window.innerHeight * 3.69 },
+      tag: '5g',
       thickness: 2,
       nodeLeft: true,
       nodeRight: true,
