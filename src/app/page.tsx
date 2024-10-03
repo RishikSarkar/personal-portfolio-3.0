@@ -58,11 +58,29 @@ export default function Home() {
 
       <section ref={el => { sectionRefs.current[2] = el }} className="section h-screen flex items-center relative">
         <div className="pl-16 pr-16">
-          <h2 className="text-3xl mb-4 font-light">Resume</h2>
+          <h2 className="text-3xl mb-4 font-light">Documents</h2>
           <p className="text-xl mb-4 font-light">Check out my professional experience and qualifications:</p>
           <ul className="text-lg list-disc list-inside mb-4 font-light">
-            <li>View my <a href="#" className="text-gray-300 hover:text-gray-500">Resume</a></li>
-            <li>Download my full <a href="#" className="text-gray-300 hover:text-gray-500">CV</a></li>
+            <li>
+              <a 
+                href="/rishik_sarkar_resume.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-300 hover:text-gray-500"
+              >
+                Resume
+              </a>
+            </li>
+            <li>
+              <a 
+                href="/rishik_sarkar_cv.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-300 hover:text-gray-500"
+              >
+                Curriculum Vitae
+              </a>
+            </li>
           </ul>
         </div>
       </section>
