@@ -76,8 +76,7 @@ export default function Home() {
 
       <section ref={el => { sectionRefs.current[4] = el }} className="section h-screen flex items-center relative">
         <div className="pl-16 pr-16">
-          <h2 className="text-3xl mb-4">Projects</h2>
-          <p className="text-xl">Neural network brain visualization coming soon...</p>
+          {/* <h2 className="text-3xl mb-4">Projects</h2> */}
         </div>
       </section>
     </div>
