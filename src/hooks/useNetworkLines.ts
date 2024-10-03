@@ -12,6 +12,7 @@ export type LineProps = {
   isFilled: boolean;
   fillPercentage: number;
   previousLineId: string | null;
+  nextLineId: string | null;
   tag: string;
   className?: string;
   nodeLeft: boolean;
@@ -27,6 +28,7 @@ const createLine = (props: Partial<LineProps>): LineProps => ({
   isFilled: false,
   fillPercentage: 0,
   previousLineId: null,
+  nextLineId: null,
   tag: '',
   className: '',
   nodeLeft: false,
@@ -48,6 +50,7 @@ export const useNetworkLines = () => {
       isFilled: false,
       fillPercentage: 0,
       previousLineId: null,
+      nextLineId: null,
       tag: '',
       className: '',
       nodeLeft: false,
@@ -87,9 +90,12 @@ export const useNetworkLines = () => {
             fillPercentage = Math.min(fillPercentage, 100);
             return { ...line, fillPercentage, isFilled: fillPercentage === 100 };
           } else if (scrollDelta < 0) {
-            let fillPercentage = line.fillPercentage + (scrollDelta / maxScroll) * line.fillSpeed;
-            fillPercentage = Math.max(fillPercentage, 0);
-            return { ...line, fillPercentage, isFilled: fillPercentage === 100 };
+            const nextLine = prevLines.find(l => l.previousLineId === line.id);
+            if (!nextLine || nextLine.fillPercentage === 0) {
+              let fillPercentage = line.fillPercentage + (scrollDelta / maxScroll) * line.fillSpeed;
+              fillPercentage = Math.max(fillPercentage, 0);
+              return { ...line, fillPercentage, isFilled: fillPercentage === 100 };
+            }
           }
         }
         return line;
