@@ -1,6 +1,6 @@
 "use client"
 
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
@@ -140,11 +140,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[5] = el }} className="section h-screen flex items-center relative" />
+      <section ref={el => { sectionRefs.current[5] = el }} className="section h-[250px] flex items-center relative" />
 
       {/* <section
         ref={el => { sectionRefs.current[6] = el }}
-        className="section last-section h-[200px] flex items-center relative bg-white"
+        className="section last-section h-[250px] flex items-center relative bg-red-500"
       /> */}
     </div>
   );
