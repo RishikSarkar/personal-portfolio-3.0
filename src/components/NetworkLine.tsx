@@ -4,790 +4,144 @@ import React, { useEffect } from 'react';
 import { useNetworkLines } from '../hooks/useNetworkLines';
 
 const NetworkLine: React.FC = () => {
-  // const { lines, addLine, scrollY } = useNetworkLines();
   const { lines, addLine } = useNetworkLines();
+
+  const createLine = (
+    startXPercent: number,
+    startYPercent: number,
+    endXPercent: number,
+    endYPercent: number,
+    tag: string,
+    thickness: number = 2,
+    nodeLeft: boolean = true,
+    nodeRight: boolean = true
+  ) => {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    addLine({
+      startCoords: { x: w * startXPercent, y: h * startYPercent },
+      endCoords: { x: w * endXPercent, y: h * endYPercent },
+      tag,
+      thickness,
+      nodeLeft,
+      nodeRight,
+    });
+  };
 
   useEffect(() => {
     // Main Line
-    addLine({
-      startCoords: { x: window.innerWidth * 0.7, y: 0 },
-      endCoords: { x: window.innerWidth * 0.7, y: window.innerHeight },
-      tag: 'main-line',
-      thickness: 2,
-    });
+    createLine(0.7, 0, 0.7, 1, 'main-line', 2, false, false);
 
     // Enter Title
-    addLine({
-      startCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 0.2 },
-      endCoords: { x: window.innerWidth * 0.6, y: window.innerHeight * 0.4 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.6, y: window.innerHeight * 0.4 },
-      endCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 0.45 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.6, y: window.innerHeight * 0.4 },
-      endCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 0.55 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    // addLine({
-    //   startCoords: { x: window.innerWidth * 0.6, y: window.innerHeight * 0.4 },
-    //   endCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 0.4 },
-    //   tag: 'horizontal',
-    //   thickness: 2,
-    //   nodeRight: true,
-    // });
+    createLine(0.7, 0.2, 0.6, 0.4, 'd');
+    createLine(0.6, 0.4, 0.5, 0.45, 'd');
+    createLine(0.6, 0.4, 0.5, 0.55, 'd');
 
     // Title to About
-    addLine({
-      startCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 0.75 },
-      endCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 0.875 },
-      tag: 'vertical',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.15, 0.75, 0.15, 0.875, 'v');
+    createLine(0.20, 0.75, 0.20, 0.875, 'v');
+    createLine(0.25, 0.75, 0.25, 0.875, 'v');
 
-    // addLine({
-    //   startCoords: { x: window.innerWidth * 0.15, y: window.innerHeight * 0.875 },
-    //   endCoords: { x: window.innerWidth * 0.20, y: window.innerHeight * 0.875 },
-    //   tag: 'horizontal',
-    //   thickness: 2,
-    //   nodeLeft: true,
-    //   nodeRight: true,
-    // });
+    createLine(0.15, 0.75, 0.20, 0.875, 'd');
+    createLine(0.15, 0.75, 0.25, 0.875, 'd');
 
-    // addLine({
-    //   startCoords: { x: window.innerWidth * 0.20, y: window.innerHeight * 0.875 },
-    //   endCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 0.875 },
-    //   tag: 'horizontal',
-    //   thickness: 2,
-    //   nodeLeft: true,
-    //   nodeRight: true,
-    // });
+    createLine(0.20, 0.75, 0.15, 0.875, 'd');
+    createLine(0.20, 0.75, 0.25, 0.875, 'd');
 
-    addLine({
-      startCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 0.875 },
-      endCoords: { x: window.innerWidth * 0.175, y: window.innerHeight * 1.0 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.25, 0.75, 0.15, 0.875, 'd');
+    createLine(0.25, 0.75, 0.20, 0.875, 'd');
 
-    addLine({
-      startCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 0.875 },
-      endCoords: { x: window.innerWidth * 0.225, y: window.innerHeight * 1.0 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.15, 0.875, 0.175, 1.0, 'd');
+    createLine(0.15, 0.875, 0.225, 1.0, 'd');
 
-    addLine({
-      startCoords: { x: window.innerWidth * 0.15, y: window.innerHeight * 0.875 },
-      endCoords: { x: window.innerWidth * 0.175, y: window.innerHeight * 1.0 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.20, 0.875, 0.175, 1.0, 'd');
+    createLine(0.20, 0.875, 0.225, 1.0, 'd');
 
-    addLine({
-      startCoords: { x: window.innerWidth * 0.15, y: window.innerHeight * 0.875 },
-      endCoords: { x: window.innerWidth * 0.225, y: window.innerHeight * 1.0 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.20, y: window.innerHeight * 0.875 },
-      endCoords: { x: window.innerWidth * 0.175, y: window.innerHeight * 1.0 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.20, y: window.innerHeight * 0.875 },
-      endCoords: { x: window.innerWidth * 0.225, y: window.innerHeight * 1.0 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.20, y: window.innerHeight * 0.75 },
-      endCoords: { x: window.innerWidth * 0.20, y: window.innerHeight * 0.875 },
-      tag: 'vertical',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.15, y: window.innerHeight * 0.75 },
-      endCoords: { x: window.innerWidth * 0.15, y: window.innerHeight * 0.875 },
-      tag: 'vertical',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.15, y: window.innerHeight * 0.75 },
-      endCoords: { x: window.innerWidth * 0.20, y: window.innerHeight * 0.875 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.15, y: window.innerHeight * 0.75 },
-      endCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 0.875 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.20, y: window.innerHeight * 0.75 },
-      endCoords: { x: window.innerWidth * 0.15, y: window.innerHeight * 0.875 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.20, y: window.innerHeight * 0.75 },
-      endCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 0.875 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 0.75 },
-      endCoords: { x: window.innerWidth * 0.15, y: window.innerHeight * 0.875 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 0.75 },
-      endCoords: { x: window.innerWidth * 0.20, y: window.innerHeight * 0.875 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.25, 0.875, 0.175, 1.0, 'd');
+    createLine(0.25, 0.875, 0.225, 1.0, 'd');
 
     // About
-    addLine({
-      startCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 0.875 },
-      endCoords: { x: window.innerWidth * 0.475, y: window.innerHeight * 1.0 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-    
-    addLine({
-      startCoords: { x: window.innerWidth * 0.475, y: window.innerHeight * 1.0 },
-      endCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 1.125 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.25, 0.875, 0.475, 1.0, 'd');
 
-    // addLine({
-    //   startCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 1.125 },
-    //   endCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 3.5 },
-    //   tag: 'vertical',
-    //   thickness: 0,
-    //   nodeLeft: false,
-    //   nodeRight: false,
-    // });
+    createLine(0.475, 1.0, 0.7, 1.125, 'd');
 
-    addLine({
-      startCoords: { x: window.innerWidth * 0.475, y: window.innerHeight * 1 },
-      endCoords: { x: window.innerWidth * 0.6, y: window.innerHeight * 1.575 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.6, y: window.innerHeight * 1.575 },
-      endCoords: { x: window.innerWidth * 0.55, y: window.innerHeight * 1.9 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.475, 1, 0.6, 1.575, 'd');
+    createLine(0.6, 1.575, 0.55, 1.9, 'd');
 
     // About to Resume
-    addLine({
-      startCoords: { x: window.innerWidth * 0.55, y: window.innerHeight * 1.9 },
-      endCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 2.0 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-    
-    addLine({
-      startCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 2.0 },
-      endCoords: { x: window.innerWidth * 0.175, y: window.innerHeight * 2.25 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.55, 1.9, 0.4, 2.0, 'd');
 
-    addLine({
-      startCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 2.0 },
-      endCoords: { x: window.innerWidth * 0.225, y: window.innerHeight * 2.25 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.2, 2.0, 0.175, 2.25, 'd');
+    createLine(0.2, 2.0, 0.225, 2.25, 'd');
+    createLine(0.2, 2.0, 0.275, 2.25, 'd');
+    createLine(0.2, 2.0, 0.325, 2.25, 'd');
 
-    addLine({
-      startCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 2.0 },
-      endCoords: { x: window.innerWidth * 0.275, y: window.innerHeight * 2.25 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.3, 2.0, 0.175, 2.25, 'd');
+    createLine(0.3, 2.0, 0.225, 2.25, 'd');
+    createLine(0.3, 2.0, 0.275, 2.25, 'd');
+    createLine(0.3, 2.0, 0.325, 2.25, 'd');
 
-    addLine({
-      startCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 2.0 },
-      endCoords: { x: window.innerWidth * 0.325, y: window.innerHeight * 2.25 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.4, 2.0, 0.175, 2.25, 'd');
+    createLine(0.4, 2.0, 0.225, 2.25, 'd');
+    createLine(0.4, 2.0, 0.275, 2.25, 'd');
+    createLine(0.4, 2.0, 0.325, 2.25, 'd');
 
-    addLine({
-      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 2.0 },
-      endCoords: { x: window.innerWidth * 0.225, y: window.innerHeight * 2.25 },
-      tag: 'vertical',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.2, y: window.innerHeight * 2.0 },
-      endCoords: { x: window.innerWidth * 0.225, y: window.innerHeight * 2.25 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.2, y: window.innerHeight * 2.0 },
-      endCoords: { x: window.innerWidth * 0.275, y: window.innerHeight * 2.25 },
-      tag: 'vertical',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 2.0 },
-      endCoords: { x: window.innerWidth * 0.275, y: window.innerHeight * 2.25 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 2.0 },
-      endCoords: { x: window.innerWidth * 0.325, y: window.innerHeight * 2.25 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 2.0 },
-      endCoords: { x: window.innerWidth * 0.175, y: window.innerHeight * 2.25 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.2, y: window.innerHeight * 2.0 },
-      endCoords: { x: window.innerWidth * 0.175, y: window.innerHeight * 2.25 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.2, y: window.innerHeight * 2.0 },
-      endCoords: { x: window.innerWidth * 0.325, y: window.innerHeight * 2.25 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.325, y: window.innerHeight * 2.25 },
-      endCoords: { x: window.innerWidth * 0.5125, y: window.innerHeight * 2.4 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.5125, y: window.innerHeight * 2.4 },
-      endCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 2.55 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    // addLine({
-    //   startCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 2.55 },
-    //   endCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 3.5 },
-    //   tag: 'vertical',
-    //   thickness: 0,
-    //   nodeLeft: false,
-    //   nodeRight: false,
-    // });
+    createLine(0.325, 2.25, 0.5125, 2.4, 'd');
+    createLine(0.5125, 2.4, 0.7, 2.55, 'd');
 
     // Resume to Brain
-    addLine({
-      startCoords: { x: window.innerWidth * 0.5125, y: window.innerHeight * 2.4 },
-      endCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 3.33 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.5125, 2.4, 0.4, 3.33, 'd');
 
     // Brain Outline
-    
-    // addLine({
-    //   startCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 3.5 },
-    //   endCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 3.5 },
-    //   tag: 'horizontal',
-    //   thickness: 2,
-    //   nodeLeft: true,
-    //   nodeRight: true,
-    // });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 3.5 },
-      endCoords: { x: window.innerWidth * 0.49, y: window.innerHeight * 3.62 },
-      tag: '1',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.49, y: window.innerHeight * 3.62 },
-      endCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 3.72 },
-      tag: '2',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 3.72 },
-      endCoords: { x: window.innerWidth * 0.42, y: window.innerHeight * 3.74 },
-      tag: '3',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.42, y: window.innerHeight * 3.74 },
-      endCoords: { x: window.innerWidth * 0.418, y: window.innerHeight * 3.84 },
-      tag: '4',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.38, y: window.innerHeight * 3.70 },
-      endCoords: { x: window.innerWidth * 0.418, y: window.innerHeight * 3.84 },
-      tag: '5',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.38, y: window.innerHeight * 3.70 },
-      endCoords: { x: window.innerWidth * 0.42, y: window.innerHeight * 3.74 },
-      tag: '6',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.34, y: window.innerHeight * 3.69 },
-      endCoords: { x: window.innerWidth * 0.38, y: window.innerHeight * 3.70 },
-      tag: '7',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.31, y: window.innerHeight * 3.62 },
-      endCoords: { x: window.innerWidth * 0.34, y: window.innerHeight * 3.69 },
-      tag: '8',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 3.6 },
-      endCoords: { x: window.innerWidth * 0.31, y: window.innerHeight * 3.62 },
-      tag: '9',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.24, y: window.innerHeight * 3.5 },
-      endCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 3.6 },
-      tag: '10',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.27, y: window.innerHeight * 3.4 },
-      endCoords: { x: window.innerWidth * 0.24, y: window.innerHeight * 3.5 },
-      tag: '11',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.32, y: window.innerHeight * 3.34 },
-      endCoords: { x: window.innerWidth * 0.27, y: window.innerHeight * 3.4 },
-      tag: '12',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 3.33 },
-      endCoords: { x: window.innerWidth * 0.32, y: window.innerHeight * 3.34 },
-      tag: '13',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 3.33 },
-      endCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 3.38 },
-      tag: '14',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 3.38 },
-      endCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 3.5 },
-      tag: '15',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.5, 3.5, 0.49, 3.62, '1');
+    createLine(0.49, 3.62, 0.46, 3.72, '2');
+    createLine(0.46, 3.72, 0.42, 3.74, '3');
+    createLine(0.42, 3.74, 0.418, 3.84, '4');
+    createLine(0.38, 3.70, 0.418, 3.84, '5');
+    createLine(0.38, 3.70, 0.42, 3.74, '6');
+    createLine(0.34, 3.69, 0.38, 3.70, '7');
+    createLine(0.31, 3.62, 0.34, 3.69, '8');
+    createLine(0.25, 3.6, 0.31, 3.62, '9');
+    createLine(0.24, 3.5, 0.25, 3.6, '10');
+    createLine(0.27, 3.4, 0.24, 3.5, '11');
+    createLine(0.32, 3.34, 0.27, 3.4, '12');
+    createLine(0.4, 3.33, 0.32, 3.34, '13');
+    createLine(0.4, 3.33, 0.46, 3.38, '14');
+    createLine(0.46, 3.38, 0.5, 3.5, '15');
 
     // Brain Connections
-    addLine({
-      startCoords: { x: window.innerWidth * 0.27, y: window.innerHeight * 3.4 },
-      endCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 3.5 },
-      tag: '1a',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.27, 3.4, 0.3, 3.5, '1a');
+    createLine(0.3, 3.5, 0.31, 3.62, '1b');
+    createLine(0.3, 3.5, 0.24, 3.5, '1c');
+    createLine(0.3, 3.5, 0.25, 3.6, '1d');
 
-    addLine({
-      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 3.5 },
-      endCoords: { x: window.innerWidth * 0.31, y: window.innerHeight * 3.62 },
-      tag: '1b',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.5, 3.5, 0.44, 3.6, '2a');
+    createLine(0.44, 3.6, 0.38, 3.70, '2b');
+    createLine(0.44, 3.6, 0.49, 3.62, '2c');
+    createLine(0.44, 3.6, 0.46, 3.72, '2d');
+    createLine(0.44, 3.6, 0.42, 3.74, '2e');
 
-    addLine({
-      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 3.5 },
-      endCoords: { x: window.innerWidth * 0.24, y: window.innerHeight * 3.5 },
-      tag: '1c',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.4, 3.33, 0.43, 3.46, '3a');
+    createLine(0.43, 3.46, 0.44, 3.6, '3b');
+    createLine(0.46, 3.38, 0.43, 3.46, '3c');
+    createLine(0.43, 3.46, 0.5, 3.5, '3d');
 
-    addLine({
-      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 3.5 },
-      endCoords: { x: window.innerWidth * 0.25, y: window.innerHeight * 3.6 },
-      tag: '1d',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 3.5 },
-      endCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 3.6 },
-      tag: '2a',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 3.6 },
-      endCoords: { x: window.innerWidth * 0.38, y: window.innerHeight * 3.70 },
-      tag: '2b',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 3.6 },
-      endCoords: { x: window.innerWidth * 0.49, y: window.innerHeight * 3.62 },
-      tag: '2c',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 3.6 },
-      endCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 3.72 },
-      tag: '2d',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 3.6 },
-      endCoords: { x: window.innerWidth * 0.42, y: window.innerHeight * 3.74 },
-      tag: '2e',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 3.33 },
-      endCoords: { x: window.innerWidth * 0.43, y: window.innerHeight * 3.46 },
-      tag: '3a',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.43, y: window.innerHeight * 3.46 },
-      endCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 3.6 },
-      tag: '3b',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.46, y: window.innerHeight * 3.38 },
-      endCoords: { x: window.innerWidth * 0.43, y: window.innerHeight * 3.46 },
-      tag: '3c',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.43, y: window.innerHeight * 3.46 },
-      endCoords: { x: window.innerWidth * 0.5, y: window.innerHeight * 3.5 },
-      tag: '3d',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.36, y: window.innerHeight * 3.42 },
-      endCoords: { x: window.innerWidth * 0.43, y: window.innerHeight * 3.46 },
-      tag: '4a',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.27, y: window.innerHeight * 3.4 },
-      endCoords: { x: window.innerWidth * 0.36, y: window.innerHeight * 3.42 },
-      tag: '4b',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.4, y: window.innerHeight * 3.33 },
-      endCoords: { x: window.innerWidth * 0.36, y: window.innerHeight * 3.42 },
-      tag: '4c',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.32, y: window.innerHeight * 3.34 },
-      endCoords: { x: window.innerWidth * 0.36, y: window.innerHeight * 3.42 },
-      tag: '4d',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.36, y: window.innerHeight * 3.42 },
-      endCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 3.5 },
-      tag: '4e',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.375, y: window.innerHeight * 3.56 },
-      endCoords: { x: window.innerWidth * 0.44, y: window.innerHeight * 3.6 },
-      tag: '5a',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.3, y: window.innerHeight * 3.5 },
-      endCoords: { x: window.innerWidth * 0.375, y: window.innerHeight * 3.56 },
-      tag: '5b',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.36, y: window.innerHeight * 3.42 },
-      endCoords: { x: window.innerWidth * 0.375, y: window.innerHeight * 3.56 },
-      tag: '5c',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.43, y: window.innerHeight * 3.46 },
-      endCoords: { x: window.innerWidth * 0.375, y: window.innerHeight * 3.56 },
-      tag: '5d',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.375, y: window.innerHeight * 3.56 },
-      endCoords: { x: window.innerWidth * 0.38, y: window.innerHeight * 3.70 },
-      tag: '5e',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.375, y: window.innerHeight * 3.56 },
-      endCoords: { x: window.innerWidth * 0.31, y: window.innerHeight * 3.62 },
-      tag: '5f',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
-
-    addLine({
-      startCoords: { x: window.innerWidth * 0.375, y: window.innerHeight * 3.56 },
-      endCoords: { x: window.innerWidth * 0.34, y: window.innerHeight * 3.69 },
-      tag: '5g',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.36, 3.42, 0.43, 3.46, '4a');
+    createLine(0.27, 3.4, 0.36, 3.42, '4b');
+    createLine(0.4, 3.33, 0.36, 3.42, '4c');
+    createLine(0.32, 3.34, 0.36, 3.42, '4d');
+    createLine(0.36, 3.42, 0.3, 3.5, '4e');
+    
+    createLine(0.375, 3.56, 0.44, 3.6, '5a');
+    createLine(0.3, 3.5, 0.375, 3.56, '5b');
+    createLine(0.36, 3.42, 0.375, 3.56, '5c');
+    createLine(0.43, 3.46, 0.375, 3.56, '5d');
+    createLine(0.375, 3.56, 0.38, 3.70, '5e');
+    createLine(0.375, 3.56, 0.31, 3.62, '5f');
+    createLine(0.375, 3.56, 0.34, 3.69, '5g');
 
     // Brain to Main
-    addLine({
-      startCoords: { x: window.innerWidth * 0.49, y: window.innerHeight * 3.62 },
-      endCoords: { x: window.innerWidth * 0.7, y: window.innerHeight * 3.8 },
-      tag: 'diagonal',
-      thickness: 2,
-      nodeLeft: true,
-      nodeRight: true,
-    });
+    createLine(0.49, 3.62, 0.7, 3.8, 'd');
   }, [addLine]);
 
   return (
