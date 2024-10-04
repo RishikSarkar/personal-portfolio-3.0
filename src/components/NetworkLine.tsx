@@ -1,12 +1,12 @@
 "use client"
 
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { useNetworkLines } from '../hooks/useNetworkLines';
 
 const NetworkLine: React.FC = () => {
   const { lines, addLine } = useNetworkLines();
 
-  const createLine = (
+  const createLine = useCallback((
     startXPercent: number,
     startYPercent: number,
     endXPercent: number,
@@ -26,7 +26,7 @@ const NetworkLine: React.FC = () => {
       nodeLeft,
       nodeRight,
     });
-  };
+  }, [addLine]);
 
   useEffect(() => {
     // Main Line
@@ -131,7 +131,7 @@ const NetworkLine: React.FC = () => {
     createLine(0.4, 3.33, 0.36, 3.42, '4c');
     createLine(0.32, 3.34, 0.36, 3.42, '4d');
     createLine(0.36, 3.42, 0.3, 3.5, '4e');
-    
+
     createLine(0.375, 3.56, 0.44, 3.6, '5a');
     createLine(0.3, 3.5, 0.375, 3.56, '5b');
     createLine(0.36, 3.42, 0.375, 3.56, '5c');
@@ -142,52 +142,62 @@ const NetworkLine: React.FC = () => {
 
     // Brain to Main
     createLine(0.49, 3.62, 0.7, 3.8, 'd');
-  }, [addLine]);
+  }, [createLine]);
 
-  return (
-    <>
-      {lines.map(line => (
-        <div
-          key={line.id}
-          className={`experimental-line ${line.tag}`}
-          style={{
-            position: line.tag === 'main-line' ? 'fixed' : 'absolute',
-            left: `${line.startCoords.x}px`,
-            top: line.tag === 'main-line' ? '0px' : `${line.startCoords.y}px`,
-            width: `${Math.hypot(
-              line.endCoords.x - line.startCoords.x,
-              line.endCoords.y - line.startCoords.y
-            )}px`,
-            height: `${line.thickness}px`,
-            backgroundColor: '#333333',
-            transform: `rotate(${Math.atan2(
-              line.endCoords.y - line.startCoords.y,
-              line.endCoords.x - line.startCoords.x
-            )}rad)`,
-            transformOrigin: 'top left'
-          }}
-        >
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: `${line.fillPercentage}%`,
-              height: '100%',
-              backgroundColor: 'white',
-              boxShadow: line.fillPercentage > 0 ? '0 0 8px 2px rgba(255, 255, 255, 0.2)' : 'none'
-            }}
-          />
-          {line.nodeLeft && (
-            <div className={`node left ${line.fillPercentage > 0 ? 'filled' : ''}`} />
-          )}
-          {line.nodeRight && (
-            <div className={`node right ${line.fillPercentage >= 100 ? 'filled' : ''}`} />
-          )}
-        </div>
-      ))}
-    </>
-  );
+  const calculateRotation = useCallback((startX: number, startY: number, endX: number, endY: number) => {
+    return Math.atan2(endY - startY, endX - startX);
+  }, []);
+
+  const calculateLength = useCallback((startX: number, startY: number, endX: number, endY: number) => {
+    return Math.hypot(endX - startX, endY - startY);
+  }, []);
+
+  const renderedLines = useMemo(() => lines.map(line => (
+    <div
+      key={line.id}
+      className={`experimental-line ${line.tag}`}
+      style={{
+        position: line.tag === 'main-line' ? 'fixed' : 'absolute',
+        left: `${line.startCoords.x}px`,
+        top: line.tag === 'main-line' ? '0px' : `${line.startCoords.y}px`,
+        width: `${calculateLength(
+          line.startCoords.x,
+          line.startCoords.y,
+          line.endCoords.x,
+          line.endCoords.y
+        )}px`,
+        height: `${line.thickness}px`,
+        backgroundColor: '#333333',
+        transform: `rotate(${calculateRotation(
+          line.startCoords.x,
+          line.startCoords.y,
+          line.endCoords.x,
+          line.endCoords.y
+        )}rad)`,
+        transformOrigin: 'top left'
+      }}
+    >
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: `${line.fillPercentage}%`,
+          height: '100%',
+          backgroundColor: 'white',
+          boxShadow: line.fillPercentage > 0 ? '0 0 8px 2px rgba(255, 255, 255, 0.2)' : 'none'
+        }}
+      />
+      {line.nodeLeft && (
+        <div className={`node left ${line.fillPercentage > 0 ? 'filled' : ''}`} />
+      )}
+      {line.nodeRight && (
+        <div className={`node right ${line.fillPercentage >= 100 ? 'filled' : ''}`} />
+      )}
+    </div>
+  )), [lines, calculateLength, calculateRotation]);
+
+  return <>{renderedLines}</>;
 };
 
-export default NetworkLine;
+export default React.memo(NetworkLine);
