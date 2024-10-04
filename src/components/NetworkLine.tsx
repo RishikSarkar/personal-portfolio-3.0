@@ -154,6 +154,24 @@ const NetworkLine: React.FC = () => {
 
     createLine(0.42, 4.14, 0.35, 4.4, 'd');
     createLine(0.42, 4.14, 0.49, 4.4, 'd');
+
+    // Bottom
+    createLine(0, 5.7, 1, 5.7, 'd', 2, false, false);
+    createLine(0, 5.72, 1, 5.72, 'd', 2, false, false);
+    createLine(0, 5.74, 1, 5.74, 'd', 3, false, false);
+    createLine(0, 5.76, 1, 5.76, 'd', 4, false, false);
+    createLine(0, 5.78, 1, 5.78, 'd', 5, false, false);
+    createLine(0, 5.8, 1, 5.8, 'd', 6, false, false);
+    createLine(0, 5.82, 1, 5.82, 'd', 7, false, false);
+    createLine(0, 5.84, 1, 5.84, 'd', 8, false, false);
+    createLine(0, 5.86, 1, 5.86, 'd', 9, false, false);
+    createLine(0, 5.88, 1, 5.88, 'd', 10, false, false);
+    createLine(0, 5.9, 1, 5.9, 'd', 11, false, false);
+    createLine(0, 5.92, 1, 5.92, 'd', 12, false, false);
+    createLine(0, 5.94, 1, 5.94, 'd', 13, false, false);
+    createLine(0, 5.96, 1, 5.96, 'd', 14, false, false);
+    createLine(0, 5.98, 1, 5.98, 'd', 15, false, false);
+    createLine(0, 6, 1, 6, 'd', 16, false, false);
   }, [createLine]);
 
   const calculateRotation = useCallback((startX: number, startY: number, endX: number, endY: number) => {
