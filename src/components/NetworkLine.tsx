@@ -167,7 +167,7 @@ const NetworkLine: React.FC = () => {
   const renderedLines = useMemo(() => lines.map(line => (
     <div
       key={line.id}
-      className={`experimental-line ${line.tag}`}
+      className={`network-line ${line.tag}`}
       style={{
         position: line.tag === 'main-line' ? 'fixed' : 'absolute',
         left: `${line.startCoords.x}px`,
