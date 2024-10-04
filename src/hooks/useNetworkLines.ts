@@ -12,6 +12,7 @@ export type LineProps = {
     tag: string;
     nodeLeft: boolean;
     nodeRight: boolean;
+    fillChange: boolean;
 };
 
 const createLine = (props: Partial<LineProps>): LineProps => ({
@@ -23,6 +24,7 @@ const createLine = (props: Partial<LineProps>): LineProps => ({
     tag: '',
     nodeLeft: false,
     nodeRight: false,
+    fillChange: true,
     ...props
 });
 
@@ -59,6 +61,10 @@ export const useNetworkLines = () => {
         setMainLineFillY(newMainLineFillY);
 
         setLines(prevLines => prevLines.map(line => {
+            if (!line.fillChange) {
+                return line;
+            }
+
             if (line.tag === 'main-line') {
                 return { ...line, fillPercentage: mainLineFillPercentage };
             } else {
@@ -79,14 +85,16 @@ export const useNetworkLines = () => {
     }, []);
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [handleScroll]);
+        const handleScrollWrapper = () => {
+            setScrollY(window.scrollY);
+            handleScroll();
+        };
 
-    useEffect(() => {
-        setScrollY(window.scrollY);
-        handleScroll();
-    }, []);
+        window.addEventListener('scroll', handleScrollWrapper);
+        handleScrollWrapper();
+
+        return () => window.removeEventListener('scroll', handleScrollWrapper);
+    }, [handleScroll]);
 
     return { lines, addLine, scrollY, mainLineFillY };
 };

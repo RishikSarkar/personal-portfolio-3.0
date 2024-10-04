@@ -15,7 +15,8 @@ const NetworkLine: React.FC = () => {
     thickness: number = 2,
     nodeLeft: boolean = true,
     nodeRight: boolean = true,
-    fillPercentage: number = 0
+    fillPercentage: number = 0,
+    fillChange: boolean = true
   ) => {
     const w = window.innerWidth;
     const h = window.innerHeight;
@@ -27,6 +28,7 @@ const NetworkLine: React.FC = () => {
       nodeLeft,
       nodeRight,
       fillPercentage,
+      fillChange
     });
   }, [addLine]);
 
@@ -158,32 +160,32 @@ const NetworkLine: React.FC = () => {
     createLine(0.42, 4.14, 0.49, 4.4, 'd');
 
     // Bottom
-    createLine(0, 5.2, 1, 5.2, 'd', 2, false, false, 100);
-    createLine(0, 5.22, 1, 5.22, 'd', 2, false, false, 100);
-    createLine(0, 5.24, 1, 5.24, 'd', 3, false, false, 100);
-    createLine(0, 5.26, 1, 5.26, 'd', 4, false, false, 100);
-    createLine(0, 5.28, 1, 5.28, 'd', 5, false, false, 100);
-    createLine(0, 5.3, 1, 5.3, 'd', 6, false, false, 100);
-    createLine(0, 5.32, 1, 5.32, 'd', 7, false, false, 100);
-    createLine(0, 5.34, 1, 5.34, 'd', 8, false, false, 100);
-    createLine(0, 5.36, 1, 5.36, 'd', 9, false, false, 100);
-    createLine(0, 5.38, 1, 5.38, 'd', 10, false, false, 100);
-    createLine(0, 5.4, 1, 5.4, 'd', 11, false, false, 100);
-    createLine(0, 5.42, 1, 5.42, 'd', 12, false, false, 100);
-    createLine(0, 5.44, 1, 5.44, 'd', 13, false, false, 100);
-    createLine(0, 5.46, 1, 5.46, 'd', 14, false, false, 100);
-    createLine(0, 5.48, 1, 5.48, 'd', 15, false, false, 100);
-    createLine(0, 5.5, 1, 5.5, 'd', 16, false, false, 100);
+    createLine(0, 5.2, 1, 5.2, 'd', 2, false, false, 100, false);
+    createLine(0, 5.22, 1, 5.22, 'd', 2, false, false, 100, false);
+    createLine(0, 5.24, 1, 5.24, 'd', 3, false, false, 100, false);
+    createLine(0, 5.26, 1, 5.26, 'd', 4, false, false, 100, false);
+    createLine(0, 5.28, 1, 5.28, 'd', 5, false, false, 100, false);
+    createLine(0, 5.3, 1, 5.3, 'd', 6, false, false, 100, false);
+    createLine(0, 5.32, 1, 5.32, 'd', 7, false, false, 100, false);
+    createLine(0, 5.34, 1, 5.34, 'd', 8, false, false, 100, false);
+    createLine(0, 5.36, 1, 5.36, 'd', 9, false, false, 100, false);
+    createLine(0, 5.38, 1, 5.38, 'd', 10, false, false, 100, false);
+    createLine(0, 5.4, 1, 5.4, 'd', 11, false, false, 100, false);
+    createLine(0, 5.42, 1, 5.42, 'd', 12, false, false, 100, false);
+    createLine(0, 5.44, 1, 5.44, 'd', 13, false, false, 100, false);
+    createLine(0, 5.46, 1, 5.46, 'd', 14, false, false, 100, false);
+    createLine(0, 5.48, 1, 5.48, 'd', 15, false, false, 100, false);
+    createLine(0, 5.5, 1, 5.5, 'd', 16, false, false, 100, false);
 
-    createLine(0.1, 5.2, 0.1, 5.5, 'd', 2, false, false, 100);
-    createLine(0.2, 5.2, 0.2, 5.5, 'd', 2, false, false, 100);
-    createLine(0.3, 5.2, 0.3, 5.5, 'd', 2, false, false, 100);
-    createLine(0.4, 5.2, 0.4, 5.5, 'd', 2, false, false, 100);
-    createLine(0.5, 5.2, 0.5, 5.5, 'd', 2, false, false, 100);
-    createLine(0.6, 5.2, 0.6, 5.5, 'd', 2, false, false, 100);
-    createLine(0.7, 5.2, 0.7, 5.5, 'd', 2, false, false, 100);
-    createLine(0.8, 5.2, 0.8, 5.5, 'd', 2, false, false, 100);
-    createLine(0.9, 5.2, 0.9, 5.5, 'd', 2, false, false, 100);
+    createLine(0.1, 5.2, 0.1, 5.5, 'd', 2, false, false, 100, false);
+    createLine(0.2, 5.2, 0.2, 5.5, 'd', 2, false, false, 100, false);
+    createLine(0.3, 5.2, 0.3, 5.5, 'd', 2, false, false, 100, false);
+    createLine(0.4, 5.2, 0.4, 5.5, 'd', 2, false, false, 100, false);
+    createLine(0.5, 5.2, 0.5, 5.5, 'd', 2, false, false, 100, false);
+    createLine(0.6, 5.2, 0.6, 5.5, 'd', 2, false, false, 100, false);
+    createLine(0.7, 5.2, 0.7, 5.5, 'd', 2, false, false, 100, false);
+    createLine(0.8, 5.2, 0.8, 5.5, 'd', 2, false, false, 100, false);
+    createLine(0.9, 5.2, 0.9, 5.5, 'd', 2, false, false, 100, false);
     
   }, [createLine]);
 
