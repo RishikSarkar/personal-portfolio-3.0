@@ -96,8 +96,8 @@ const NetworkLine: React.FC = () => {
     createLine(0.5, 3.5, 0.49, 3.62, '1');
     createLine(0.49, 3.62, 0.46, 3.72, '2');
     createLine(0.46, 3.72, 0.42, 3.74, '3');
-    createLine(0.42, 3.74, 0.418, 3.84, '4');
-    createLine(0.38, 3.70, 0.418, 3.84, '5');
+    createLine(0.42, 3.74, 0.42, 3.84, '4');
+    createLine(0.38, 3.70, 0.42, 3.84, '5');
     createLine(0.38, 3.70, 0.42, 3.74, '6');
     createLine(0.34, 3.69, 0.38, 3.70, '7');
     createLine(0.31, 3.62, 0.34, 3.69, '8');
@@ -142,6 +142,18 @@ const NetworkLine: React.FC = () => {
 
     // Brain to Main
     createLine(0.49, 3.62, 0.7, 3.8, 'd');
+
+    // Brain to Contact
+    createLine(0.42, 3.84, 0.42, 4.4, 'v');
+
+    createLine(0.42, 3.84, 0.45, 3.94, 'd');
+    createLine(0.45, 3.94, 0.42, 4.04, 'd');
+
+    createLine(0.42, 3.94, 0.39, 4.04, 'd');
+    createLine(0.39, 4.04, 0.42, 4.14, 'd');
+
+    createLine(0.42, 4.14, 0.35, 4.4, 'd');
+    createLine(0.42, 4.14, 0.49, 4.4, 'd');
   }, [createLine]);
 
   const calculateRotation = useCallback((startX: number, startY: number, endX: number, endY: number) => {
