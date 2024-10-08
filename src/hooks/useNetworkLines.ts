@@ -61,7 +61,7 @@ export const useNetworkLines = () => {
         setMainLineFillY(newMainLineFillY);
 
         setLines(prevLines => prevLines.map(line => {
-            if (!line.fillChange) {
+            if (!line.fillChange || line.tag.startsWith('brain-node-')) {
                 return line;
             }
 

@@ -2,6 +2,9 @@
 
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useNetworkLines } from '../hooks/useNetworkLines';
+import BrainNode from './BrainNode';
+import { brainNodes } from '../data/brainNodes';
+import { getActiveProjects, getProjectNode } from '../data/projects';
 
 const NetworkLine: React.FC = () => {
   const { lines, addLine } = useNetworkLines();
@@ -158,7 +161,24 @@ const NetworkLine: React.FC = () => {
 
     createLine(0.42, 4.14, 0.35, 4.4, 'd');
     createLine(0.42, 4.14, 0.49, 4.4, 'd');
-  }, [createLine]);
+
+    // Brain Nodes for active projects
+    const activeProjects = getActiveProjects();
+    activeProjects.forEach((project) => {
+      const node = getProjectNode(project);
+      if (node) {
+        addLine({
+          startCoords: { x: window.innerWidth * node.x, y: window.innerHeight * node.y },
+          endCoords: { x: window.innerWidth * node.x, y: window.innerHeight * node.y },
+          tag: `brain-node-${project.id}`,
+          thickness: 0,
+          nodeLeft: false,
+          nodeRight: false,
+          fillChange: false,
+        });
+      }
+    });
+  }, [createLine, addLine]);
 
   const calculateRotation = useCallback((startX: number, startY: number, endX: number, endY: number) => {
     return Math.atan2(endY - startY, endX - startX);
@@ -168,50 +188,67 @@ const NetworkLine: React.FC = () => {
     return Math.hypot(endX - startX, endY - startY);
   }, []);
 
-  const renderedLines = useMemo(() => lines.map(line => (
-    <div
-      key={line.id}
-      className={`network-line ${line.tag}`}
-      style={{
-        position: line.tag === 'main-line' ? 'fixed' : 'absolute',
-        left: `${line.startCoords.x}px`,
-        top: line.tag === 'main-line' ? '0px' : `${line.startCoords.y}px`,
-        width: `${calculateLength(
-          line.startCoords.x,
-          line.startCoords.y,
-          line.endCoords.x,
-          line.endCoords.y
-        )}px`,
-        height: `${line.thickness}px`,
-        backgroundColor: '#333333',
-        transform: `rotate(${calculateRotation(
-          line.startCoords.x,
-          line.startCoords.y,
-          line.endCoords.x,
-          line.endCoords.y
-        )}rad)`,
-        transformOrigin: 'top left'
-      }}
-    >
+  const renderedLines = useMemo(() => lines.map(line => {
+    if (line.tag.startsWith('brain-node-')) {
+      const projectId = line.tag.split('-')[2];
+      const project = getActiveProjects().find(p => p.id === projectId);
+      if (project) {
+        return (
+          <BrainNode
+            key={line.id}
+            x={line.startCoords.x}
+            y={line.startCoords.y}
+            project={project}
+          />
+        );
+      }
+    }
+
+    return (
       <div
+        key={line.id}
+        className={`network-line ${line.tag}`}
         style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: `${line.fillPercentage}%`,
-          height: '100%',
-          backgroundColor: 'white',
-          boxShadow: line.fillPercentage > 0 ? '0 0 8px 2px rgba(255, 255, 255, 0.2)' : 'none'
+          position: line.tag === 'main-line' ? 'fixed' : 'absolute',
+          left: `${line.startCoords.x}px`,
+          top: line.tag === 'main-line' ? '0px' : `${line.startCoords.y}px`,
+          width: `${calculateLength(
+            line.startCoords.x,
+            line.startCoords.y,
+            line.endCoords.x,
+            line.endCoords.y
+          )}px`,
+          height: `${line.thickness}px`,
+          backgroundColor: '#333333',
+          transform: `rotate(${calculateRotation(
+            line.startCoords.x,
+            line.startCoords.y,
+            line.endCoords.x,
+            line.endCoords.y
+          )}rad)`,
+          transformOrigin: 'top left'
         }}
-      />
-      {line.nodeLeft && !line.tag.startsWith('project-') && (
-        <div className={`node left ${line.fillPercentage > 0 ? 'filled' : ''}`} />
-      )}
-      {line.nodeRight && !line.tag.startsWith('project-') && (
-        <div className={`node right ${line.fillPercentage >= 100 ? 'filled' : ''}`} />
-      )}
-    </div>
-  )), [lines, calculateLength, calculateRotation]);
+      >
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: `${line.fillPercentage}%`,
+            height: '100%',
+            backgroundColor: 'white',
+            boxShadow: line.fillPercentage > 0 ? '0 0 8px 2px rgba(255, 255, 255, 0.2)' : 'none'
+          }}
+        />
+        {line.nodeLeft && !line.tag.startsWith('project-') && (
+          <div className={`node left ${line.fillPercentage > 0 ? 'filled' : ''}`} />
+        )}
+        {line.nodeRight && !line.tag.startsWith('project-') && (
+          <div className={`node right ${line.fillPercentage >= 100 ? 'filled' : ''}`} />
+        )}
+      </div>
+    );
+  }), [lines, calculateLength, calculateRotation]);
 
   return <>{renderedLines}</>;
 };
