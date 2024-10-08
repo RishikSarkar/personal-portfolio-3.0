@@ -18,9 +18,9 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
   const [isHovered, setIsHovered] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 
-  const defaultSize = 14;
-  const hoverSize = 24;
-  const gapSize = 4;
+  const defaultSize = 12;
+  const hoverSize = 20;
+  const gapSize = 8;
 
   const updateFilled = useCallback(() => {
     setIsFilled(y - scrollY <= mainLineFillY);
@@ -83,7 +83,7 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
           left: '50%',
           bottom: '100%',
           transform: 'translateX(-50%)',
-          backgroundColor: 'rgba(51, 51, 51, 0.9)',
+          backgroundColor: 'rgba(51, 51, 51, 0.99)',
           color: 'white',
           padding: '15px',
           borderRadius: '8px',
