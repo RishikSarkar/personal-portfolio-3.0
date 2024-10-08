@@ -30,18 +30,15 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
     updateFilled();
   }, [updateFilled]);
 
-  const nodeStyle = useMemo(() => ({
+  const containerStyle = useMemo(() => ({
     position: 'absolute' as const,
     left: `${x - (isHovered ? hoverSize : defaultSize) / 2}px`,
     top: `${y - (isHovered ? hoverSize : defaultSize) / 2}px`,
     width: `${isHovered ? hoverSize : defaultSize}px`,
     height: `${isHovered ? hoverSize : defaultSize}px`,
-    backgroundColor: isFilled ? '#ffffff' : '#333333',
-    borderRadius: '50%',
     transition: 'all 0.3s ease',
     cursor: 'pointer',
-    zIndex: 12,
-  }), [x, y, isHovered, isFilled]);
+  }), [x, y, isHovered]);
 
   const ringStyle = useMemo(() => ({
     position: 'absolute' as const,
@@ -56,17 +53,30 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
     zIndex: 11,
   }), [gapSize, isFilled]);
 
+  const nodeStyle = useMemo(() => ({
+    position: 'absolute' as const,
+    top: '0',
+    left: '0',
+    right: '0',
+    bottom: '0',
+    backgroundColor: isFilled ? '#ffffff' : '#333333',
+    borderRadius: '50%',
+    transition: 'all 0.3s ease',
+    zIndex: 12,
+  }), [isFilled]);
+
   const handleMouseEnter = useCallback(() => setIsHovered(true), []);
   const handleMouseLeave = useCallback(() => setIsHovered(false), []);
 
   return (
     <div
-      className="brain-node"
-      style={nodeStyle}
+      className="brain-node-container"
+      style={containerStyle}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div style={ringStyle} />
+      <div style={nodeStyle} />
       {isHovered && (
         <div className="project-popup" style={{
           position: 'absolute',
