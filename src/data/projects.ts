@@ -1,4 +1,4 @@
-import { brainNodes } from '././brainNodes';
+import { brainNodes } from './brainNodes';
 
 export interface Project {
     id: string;
@@ -44,7 +44,9 @@ export const projects: Project[] = [
     },
 ];
 
-export const getActiveProjects = () => projects.filter(project => project.isActive);
+const activeProjects = projects.filter(project => project.isActive);
+const projectNodeMap = new Map(brainNodes.map(node => [node.id, node]));
 
-export const getProjectNode = (project: Project) =>
-    brainNodes.find((node: any) => node.id === project.nodeId);
+export const getActiveProjects = () => activeProjects;
+
+export const getProjectNode = (project: Project) => projectNodeMap.get(project.nodeId);

@@ -3,7 +3,6 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useNetworkLines } from '../hooks/useNetworkLines';
 import BrainNode from './BrainNode';
-import { brainNodes } from '../data/brainNodes';
 import { getActiveProjects, getProjectNode } from '../data/projects';
 
 const NetworkLine: React.FC = () => {
