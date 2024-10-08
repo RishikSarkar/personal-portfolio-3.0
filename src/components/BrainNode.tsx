@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 
 interface Project {
   name: string;
@@ -10,32 +10,63 @@ interface BrainNodeProps {
   x: number;
   y: number;
   project: Project;
+  scrollY: number;
+  mainLineFillY: number;
 }
 
-const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project }) => {
+const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineFillY }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
 
-  const nodeSize = isHovered ? 24 : 16;
-  const offset = nodeSize / 2;
+  const defaultSize = 14;
+  const hoverSize = 24;
+  const gapSize = 4;
+
+  const updateFilled = useCallback(() => {
+    setIsFilled(y - scrollY <= mainLineFillY);
+  }, [y, scrollY, mainLineFillY]);
+
+  useEffect(() => {
+    updateFilled();
+  }, [updateFilled]);
+
+  const nodeStyle = useMemo(() => ({
+    position: 'absolute' as const,
+    left: `${x - (isHovered ? hoverSize : defaultSize) / 2}px`,
+    top: `${y - (isHovered ? hoverSize : defaultSize) / 2}px`,
+    width: `${isHovered ? hoverSize : defaultSize}px`,
+    height: `${isHovered ? hoverSize : defaultSize}px`,
+    backgroundColor: isFilled ? '#ffffff' : '#333333',
+    borderRadius: '50%',
+    transition: 'all 0.3s ease',
+    cursor: 'pointer',
+    zIndex: 12,
+  }), [x, y, isHovered, isFilled]);
+
+  const ringStyle = useMemo(() => ({
+    position: 'absolute' as const,
+    top: `-${gapSize}px`,
+    left: `-${gapSize}px`,
+    right: `-${gapSize}px`,
+    bottom: `-${gapSize}px`,
+    borderRadius: '50%',
+    border: `2px solid ${isFilled ? '#ffffff' : '#333333'}`,
+    transition: 'all 0.3s ease',
+    backgroundColor: '#000000',
+    zIndex: 11,
+  }), [gapSize, isFilled]);
+
+  const handleMouseEnter = useCallback(() => setIsHovered(true), []);
+  const handleMouseLeave = useCallback(() => setIsHovered(false), []);
 
   return (
     <div
       className="brain-node"
-      style={{
-        position: 'absolute',
-        left: `${x - offset}px`,
-        top: `${y - offset}px`,
-        width: `${nodeSize}px`,
-        height: `${nodeSize}px`,
-        backgroundColor: isHovered ? '#ffffff' : '#333333',
-        borderRadius: '50%',
-        transition: 'all 0.3s ease',
-        cursor: 'pointer',
-        zIndex: 10,
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      style={nodeStyle}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
+      <div style={ringStyle} />
       {isHovered && (
         <div className="project-popup" style={{
           position: 'absolute',
@@ -63,4 +94,4 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project }) => {
   );
 };
 
-export default BrainNode;
+export default React.memo(BrainNode);

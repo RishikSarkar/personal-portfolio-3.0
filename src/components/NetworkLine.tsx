@@ -7,7 +7,7 @@ import { brainNodes } from '../data/brainNodes';
 import { getActiveProjects, getProjectNode } from '../data/projects';
 
 const NetworkLine: React.FC = () => {
-  const { lines, addLine } = useNetworkLines();
+  const { lines, addLine, scrollY, mainLineFillY } = useNetworkLines();
 
   const createLine = useCallback((
     startXPercent: number,
@@ -199,6 +199,8 @@ const NetworkLine: React.FC = () => {
             x={line.startCoords.x}
             y={line.startCoords.y}
             project={project}
+            scrollY={scrollY}
+            mainLineFillY={mainLineFillY}
           />
         );
       }
@@ -248,7 +250,7 @@ const NetworkLine: React.FC = () => {
         )}
       </div>
     );
-  }), [lines, calculateLength, calculateRotation]);
+  }), [lines, calculateLength, calculateRotation, scrollY, mainLineFillY]);
 
   return <>{renderedLines}</>;
 };
