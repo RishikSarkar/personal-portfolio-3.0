@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
+import ProjectNodes from '@/components/ProjectNodes';
 
 export default function Home() {
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
@@ -99,6 +100,7 @@ export default function Home() {
           <h2 className="text-3xl font-light mb-4">Projects</h2>
           <h4 className="text-lg font-light mb-4">Coming Soon...</h4>
         </div>
+        <ProjectNodes />
       </section>
 
       <section ref={el => { sectionRefs.current[4] = el }} className="section h-screen flex items-center relative">
