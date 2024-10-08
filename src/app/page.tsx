@@ -72,7 +72,7 @@ export default function Home() {
       <section ref={el => { sectionRefs.current[2] = el }} className="section h-screen flex items-center relative">
         <div className="pl-16 pr-16">
           <h2 className="text-3xl mb-4 font-light">Documents</h2>
-          <p className="text-xl mb-6 font-light">Check out my professional experience and qualifications:</p>
+          <p className="text-lg mb-6 font-light">Check out my professional experience and qualifications:</p>
           <div className="flex space-x-6">
             <a
               href="/rishik_sarkar_resume.pdf"
@@ -97,7 +97,7 @@ export default function Home() {
       <section ref={el => { sectionRefs.current[3] = el }} className="section h-screen flex items-center relative">
         <div className="pl-16 pr-16">
           <h2 className="text-3xl font-light mb-4">Projects</h2>
-          <h4 className="text-lg font-light mb-4">Coming Soon...</h4>
+          <h4 className="text-lg font-light mb-4">Hover nodes to explore</h4>
         </div>
       </section>
 
