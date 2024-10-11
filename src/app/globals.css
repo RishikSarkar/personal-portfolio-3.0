@@ -12,6 +12,16 @@ body {
   background: var(--background);
 }
 
+@layer base {
+  ::selection {
+    @apply bg-white text-black;
+  }
+  
+  ::-moz-selection {
+    @apply bg-white text-black;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
