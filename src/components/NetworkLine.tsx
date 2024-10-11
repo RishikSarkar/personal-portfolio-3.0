@@ -99,67 +99,67 @@ const NetworkLine: React.FC = () => {
     createLine(0.5125, 2.4, 0.4, 3.33, 'd');
 
     // Brain Outline
-    createLine(0.5, 3.5, 0.49, 3.62, '1');
-    createLine(0.49, 3.62, 0.46, 3.72, '2');
-    createLine(0.46, 3.72, 0.42, 3.74, '3');
-    createLine(0.42, 3.74, 0.42, 3.84, '4');
-    createLine(0.38, 3.70, 0.42, 3.84, '5');
-    createLine(0.38, 3.70, 0.42, 3.74, '6');
-    createLine(0.34, 3.69, 0.38, 3.70, '7');
-    createLine(0.31, 3.62, 0.34, 3.69, '8');
-    createLine(0.25, 3.6, 0.31, 3.62, '9');
-    createLine(0.24, 3.5, 0.25, 3.6, '10');
-    createLine(0.27, 3.4, 0.24, 3.5, '11');
-    createLine(0.32, 3.34, 0.27, 3.4, '12');
-    createLine(0.4, 3.33, 0.32, 3.34, '13');
-    createLine(0.4, 3.33, 0.46, 3.38, '14');
-    createLine(0.46, 3.38, 0.5, 3.5, '15');
+    createLine(0.5, 4.5, 0.49, 4.62, '1');
+    createLine(0.49, 4.62, 0.46, 4.72, '2');
+    createLine(0.46, 4.72, 0.42, 4.74, '3');
+    createLine(0.42, 4.74, 0.42, 4.84, '4');
+    createLine(0.38, 4.70, 0.42, 4.84, '5');
+    createLine(0.38, 4.70, 0.42, 4.74, '6');
+    createLine(0.34, 4.69, 0.38, 4.70, '7');
+    createLine(0.31, 4.62, 0.34, 4.69, '8');
+    createLine(0.25, 4.6, 0.31, 4.62, '9');
+    createLine(0.24, 4.5, 0.25, 4.6, '10');
+    createLine(0.27, 4.4, 0.24, 4.5, '11');
+    createLine(0.32, 4.34, 0.27, 4.4, '12');
+    createLine(0.4, 4.33, 0.32, 4.34, '13');
+    createLine(0.4, 4.33, 0.46, 4.38, '14');
+    createLine(0.46, 4.38, 0.5, 4.5, '15');
 
     // Brain Connections
-    createLine(0.27, 3.4, 0.3, 3.5, '1a');
-    createLine(0.3, 3.5, 0.31, 3.62, '1b');
-    createLine(0.3, 3.5, 0.24, 3.5, '1c');
-    createLine(0.3, 3.5, 0.25, 3.6, '1d');
+    createLine(0.27, 4.4, 0.3, 4.5, '1a');
+    createLine(0.3, 4.5, 0.31, 4.62, '1b');
+    createLine(0.3, 4.5, 0.24, 4.5, '1c');
+    createLine(0.3, 4.5, 0.25, 4.6, '1d');
 
-    createLine(0.5, 3.5, 0.44, 3.6, '2a');
-    createLine(0.44, 3.6, 0.38, 3.70, '2b');
-    createLine(0.44, 3.6, 0.49, 3.62, '2c');
-    createLine(0.44, 3.6, 0.46, 3.72, '2d');
-    createLine(0.44, 3.6, 0.42, 3.74, '2e');
+    createLine(0.5, 4.5, 0.44, 4.6, '2a');
+    createLine(0.44, 4.6, 0.38, 4.70, '2b');
+    createLine(0.44, 4.6, 0.49, 4.62, '2c');
+    createLine(0.44, 4.6, 0.46, 4.72, '2d');
+    createLine(0.44, 4.6, 0.42, 4.74, '2e');
 
-    createLine(0.4, 3.33, 0.43, 3.46, '3a');
-    createLine(0.43, 3.46, 0.44, 3.6, '3b');
-    createLine(0.46, 3.38, 0.43, 3.46, '3c');
-    createLine(0.43, 3.46, 0.5, 3.5, '3d');
+    createLine(0.4, 4.33, 0.43, 4.46, '3a');
+    createLine(0.43, 4.46, 0.44, 4.6, '3b');
+    createLine(0.46, 4.38, 0.43, 4.46, '3c');
+    createLine(0.43, 4.46, 0.5, 4.5, '3d');
 
-    createLine(0.36, 3.42, 0.43, 3.46, '4a');
-    createLine(0.27, 3.4, 0.36, 3.42, '4b');
-    createLine(0.4, 3.33, 0.36, 3.42, '4c');
-    createLine(0.32, 3.34, 0.36, 3.42, '4d');
-    createLine(0.36, 3.42, 0.3, 3.5, '4e');
+    createLine(0.36, 4.42, 0.43, 4.46, '4a');
+    createLine(0.27, 4.4, 0.36, 4.42, '4b');
+    createLine(0.4, 4.33, 0.36, 4.42, '4c');
+    createLine(0.32, 4.34, 0.36, 4.42, '4d');
+    createLine(0.36, 4.42, 0.3, 4.5, '4e');
 
-    createLine(0.375, 3.56, 0.44, 3.6, '5a');
-    createLine(0.3, 3.5, 0.375, 3.56, '5b');
-    createLine(0.36, 3.42, 0.375, 3.56, '5c');
-    createLine(0.43, 3.46, 0.375, 3.56, '5d');
-    createLine(0.375, 3.56, 0.38, 3.70, '5e');
-    createLine(0.375, 3.56, 0.31, 3.62, '5f');
-    createLine(0.375, 3.56, 0.34, 3.69, '5g');
+    createLine(0.375, 4.56, 0.44, 4.6, '5a');
+    createLine(0.3, 4.5, 0.375, 4.56, '5b');
+    createLine(0.36, 4.42, 0.375, 4.56, '5c');
+    createLine(0.43, 4.46, 0.375, 4.56, '5d');
+    createLine(0.375, 4.56, 0.38, 4.70, '5e');
+    createLine(0.375, 4.56, 0.31, 4.62, '5f');
+    createLine(0.375, 4.56, 0.34, 4.69, '5g');
 
     // Brain to Main
-    createLine(0.49, 3.62, 0.7, 3.8, 'd');
+    createLine(0.49, 4.62, 0.7, 4.8, 'd');
 
     // Brain to Contact
-    createLine(0.42, 3.84, 0.42, 4.4, 'v');
+    createLine(0.42, 4.84, 0.42, 5.4, 'v');
 
-    createLine(0.42, 3.84, 0.45, 3.94, 'd');
-    createLine(0.45, 3.94, 0.42, 4.04, 'd');
+    createLine(0.42, 4.84, 0.45, 4.94, 'd');
+    createLine(0.45, 4.94, 0.42, 5.04, 'd');
 
-    createLine(0.42, 3.94, 0.39, 4.04, 'd');
-    createLine(0.39, 4.04, 0.42, 4.14, 'd');
+    createLine(0.42, 4.94, 0.39, 5.04, 'd');
+    createLine(0.39, 5.04, 0.42, 5.14, 'd');
 
-    createLine(0.42, 4.14, 0.35, 4.4, 'd');
-    createLine(0.42, 4.14, 0.49, 4.4, 'd');
+    createLine(0.42, 5.14, 0.35, 5.4, 'd');
+    createLine(0.42, 5.14, 0.49, 5.4, 'd');
 
     // Brain Nodes for active projects
     const activeProjects = getActiveProjects();

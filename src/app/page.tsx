@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
+import ExperienceSection from '@/components/ExperienceSection';
 
 export default function Home() {
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
@@ -95,13 +96,19 @@ export default function Home() {
       </section>
 
       <section ref={el => { sectionRefs.current[3] = el }} className="section h-screen flex items-center relative">
+        <div className="pl-16 pr-16 w-full h-[calc(100vh-200px)]">
+          <ExperienceSection />
+        </div>
+      </section>
+
+      <section ref={el => { sectionRefs.current[4] = el }} className="section h-screen flex items-center relative">
         <div className="pl-16 pr-16">
           <h2 className="text-3xl font-light mb-4">Projects</h2>
           <h4 className="text-lg font-light mb-4">Hover nodes to explore</h4>
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[4] = el }} className="section h-screen flex items-center relative">
+      <section ref={el => { sectionRefs.current[5] = el }} className="section h-screen flex items-center relative">
         <div className="pl-16 pr-16 w-full">
           <h2 className="text-3xl font-light">Connect With Me</h2>
           <button
@@ -140,10 +147,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[5] = el }} className="section h-[250px] flex items-center relative" />
+      <section ref={el => { sectionRefs.current[6] = el }} className="section h-[250px] flex items-center relative" />
 
       {/* <section
-        ref={el => { sectionRefs.current[6] = el }}
+        ref={el => { sectionRefs.current[7] = el }}
         className="section last-section h-[250px] flex items-center relative bg-red-500"
       /> */}
     </div>
