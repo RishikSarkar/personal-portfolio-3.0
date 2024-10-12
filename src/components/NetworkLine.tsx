@@ -89,11 +89,13 @@ const NetworkLine: React.FC = () => {
         return (
           <BrainNode
             key={line.id}
-            x={line.startCoords.x}
-            y={line.startCoords.y}
+            x={line.startCoords.x / window.innerWidth}
+            y={line.startCoords.y / window.innerHeight}
             project={project}
             scrollY={scrollY}
             mainLineFillY={mainLineFillY}
+            xShift={-0.6}
+            xScale={3}
           />
         );
       }

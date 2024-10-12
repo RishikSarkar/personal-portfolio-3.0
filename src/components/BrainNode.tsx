@@ -13,9 +13,11 @@ interface BrainNodeProps {
     project: Project;
     scrollY: number;
     mainLineFillY: number;
+    xShift?: number;
+    xScale?: number;
 }
 
-const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineFillY }) => {
+const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineFillY, xShift = 0, xScale = 1 }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isFilled, setIsFilled] = useState(false);
 
@@ -31,15 +33,20 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
         updateFilled();
     }, [updateFilled]);
 
-    const containerStyle = useMemo(() => ({
-        position: 'absolute' as const,
-        left: `${x - (isHovered ? hoverSize : defaultSize) / 2}px`,
-        top: `${y - (isHovered ? hoverSize : defaultSize) / 2}px`,
-        width: `${isHovered ? hoverSize : defaultSize}px`,
-        height: `${isHovered ? hoverSize : defaultSize}px`,
-        transition: 'all 0.3s ease',
-        cursor: 'pointer',
-    }), [x, y, isHovered]);
+    const containerStyle = useMemo(() => {
+        const isMobile = window.innerWidth < 768;
+        const adjustedX = isMobile ? x * xScale + xShift : x;
+        
+        return {
+            position: 'absolute' as const,
+            left: `${adjustedX * window.innerWidth - (isHovered ? hoverSize : defaultSize) / 2}px`,
+            top: `${y * window.innerHeight - (isHovered ? hoverSize : defaultSize) / 2}px`,
+            width: `${isHovered ? hoverSize : defaultSize}px`,
+            height: `${isHovered ? hoverSize : defaultSize}px`,
+            transition: 'all 0.3s ease',
+            cursor: 'pointer',
+        };
+    }, [x, y, xShift, xScale, isHovered]);
 
     const ringStyle = useMemo(() => ({
         position: 'absolute' as const,
