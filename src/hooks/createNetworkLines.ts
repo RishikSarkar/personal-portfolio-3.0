@@ -141,9 +141,9 @@ export const createNetworkLines = (createLine: CreateLineFunction) => {
   createLine(0.45, 4.94, 0.42, 5.04, 'd', 2, true, true, true, -0.4, 2.5, 1.4, 0.75);
 
   createLine(0.42, 4.94, 0.39, 5.04, 'd', 2, true, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.39, 5.04, 0.42, 5.14, 'd', 2, true, false, true, -0.4, 2.5, 1.4, 0.75);
+  createLine(0.39, 5.04, 0.42, 5.14, 'd', 2, true, true, true, -0.4, 2.5, 1.4, 0.75);
 
-  createLine(0.42, 5.14, 0.35, 5.4, 'd', 2, false, true, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.42, 5.14, 0.49, 5.4, 'd', 2, true, true, true, -0.4, 2.5, 1.4, 0.75);
+  createLine(0.42, 5.14, 0.35, 5.4, 'd', 2, false, true, false);
+  createLine(0.42, 5.14, 0.49, 5.4, 'd', 2, true, true, false);
 };
 

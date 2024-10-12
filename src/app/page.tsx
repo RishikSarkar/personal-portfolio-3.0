@@ -104,46 +104,76 @@ export default function Home() {
       <section ref={el => { sectionRefs.current[4] = el }} className="section h-screen flex items-center relative">
         <div className="pl-12 md:pl-16 pr-12 md:pr-16">
           <h2 className="text-xl md:text-3xl md:font-light mb-4">Projects</h2>
-          <h4 className="text-sm md:text-lg font-light mb-4 text-white/80">Hover nodes to explore</h4>
+          <h4 className="text-sm md:text-lg font-light mb-4 text-white/80">
+            <span className="md:hidden">Tap nodes to explore</span>
+            <span className="hidden md:inline">Hover nodes to explore</span>
+          </h4>
         </div>
       </section>
 
       <section ref={el => { sectionRefs.current[5] = el }} className="section h-screen flex items-center relative">
         <div className="pl-12 md:pl-16 pr-12 md:pr-16 w-full">
-          <h2 className="text-xl md:text-3xl md:font-light">Connect With Me</h2>
-          <button
-            onClick={() => window.open('https://github.com/rishik-sarkar', '_blank')}
-            className="contact-button absolute"
-            style={{
-              left: windowSize.width * 0.35,
-              top: windowSize.height * 0.5,
-            }}
-            aria-label="GitHub"
-          >
-            <FaGithub size={40} className='text-white/80 hover:text-white/30' />
-          </button>
-          <button
-            onClick={() => window.open('https://www.linkedin.com/in/rishik-sarkar/', '_blank')}
-            className="contact-button absolute"
-            style={{
-              left: windowSize.width * 0.42,
-              top: windowSize.height * 0.5,
-            }}
-            aria-label="LinkedIn"
-          >
-            <FaLinkedin size={40} className='text-white/80 hover:text-white/30' />
-          </button>
-          <button
-            onClick={() => window.location.href = 'mailto:rishiksarkar02@gmail.com'}
-            className="contact-button absolute"
-            style={{
-              left: windowSize.width * 0.49,
-              top: windowSize.height * 0.5,
-            }}
-            aria-label="Email"
-          >
-            <MdEmail size={40} className='text-white/80 hover:text-white/30' />
-          </button>
+          <h2 className="text-xl md:text-3xl md:font-light mb-4">Connect With Me</h2>
+          
+          <div className="flex flex-row justify-center space-x-6 mt-8 md:hidden">
+            <button
+              onClick={() => window.open('https://github.com/rishik-sarkar', '_blank')}
+              className="contact-button"
+              aria-label="GitHub"
+            >
+              <FaGithub size={24} className='text-white/80 hover:text-white/30' />
+            </button>
+            <button
+              onClick={() => window.open('https://www.linkedin.com/in/rishik-sarkar/', '_blank')}
+              className="contact-button"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin size={24} className='text-white/80 hover:text-white/30' />
+            </button>
+            <button
+              onClick={() => window.location.href = 'mailto:rishiksarkar02@gmail.com'}
+              className="contact-button"
+              aria-label="Email"
+            >
+              <MdEmail size={24} className='text-white/80 hover:text-white/30' />
+            </button>
+          </div>
+
+          <div className="hidden md:block">
+            <button
+              onClick={() => window.open('https://github.com/rishik-sarkar', '_blank')}
+              className="contact-button absolute"
+              style={{
+                left: windowSize.width * 0.35,
+                top: windowSize.height * 0.5,
+              }}
+              aria-label="GitHub"
+            >
+              <FaGithub size={40} className='text-white/80 hover:text-white/30' />
+            </button>
+            <button
+              onClick={() => window.open('https://www.linkedin.com/in/rishik-sarkar/', '_blank')}
+              className="contact-button absolute"
+              style={{
+                left: windowSize.width * 0.42,
+                top: windowSize.height * 0.5,
+              }}
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin size={40} className='text-white/80 hover:text-white/30' />
+            </button>
+            <button
+              onClick={() => window.location.href = 'mailto:rishiksarkar02@gmail.com'}
+              className="contact-button absolute"
+              style={{
+                left: windowSize.width * 0.49,
+                top: windowSize.height * 0.5,
+              }}
+              aria-label="Email"
+            >
+              <MdEmail size={40} className='text-white/80 hover:text-white/30' />
+            </button>
+          </div>
         </div>
       </section>
 
