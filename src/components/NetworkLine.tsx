@@ -108,10 +108,14 @@ const NetworkLine: React.FC = () => {
 
     createLine(0.44, 2.75, 0.64, 3.1, 'd', 2, true, false);
 
-    createLine(0.64, 3.1, 0.64, 3.9, 'v', 2, true, false);
+    createLine(0.64, 3.1, 0.64, 4.1, 'v', 2, true, false);
+
+    createLine(0.58, 3.4, 0.64, 3.5, 'd', 2, true, true);
+    createLine(0.58, 3.7, 0.64, 3.8, 'd', 2, true, true);
 
     // Experience to Brain
-    createLine(0.64, 3.9, 0.46, 4.38, 'd', 2, true, false);
+    createLine(0.64, 4.1, 0.46, 4.38, 'd', 2, true, false);
+    createLine(0.64, 4.1, 0.7, 4.2, 'd', 2, true, true);
 
     // Brain Outline
     createLine(0.5, 4.5, 0.49, 4.62, '1', 2, false, false);
