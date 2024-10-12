@@ -83,32 +83,35 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
                     left: '50%',
                     bottom: '100%',
                     transform: 'translateX(-50%)',
-                    backgroundColor: 'rgba(51, 51, 51, 0.98)',
+                    backgroundColor: 'black',
                     color: 'white',
-                    padding: '15px',
-                    borderRadius: '8px',
+                    // borderRadius: '8px',
                     width: '250px',
                     zIndex: 1000,
                     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                     marginBottom: '10px',
                     pointerEvents: 'none',
+                    overflow: 'hidden',
                 }}>
-                    <h3 style={{ fontSize: '18px', marginBottom: '8px', fontWeight: 'lighter' }}>{project.name}</h3>
-                    <p style={{ fontSize: '14px', marginBottom: '8px', fontWeight: 'lighter' }}>{project.description}</p>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
-                        {project.techStack.map((tech, index) => (
-                            <span key={index} style={{
-                                backgroundColor: '#000000',
-                                color: '#ffffff',
-                                padding: '2px 10px',
-                                borderRadius: '8px',
-                                fontSize: '10px',
-                                display: 'inline-block',
-                                marginTop: '4px',
-                            }}>
-                                {tech}
-                            </span>
-                        ))}
+                    <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(255, 255, 255, 0.1)' }} />
+                    <div style={{ position: 'relative', zIndex: 1, padding: '15px' }}>
+                        <h3 style={{ fontSize: '18px', marginBottom: '8px', fontWeight: 'lighter' }}>{project.name}</h3>
+                        <p style={{ fontSize: '14px', marginBottom: '8px', fontWeight: 'lighter', color: 'rgba(255, 255, 255, 0.8)' }}>{project.description}</p>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                            {project.techStack.map((tech, index) => (
+                                <span key={index} style={{
+                                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                                    color: '#ffffff',
+                                    padding: '2px 10px',
+                                    borderRadius: '8px',
+                                    fontSize: '10px',
+                                    display: 'inline-block',
+                                    marginTop: '4px',
+                                }}>
+                                    {tech}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}

@@ -79,7 +79,7 @@ export default function Home() {
               href="/rishik_sarkar_resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-white/10 text-white font-light text-lg rounded-md hover:bg-white/20 transition-colors duration-100"
+              className="px-4 py-2 bg-white/10 text-white font-light text-lg hover:bg-white/20 transition-colors duration-100"
             >
               Resume
             </a>
@@ -87,7 +87,7 @@ export default function Home() {
               href="/rishik_sarkar_cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-white/10 text-white font-light text-lg rounded-md hover:bg-white/20 transition-colors duration-100"
+              className="px-4 py-2 bg-white/10 text-white font-light text-lg hover:bg-white/20 transition-colors duration-100"
             >
               Curriculum Vitae
             </a>
