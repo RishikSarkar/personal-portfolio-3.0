@@ -28,11 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
-        <NetworkLine />
-        <CursorEffect />
-        {children}
+        <div className="max-w-[100vw] overflow-x-hidden">
+          <NetworkLine />
+          <CursorEffect />
+          {children}
+        </div>
       </body>
     </html>
   );
