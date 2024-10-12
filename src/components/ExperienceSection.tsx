@@ -50,15 +50,17 @@ const ExperienceSection: React.FC = () => {
                         {experiences.map((exp, index) => (
                             <div
                                 key={index}
-                                className='group p-6 transition-colors duration-300 ease-in-out bg-black hover:bg-white hover:bg-opacity-10 cursor-pointer flex'
+                                className='group p-6 transition-colors duration-300 ease-in-out bg-black hover:bg-white hover:bg-opacity-10 cursor-pointer flex flex-col md:flex-row'
                                 onClick={() => handleCompanyClick(exp.companyLink)}
                             >
-                                <div className='w-1/4 text-xs md:text-sm font-light text-white/50'>
+                                <div className='w-full md:w-1/4 text-xs md:text-sm font-light text-white/50 mb-2 md:mb-0'>
                                     {exp.dateRange}
                                 </div>
-                                <div className='w-3/4'>
-                                    <h3 className='text-sm md:text-lg font-light mb-2 text-white flex items-center'>
-                                        {exp.title} <span className='mx-2'>•</span> {exp.company}
+                                <div className='w-full md:w-3/4'>
+                                    <h3 className='text-sm md:text-lg font-light mb-2 text-white flex flex-col md:flex-row md:items-center'>
+                                        <span className='mb-1 md:mb-0'>{exp.title}</span>
+                                        <span className='hidden md:inline mx-2'>•</span>
+                                        <span className='text-xs md:text-lg text-white/80 md:text-white'>{exp.company}</span>
                                         <svg 
                                             className='hidden md:block ml-2 w-4 h-4 transition-transform duration-300 ease-in-out transform group-hover:translate-x-1' 
                                             fill='none' 
