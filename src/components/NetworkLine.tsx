@@ -39,64 +39,82 @@ const NetworkLine: React.FC = () => {
     createLine(0.7, 0, 0.7, 1, 'main-line', 2, false, false);
 
     // Enter Title
-    createLine(0.7, 0.2, 0.6, 0.4, 'd');
-    createLine(0.6, 0.4, 0.5, 0.45, 'd');
+    createLine(0.7, 0.2, 0.6, 0.4, 'd', 2, true, false);
+    createLine(0.6, 0.4, 0.5, 0.45, 'd', 2, false, true);
     createLine(0.6, 0.4, 0.5, 0.55, 'd');
 
     // Title to About
-    createLine(0.15, 0.75, 0.15, 0.875, 'v');
-    createLine(0.20, 0.75, 0.20, 0.875, 'v');
-    createLine(0.25, 0.75, 0.25, 0.875, 'v');
+    createLine(0.15, 0.75, 0.15, 0.875, 'v', 2, false, false);
+    createLine(0.20, 0.75, 0.20, 0.875, 'v', 2, false, false);
+    createLine(0.25, 0.75, 0.25, 0.875, 'v', 2, false, false);
 
-    createLine(0.15, 0.75, 0.20, 0.875, 'd');
-    createLine(0.15, 0.75, 0.25, 0.875, 'd');
+    createLine(0.15, 0.75, 0.20, 0.875, 'd', 2, false, false);
+    createLine(0.15, 0.75, 0.25, 0.875, 'd', 2, true, false);
 
-    createLine(0.20, 0.75, 0.15, 0.875, 'd');
-    createLine(0.20, 0.75, 0.25, 0.875, 'd');
+    createLine(0.20, 0.75, 0.15, 0.875, 'd', 2, false, false);
+    createLine(0.20, 0.75, 0.25, 0.875, 'd', 2, true, false);
 
-    createLine(0.25, 0.75, 0.15, 0.875, 'd');
-    createLine(0.25, 0.75, 0.20, 0.875, 'd');
+    createLine(0.25, 0.75, 0.15, 0.875, 'd', 2, false, false);
+    createLine(0.25, 0.75, 0.20, 0.875, 'd', 2, true, false);
 
-    createLine(0.15, 0.875, 0.175, 1.0, 'd');
-    createLine(0.15, 0.875, 0.225, 1.0, 'd');
+    createLine(0.15, 0.875, 0.175, 1.0, 'd', 2, false, false);
+    createLine(0.15, 0.875, 0.225, 1.0, 'd', 2, true, false);
 
-    createLine(0.20, 0.875, 0.175, 1.0, 'd');
-    createLine(0.20, 0.875, 0.225, 1.0, 'd');
+    createLine(0.20, 0.875, 0.175, 1.0, 'd', 2, false, false);
+    createLine(0.20, 0.875, 0.225, 1.0, 'd', 2, true, false);
 
-    createLine(0.25, 0.875, 0.175, 1.0, 'd');
-    createLine(0.25, 0.875, 0.225, 1.0, 'd');
+    createLine(0.25, 0.875, 0.175, 1.0, 'd', 2, false, true);
+    createLine(0.25, 0.875, 0.225, 1.0, 'd', 2, false, true);
 
     // About
-    createLine(0.25, 0.875, 0.475, 1.0, 'd');
+    createLine(0.25, 0.875, 0.475, 1.0, 'd', 2, true, false);
 
-    createLine(0.475, 1.0, 0.7, 1.125, 'd');
+    createLine(0.475, 1.0, 0.7, 1.125, 'd', 2, false, true);
 
-    createLine(0.475, 1, 0.6, 1.575, 'd');
-    createLine(0.6, 1.575, 0.55, 1.9, 'd');
+    createLine(0.475, 1, 0.6, 1.575, 'd', 2, true, false);
+    createLine(0.6, 1.575, 0.55, 1.9, 'd', 2, true, false);
 
     // About to Resume
-    createLine(0.55, 1.9, 0.4, 2.0, 'd');
+    createLine(0.55, 1.9, 0.4, 2.0, 'd', 2, true, false);
 
-    createLine(0.2, 2.0, 0.175, 2.25, 'd');
-    createLine(0.2, 2.0, 0.225, 2.25, 'd');
-    createLine(0.2, 2.0, 0.275, 2.25, 'd');
-    createLine(0.2, 2.0, 0.325, 2.25, 'd');
+    createLine(0.2, 2.0, 0.175, 2.25, 'd', 2, false, false);
+    createLine(0.2, 2.0, 0.225, 2.25, 'd', 2, false, false);
+    createLine(0.2, 2.0, 0.275, 2.25, 'd', 2, false, false);
+    createLine(0.2, 2.0, 0.325, 2.25, 'd', 2, true, false);
 
-    createLine(0.3, 2.0, 0.175, 2.25, 'd');
-    createLine(0.3, 2.0, 0.225, 2.25, 'd');
-    createLine(0.3, 2.0, 0.275, 2.25, 'd');
-    createLine(0.3, 2.0, 0.325, 2.25, 'd');
+    createLine(0.3, 2.0, 0.175, 2.25, 'd', 2, false, false);
+    createLine(0.3, 2.0, 0.225, 2.25, 'd', 2, false, false);
+    createLine(0.3, 2.0, 0.275, 2.25, 'd', 2, false, false);
+    createLine(0.3, 2.0, 0.325, 2.25, 'd', 2, true, false);
 
-    createLine(0.4, 2.0, 0.175, 2.25, 'd');
-    createLine(0.4, 2.0, 0.225, 2.25, 'd');
-    createLine(0.4, 2.0, 0.275, 2.25, 'd');
-    createLine(0.4, 2.0, 0.325, 2.25, 'd');
+    createLine(0.4, 2.0, 0.175, 2.25, 'd', 2, false, true);
+    createLine(0.4, 2.0, 0.225, 2.25, 'd', 2, false, true);
+    createLine(0.4, 2.0, 0.275, 2.25, 'd', 2, false, true);
+    createLine(0.4, 2.0, 0.325, 2.25, 'd', 2, true, false);
 
-    createLine(0.325, 2.25, 0.5125, 2.4, 'd');
-    createLine(0.5125, 2.4, 0.7, 2.55, 'd');
+    createLine(0.325, 2.25, 0.5125, 2.4, 'd', 2, true, false);
+    createLine(0.5125, 2.4, 0.7, 2.55, 'd', 2, false, true);
 
-    // Resume to Brain
-    createLine(0.5125, 2.4, 0.4, 3.33, 'd');
+    // Resume to Experience
+    createLine(0.5125, 2.4, 0.44, 2.75, 'd', 2, true, false);
+
+    createLine(0.175, 2.75, 0.25, 2.9, 'd', 2, true, false);
+    createLine(0.225, 2.75, 0.25, 2.9, 'd', 2, true, false);
+    createLine(0.275, 2.75, 0.25, 2.9, 'd', 2, true, false);
+    createLine(0.325, 2.75, 0.25, 2.9, 'd', 2, true, false);
+    createLine(0.44, 2.75, 0.25, 2.9, 'd', 2, false, false);
+
+    createLine(0.25, 2.9, 0.25, 3.05, 'v', 2, true, true);
+
+    createLine(0.44, 2.75, 0.64, 3.1, 'd', 2, true, false);
+
+    createLine(0.64, 3.1, 0.64, 3.9, 'v', 2, true, false);
+
+    // Experience to Brain
+    createLine(0.25, 4.0, 0.5, 4.2, 'd', 2, true, false);
+    createLine(0.64, 3.9, 0.5, 4.2, 'd', 2, true, false);
+
+    createLine(0.5, 4.2, 0.46, 4.38, 'd', 2, true, false);
 
     // Brain Outline
     createLine(0.5, 4.5, 0.49, 4.62, '1');
