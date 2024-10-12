@@ -18,14 +18,26 @@ const NetworkLine: React.FC = () => {
     thickness: number = 2,
     nodeLeft: boolean = true,
     nodeRight: boolean = true,
+    xShift: number = 0,
+    xScale: number = 1,
     fillPercentage: number = 0,
     fillChange: boolean = true
   ) => {
     const w = window.innerWidth;
     const h = window.innerHeight;
+    const isMobile = w < 768;
+
+    const adjustCoord = (coord: number) => isMobile ? coord * xScale + xShift : coord;
+
     addLine({
-      startCoords: { x: w * startXPercent, y: h * startYPercent },
-      endCoords: { x: w * endXPercent, y: h * endYPercent },
+      startCoords: { 
+        x: w * adjustCoord(startXPercent), 
+        y: h * startYPercent 
+      },
+      endCoords: { 
+        x: w * adjustCoord(endXPercent), 
+        y: h * endYPercent 
+      },
       tag,
       thickness,
       nodeLeft,

@@ -7,6 +7,8 @@ export type CreateLineFunction = (
   thickness?: number,
   nodeLeft?: boolean,
   nodeRight?: boolean,
+  xShift?: number,
+  xScale?: number,
   fillPercentage?: number,
   fillChange?: boolean
 ) => void;

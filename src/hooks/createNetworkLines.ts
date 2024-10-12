@@ -2,43 +2,43 @@ import { CreateLineFunction } from '../types/networkLines';
 
 export const createNetworkLines = (createLine: CreateLineFunction) => {
   // Main Line
-  createLine(0.7, 0, 0.7, 1, 'main-line', 2, false, false);
+  createLine(0.7, 0, 0.7, 1, 'main-line', 2, false, false, 0.3);
 
   // Enter Title
-  createLine(0.7, 0.2, 0.6, 0.4, 'd', 2, true, false);
-  createLine(0.6, 0.4, 0.5, 0.45, 'd', 2, false, true);
-  createLine(0.6, 0.4, 0.5, 0.55, 'd');
+  createLine(0.7, 0.2, 0.6, 0.4, 'd', 2, true, false, 0.38);
+  createLine(0.6, 0.4, 0.5, 0.45, 'd', 2, false, true, 0.38);
+  createLine(0.6, 0.4, 0.5, 0.55, 'd', 2, true, true, 0.38);
 
   // Title to About
-  createLine(0.15, 0.75, 0.15, 0.875, 'v', 2, false, false);
-  createLine(0.20, 0.75, 0.20, 0.875, 'v', 2, false, false);
-  createLine(0.25, 0.75, 0.25, 0.875, 'v', 2, false, false);
+  createLine(0.15, 0.75, 0.15, 0.875, 'v', 2, false, false, -0.1, 3);
+  createLine(0.20, 0.75, 0.20, 0.875, 'v', 2, false, false, -0.1, 3);
+  createLine(0.25, 0.75, 0.25, 0.875, 'v', 2, false, false, -0.1, 3);
 
-  createLine(0.15, 0.75, 0.20, 0.875, 'd', 2, false, false);
-  createLine(0.15, 0.75, 0.25, 0.875, 'd', 2, true, false);
+  createLine(0.15, 0.75, 0.20, 0.875, 'd', 2, false, false, -0.1, 3);
+  createLine(0.15, 0.75, 0.25, 0.875, 'd', 2, true, false, -0.1, 3);
 
-  createLine(0.20, 0.75, 0.15, 0.875, 'd', 2, false, false);
-  createLine(0.20, 0.75, 0.25, 0.875, 'd', 2, true, false);
+  createLine(0.20, 0.75, 0.15, 0.875, 'd', 2, false, false, -0.1, 3);
+  createLine(0.20, 0.75, 0.25, 0.875, 'd', 2, true, false, -0.1, 3);
 
-  createLine(0.25, 0.75, 0.15, 0.875, 'd', 2, false, false);
-  createLine(0.25, 0.75, 0.20, 0.875, 'd', 2, true, false);
+  createLine(0.25, 0.75, 0.15, 0.875, 'd', 2, false, false, -0.1, 3);
+  createLine(0.25, 0.75, 0.20, 0.875, 'd', 2, true, false, -0.1, 3);
 
-  createLine(0.15, 0.875, 0.175, 1.0, 'd', 2, false, false);
-  createLine(0.15, 0.875, 0.225, 1.0, 'd', 2, true, false);
+  createLine(0.15, 0.875, 0.175, 1.0, 'd', 2, false, false, -0.1, 3);
+  createLine(0.15, 0.875, 0.225, 1.0, 'd', 2, true, false, -0.1, 3);
 
-  createLine(0.20, 0.875, 0.175, 1.0, 'd', 2, false, false);
-  createLine(0.20, 0.875, 0.225, 1.0, 'd', 2, true, false);
+  createLine(0.20, 0.875, 0.175, 1.0, 'd', 2, false, false, -0.1, 3);
+  createLine(0.20, 0.875, 0.225, 1.0, 'd', 2, true, false, -0.1, 3);
 
-  createLine(0.25, 0.875, 0.175, 1.0, 'd', 2, false, true);
-  createLine(0.25, 0.875, 0.225, 1.0, 'd', 2, false, true);
+  createLine(0.25, 0.875, 0.175, 1.0, 'd', 2, false, true, -0.1, 3);
+  createLine(0.25, 0.875, 0.225, 1.0, 'd', 2, false, true, -0.1, 3);
 
   // About
-  createLine(0.25, 0.875, 0.475, 1.0, 'd', 2, true, false);
+  createLine(0.25, 0.875, 0.475, 1.0, 'd', 2, true, false, -0.1, 3);
 
-  createLine(0.475, 1.0, 0.7, 1.125, 'd', 2, false, true);
+  createLine(0.475, 1.0, 0.7, 1.125, 'd', 2, false, true, -0.1, 3);
 
-  createLine(0.475, 1, 0.6, 1.575, 'd', 2, true, false);
-  createLine(0.6, 1.575, 0.55, 1.9, 'd', 2, true, false);
+  createLine(0.475, 1, 0.6, 1.575, 'd', 2, true, false, -0.1, 3);
+  createLine(0.6, 1.575, 0.55, 1.9, 'd', 2, true, false, -0.1, 3);
 
   // About to Resume
   createLine(0.55, 1.9, 0.4, 2.0, 'd', 2, true, false);
