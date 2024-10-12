@@ -48,9 +48,9 @@ export default function Home() {
   return (
     <div className="flex flex-col font-[family-name:var(--font-geist-sans)]">
       <section ref={el => { sectionRefs.current[0] = el }} className="section h-screen flex items-center relative">
-        <div className="max-w-[calc(70%-20rem)] pl-16 pr-4">
-          <h1 className="text-5xl font-light mb-4">Rishik Sarkar</h1>
-          <p className="text-xl font-light text-white/80">
+        <div className="md:max-w-[calc(70%-20rem)] pl-12 md:pl-16 pr-12 md:pr-4">
+          <h1 className="text-3xl md:text-5xl md:font-light mb-4">Rishik Sarkar</h1>
+          <p className="text-sm md:text-xl font-light text-white/80">
             M.Eng. in Computer Science at Cornell University<br />
             B.S. in Computer Science (Honors) at Rutgers University-New Brunswick<br />
             B.S. in Cognitive Science at Rutgers University-New Brunswick<br /><br />
@@ -60,9 +60,9 @@ export default function Home() {
       </section>
 
       <section ref={el => { sectionRefs.current[1] = el }} className="section h-screen flex items-center relative">
-        <div className="max-w-[calc(70%-20rem)] pl-16 pr-2">
-          <h2 className="text-3xl mb-4 font-light">About Me</h2>
-          <p className="text-lg font-light leading-relaxed pb-8 text-white/80">
+        <div className="md:max-w-[calc(70%-20rem)] pl-12 md:pl-16 pr-12 md:pr-2">
+          <h2 className="text-xl md:text-3xl mb-4 md:font-light">About Me</h2>
+          <p className="text-sm md:text-lg font-light leading-relaxed pb-8 text-white/80">
             <i>&ldquo;If you could train an AI to be a Buddhist, it would probably be pretty good.&rdquo;<br /></i> - Reid Hoffman<br /><br />
             I am currently pursuing a Master of Engineering in Computer Science at Cornell University. Prior to this, I graduated Summa Cum Laude with honors from Rutgers University-New Brunswick with a B.S. in Computer Science and Cognitive Science and was inducted into Phi Beta Kappa. I also worked as an ML Full-Stack Developer Intern at a fintech scaleup and as a research assistant at a joint Rutgers-Princeton laboratory, where I focused on data integration and machine learning.<br /><br />
             My passions lie at the intersection of artificial intelligence and psychology, and I am keen to explore computational linguistics, cognitive neuropsychiatry, and new LLM frameworks for natural language understanding, including transformer models and fine-tuning for sentiment and emotional analysis. In the future, I aim to establish a startup and develop NLP-driven solutions in the mental healthcare space.
@@ -71,15 +71,15 @@ export default function Home() {
       </section>
 
       <section ref={el => { sectionRefs.current[2] = el }} className="section h-screen flex items-center relative">
-        <div className="pl-16 pr-16">
-          <h2 className="text-3xl mb-4 font-light">Documents</h2>
-          <p className="text-lg mb-6 font-light text-white/80">Check out my professional experience and qualifications:</p>
+        <div className="pl-12 md:pl-16 pr-12 md:pr-16">
+          <h2 className="text-xl md:text-3xl mb-4 md:font-light">Documents</h2>
+          <p className="text-sm md:text-lg mb-6 font-light text-white/80">Check out my professional experience and qualifications:</p>
           <div className="flex space-x-6">
             <a
               href="/rishik_sarkar_resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-white/10 text-white font-light text-lg hover:bg-white/20 transition-colors duration-100"
+              className="px-4 py-2 bg-white/10 text-white font-light text-sm md:text-lg hover:bg-white/20 transition-colors duration-100"
             >
               Resume
             </a>
@@ -87,7 +87,7 @@ export default function Home() {
               href="/rishik_sarkar_cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-white/10 text-white font-light text-lg hover:bg-white/20 transition-colors duration-100"
+              className="px-4 py-2 bg-white/10 text-white font-light text-sm md:text-lg hover:bg-white/20 transition-colors duration-100"
             >
               Curriculum Vitae
             </a>
@@ -96,21 +96,21 @@ export default function Home() {
       </section>
 
       <section ref={el => { sectionRefs.current[3] = el }} className="section h-screen flex items-center relative">
-        <div className="pl-16 pr-16 w-full h-[calc(100vh-200px)]">
+        <div className="pl-12 md:pl-16 pr-12 md:pr-16 w-full h-[calc(100vh-200px)]">
           <ExperienceSection />
         </div>
       </section>
 
       <section ref={el => { sectionRefs.current[4] = el }} className="section h-screen flex items-center relative">
-        <div className="pl-16 pr-16">
-          <h2 className="text-3xl font-light mb-4">Projects</h2>
-          <h4 className="text-lg font-light mb-4 text-white/80">Hover nodes to explore</h4>
+        <div className="pl-12 md:pl-16 pr-12 md:pr-16">
+          <h2 className="text-xl md:text-3xl md:font-light mb-4">Projects</h2>
+          <h4 className="text-sm md:text-lg font-light mb-4 text-white/80">Hover nodes to explore</h4>
         </div>
       </section>
 
       <section ref={el => { sectionRefs.current[5] = el }} className="section h-screen flex items-center relative">
-        <div className="pl-16 pr-16 w-full">
-          <h2 className="text-3xl font-light">Connect With Me</h2>
+        <div className="pl-12 md:pl-16 pr-12 md:pr-16 w-full">
+          <h2 className="text-xl md:text-3xl md:font-light">Connect With Me</h2>
           <button
             onClick={() => window.open('https://github.com/rishik-sarkar', '_blank')}
             className="contact-button absolute"

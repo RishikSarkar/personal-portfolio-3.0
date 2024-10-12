@@ -42,9 +42,9 @@ const ExperienceSection: React.FC = () => {
     };
 
     return (
-        <div className="w-full h-full flex flex-col max-w-[50vw] bg-black text-white">
-            <h2 className="text-3xl font-light mb-8">Experience</h2>
-            <div className="flex-grow overflow-y-auto pl-4 custom-scrollbar" style={{ direction: 'rtl' }}>
+        <div className='w-full h-full flex flex-col md:max-w-[50vw] bg-black text-white'>
+            <h2 className='text-xl md:text-3xl md:font-light mb-8'>Experience</h2>
+            <div className='flex-grow overflow-y-auto md:pl-4 md:custom-scrollbar' style={{ direction: 'rtl' }}>
                 <div style={{ direction: 'ltr' }}>
                     <div>
                         {experiences.map((exp, index) => (
@@ -53,28 +53,28 @@ const ExperienceSection: React.FC = () => {
                                 className='group p-6 transition-colors duration-300 ease-in-out bg-black hover:bg-white hover:bg-opacity-10 cursor-pointer flex'
                                 onClick={() => handleCompanyClick(exp.companyLink)}
                             >
-                                <div className='w-1/4 text-sm font-light text-white/50'>
+                                <div className='w-1/4 text-xs md:text-sm font-light text-white/50'>
                                     {exp.dateRange}
                                 </div>
                                 <div className='w-3/4'>
-                                    <h3 className='text-lg font-light mb-2 text-white flex items-center'>
-                                        {exp.title} <span className="mx-2">•</span> {exp.company}
+                                    <h3 className='text-sm md:text-lg font-light mb-2 text-white flex items-center'>
+                                        {exp.title} <span className='mx-2'>•</span> {exp.company}
                                         <svg 
-                                            className="ml-2 w-4 h-4 transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" 
-                                            fill="none" 
-                                            stroke="currentColor" 
-                                            viewBox="0 0 24 24" 
-                                            xmlns="http://www.w3.org/2000/svg"
+                                            className='hidden md:block ml-2 w-4 h-4 transition-transform duration-300 ease-in-out transform group-hover:translate-x-1' 
+                                            fill='none' 
+                                            stroke='currentColor' 
+                                            viewBox='0 0 24 24' 
+                                            xmlns='http://www.w3.org/2000/svg'
                                         >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
                                         </svg>
                                     </h3>
-                                    <p className='text-base font-light mb-4 text-white/80'>{exp.description}</p>
+                                    <p className='text-xs md:text-base font-light mb-4 text-white/80'>{exp.description}</p>
                                     <div className='flex flex-wrap gap-2'>
                                         {exp.skills.map((skill, skillIndex) => (
                                             <span
                                                 key={skillIndex}
-                                                className='px-3 py-1 bg-white bg-opacity-10 text-white text-sm rounded-full'
+                                                className='px-2 md:px-3 py-1 bg-white bg-opacity-10 text-white text-xs md:text-sm rounded-full'
                                             >
                                                 {skill}
                                             </span>
