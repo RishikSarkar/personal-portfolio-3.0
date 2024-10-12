@@ -10,6 +10,8 @@ export type CreateLineFunction = (
   mobileVisible?: boolean,
   xShift?: number,
   xScale?: number,
+  yShift?: number,
+  yScale?: number,
   fillPercentage?: number,
   fillChange?: boolean
 ) => void;

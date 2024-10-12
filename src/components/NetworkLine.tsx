@@ -21,6 +21,8 @@ const NetworkLine: React.FC = () => {
     mobileVisible: boolean = true,
     xShift: number = 0,
     xScale: number = 1,
+    yShift: number = 0,
+    yScale: number = 1,
     fillPercentage: number = 0,
     fillChange: boolean = true
   ) => {
@@ -32,16 +34,17 @@ const NetworkLine: React.FC = () => {
       return;
     }
 
-    const adjustCoord = (coord: number) => isMobile ? coord * xScale + xShift : coord;
+    const adjustCoord = (coord: number, shift: number, scale: number) => 
+      isMobile ? coord * scale + shift : coord;
 
     addLine({
       startCoords: { 
-        x: w * adjustCoord(startXPercent), 
-        y: h * startYPercent 
+        x: w * adjustCoord(startXPercent, xShift, xScale), 
+        y: h * adjustCoord(startYPercent, yShift, yScale)
       },
       endCoords: { 
-        x: w * adjustCoord(endXPercent), 
-        y: h * endYPercent 
+        x: w * adjustCoord(endXPercent, xShift, xScale), 
+        y: h * adjustCoord(endYPercent, yShift, yScale)
       },
       tag,
       thickness,
