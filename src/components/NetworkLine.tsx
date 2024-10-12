@@ -97,8 +97,10 @@ const NetworkLine: React.FC = () => {
             project={project}
             scrollY={scrollY}
             mainLineFillY={mainLineFillY}
-            xShift={-0.6}
-            xScale={3}
+            xShift={-0.4}
+            xScale={2.5}
+            yShift={1.4}
+            yScale={0.75}
           />
         );
       }

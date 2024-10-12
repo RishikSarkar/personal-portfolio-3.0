@@ -37,13 +37,13 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
 
     const containerStyle = useMemo(() => {
         const isMobile = window.innerWidth < 768;
-        const adjustedX = isMobile ? x * xScale + xShift : x;
-        const adjustedY = isMobile ? y * yScale + yShift : y;
+        const adjustedX = isMobile ? (x * xScale + xShift) * window.innerWidth : x * window.innerWidth;
+        const adjustedY = isMobile ? (y * yScale + yShift) * window.innerHeight : y * window.innerHeight;
         
         return {
             position: 'absolute' as const,
-            left: `${adjustedX * window.innerWidth - (isHovered ? hoverSize : defaultSize) / 2}px`,
-            top: `${adjustedY * window.innerHeight - (isHovered ? hoverSize : defaultSize) / 2}px`,
+            left: `${adjustedX - (isHovered ? hoverSize : defaultSize) / 2}px`,
+            top: `${adjustedY - (isHovered ? hoverSize : defaultSize) / 2}px`,
             width: `${isHovered ? hoverSize : defaultSize}px`,
             height: `${isHovered ? hoverSize : defaultSize}px`,
             transition: 'all 0.3s ease',
