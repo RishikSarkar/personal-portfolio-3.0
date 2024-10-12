@@ -50,7 +50,7 @@ export default function Home() {
       <section ref={el => { sectionRefs.current[0] = el }} className="section h-screen flex items-center relative">
         <div className="max-w-[calc(70%-20rem)] pl-16 pr-4">
           <h1 className="text-5xl font-light mb-4">Rishik Sarkar</h1>
-          <p className="text-xl font-light">
+          <p className="text-xl font-light text-white/80">
             M.Eng. in Computer Science at Cornell University<br />
             B.S. in Computer Science (Honors) at Rutgers University-New Brunswick<br />
             B.S. in Cognitive Science at Rutgers University-New Brunswick<br /><br />
@@ -62,7 +62,7 @@ export default function Home() {
       <section ref={el => { sectionRefs.current[1] = el }} className="section h-screen flex items-center relative">
         <div className="max-w-[calc(70%-20rem)] pl-16 pr-2">
           <h2 className="text-3xl mb-4 font-light">About Me</h2>
-          <p className="text-lg font-light leading-relaxed pb-8">
+          <p className="text-lg font-light leading-relaxed pb-8 text-white/80">
             <i>&ldquo;If you could train an AI to be a Buddhist, it would probably be pretty good.&rdquo;<br /></i> - Reid Hoffman<br /><br />
             I am currently pursuing a Master of Engineering in Computer Science at Cornell University. Prior to this, I graduated Summa Cum Laude with honors from Rutgers University-New Brunswick with a B.S. in Computer Science and Cognitive Science and was inducted into Phi Beta Kappa. I also worked as an ML Full-Stack Developer Intern at a fintech scaleup and as a research assistant at a joint Rutgers-Princeton laboratory, where I focused on data integration and machine learning.<br /><br />
             My passions lie at the intersection of artificial intelligence and psychology, and I am keen to explore computational linguistics, cognitive neuropsychiatry, and new LLM frameworks for natural language understanding, including transformer models and fine-tuning for sentiment and emotional analysis. In the future, I aim to establish a startup and develop NLP-driven solutions in the mental healthcare space.
@@ -73,13 +73,13 @@ export default function Home() {
       <section ref={el => { sectionRefs.current[2] = el }} className="section h-screen flex items-center relative">
         <div className="pl-16 pr-16">
           <h2 className="text-3xl mb-4 font-light">Documents</h2>
-          <p className="text-lg mb-6 font-light">Check out my professional experience and qualifications:</p>
+          <p className="text-lg mb-6 font-light text-white/80">Check out my professional experience and qualifications:</p>
           <div className="flex space-x-6">
             <a
               href="/rishik_sarkar_resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-[#333333] text-white font-light text-lg rounded-md hover:bg-[#333333]/50 transition-colors duration-100"
+              className="px-4 py-2 bg-white/10 text-white font-light text-lg rounded-md hover:bg-white/20 transition-colors duration-100"
             >
               Resume
             </a>
@@ -87,7 +87,7 @@ export default function Home() {
               href="/rishik_sarkar_cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-[#333333] text-white font-light text-lg rounded-md hover:bg-[#333333]/50 transition-colors duration-100"
+              className="px-4 py-2 bg-white/10 text-white font-light text-lg rounded-md hover:bg-white/20 transition-colors duration-100"
             >
               Curriculum Vitae
             </a>
@@ -104,7 +104,7 @@ export default function Home() {
       <section ref={el => { sectionRefs.current[4] = el }} className="section h-screen flex items-center relative">
         <div className="pl-16 pr-16">
           <h2 className="text-3xl font-light mb-4">Projects</h2>
-          <h4 className="text-lg font-light mb-4">Hover nodes to explore</h4>
+          <h4 className="text-lg font-light mb-4 text-white/80">Hover nodes to explore</h4>
         </div>
       </section>
 
@@ -120,7 +120,7 @@ export default function Home() {
             }}
             aria-label="GitHub"
           >
-            <FaGithub size={40} />
+            <FaGithub size={40} className='text-white/80 hover:text-white/30' />
           </button>
           <button
             onClick={() => window.open('https://www.linkedin.com/in/rishik-sarkar/', '_blank')}
@@ -131,7 +131,7 @@ export default function Home() {
             }}
             aria-label="LinkedIn"
           >
-            <FaLinkedin size={40} />
+            <FaLinkedin size={40} className='text-white/80 hover:text-white/30' />
           </button>
           <button
             onClick={() => window.location.href = 'mailto:rishiksarkar02@gmail.com'}
@@ -142,7 +142,7 @@ export default function Home() {
             }}
             aria-label="Email"
           >
-            <MdEmail size={40} />
+            <MdEmail size={40} className='text-white/80 hover:text-white/30' />
           </button>
         </div>
       </section>

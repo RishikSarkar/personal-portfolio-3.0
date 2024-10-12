@@ -44,17 +44,19 @@ const ExperienceSection: React.FC = () => {
                                 key={index}
                                 className='p-6 transition-colors duration-300 ease-in-out bg-black hover:bg-white hover:bg-opacity-10 cursor-pointer flex'
                             >
-                                <div className='w-1/4 text-sm font-light text-gray-500'>
+                                <div className='w-1/4 text-sm font-light text-white/50'>
                                     {exp.dateRange}
                                 </div>
                                 <div className='w-3/4'>
-                                    <h3 className='text-lg font-light mb-2'>{exp.title} ({exp.company})</h3>
-                                    <p className='text-base font-light mb-4'>{exp.description}</p>
+                                    <h3 className='text-lg font-light mb-2 text-white'>
+                                        {exp.title} <span className="mx-2">•</span> {exp.company}
+                                    </h3>
+                                    <p className='text-base font-light mb-4 text-white/80 hover:text-white'>{exp.description}</p>
                                     <div className='flex flex-wrap gap-2'>
                                         {exp.skills.map((skill, skillIndex) => (
                                             <span 
                                                 key={skillIndex}
-                                                className='px-3 py-1 bg-white bg-opacity-10 text-white text-sm rounded-full'
+                                                className='px-3 py-1 bg-white bg-opacity-10 text-white/80 hover:text-white text-sm rounded-full'
                                             >
                                                 {skill}
                                             </span>
