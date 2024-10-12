@@ -34,36 +34,37 @@ const ExperienceSection: React.FC = () => {
     ]);
 
     return (
-        <div className="w-full h-full flex flex-col">
+        <div className="w-full h-full flex flex-col max-w-[50vw]">
             <h2 className="text-3xl font-light mb-8">Experience</h2>
-            <div className="flex-grow overflow-y-auto pr-4">
-                <div className="space-y-6 max-w-[50vw]">
-                    {experiences.map((exp, index) => (
-                        <div
-                            key={index}
-                            className="p-6 transition-colors duration-300 ease-in-out bg-black hover:bg-white hover:bg-opacity-10 cursor-pointer flex"
-                        >
-                            <div className="w-1/4 text-sm font-light text-gray-500">
-                                {exp.dateRange}
-                            </div>
-                            <div className="w-3/4">
-                                <h3 className="text-xl font-light mb-2">{exp.title}</h3>
-                                <h4 className="text-lg font-light mb-1">{exp.company}</h4>
-                                <p className="text-base font-light mb-4">{exp.description}</p>
-                                <div className="flex flex-wrap gap-2">
-                                    {exp.skills.map((skill, skillIndex) => (
-                                        <span
-                                            key={skillIndex}
-                                            className="px-3 py-1 bg-white bg-opacity-10 text-white text-sm rounded-full"
-
-                                        >
-                                            {skill}
-                                        </span>
-                                    ))}
+            <div className="flex-grow overflow-y-auto pl-4" style={{ direction: 'rtl' }}>
+                <div style={{ direction: 'ltr' }}>
+                    <div className="space-y-6">
+                        {experiences.map((exp, index) => (
+                            <div 
+                                key={index}
+                                className="p-6 transition-colors duration-300 ease-in-out bg-black hover:bg-white hover:bg-opacity-10 cursor-pointer flex"
+                            >
+                                <div className="w-1/4 text-sm font-light text-gray-500">
+                                    {exp.dateRange}
+                                </div>
+                                <div className="w-3/4">
+                                    <h3 className="text-xl font-light mb-2">{exp.title}</h3>
+                                    <h4 className="text-lg font-light mb-1">{exp.company}</h4>
+                                    <p className="text-base font-light mb-4">{exp.description}</p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {exp.skills.map((skill, skillIndex) => (
+                                            <span 
+                                                key={skillIndex}
+                                                className="px-3 py-1 bg-white bg-opacity-10 text-white text-sm rounded-full"
+                                            >
+                                                {skill}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
