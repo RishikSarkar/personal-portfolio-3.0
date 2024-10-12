@@ -18,6 +18,7 @@ const NetworkLine: React.FC = () => {
     thickness: number = 2,
     nodeLeft: boolean = true,
     nodeRight: boolean = true,
+    mobileVisible: boolean = true,
     xShift: number = 0,
     xScale: number = 1,
     fillPercentage: number = 0,
@@ -26,6 +27,10 @@ const NetworkLine: React.FC = () => {
     const w = window.innerWidth;
     const h = window.innerHeight;
     const isMobile = w < 768;
+
+    if (isMobile && !mobileVisible) {
+      return;
+    }
 
     const adjustCoord = (coord: number) => isMobile ? coord * xScale + xShift : coord;
 
