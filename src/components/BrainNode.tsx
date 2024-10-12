@@ -22,6 +22,7 @@ interface BrainNodeProps {
 const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineFillY, xShift = -0.4, xScale = 2.5, yShift = 1.4, yScale = 0.75 }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isFilled, setIsFilled] = useState(false);
+    const [lastTap, setLastTap] = useState(0);
 
     const defaultSize = 12;
     const hoverSize = 20;
@@ -76,12 +77,35 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
         zIndex: 12,
     }), [isFilled]);
 
-    const handleMouseEnter = useCallback(() => setIsHovered(true), []);
-    const handleMouseLeave = useCallback(() => setIsHovered(false), []);
+    const isMobile = window.innerWidth < 768;
 
-    const handleClick = useCallback(() => {
-        window.open(project.link, '_blank');
-    }, [project.link]);
+    const handleClick = useCallback((event: React.MouseEvent) => {
+        if (isMobile) {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+            if (tapLength < 300 && tapLength > 0) {
+                window.open(project.link, '_blank');
+                event.preventDefault();
+            } else {
+                setIsHovered((prev) => !prev);
+            }
+            setLastTap(currentTime);
+        } else {
+            window.open(project.link, '_blank');
+        }
+    }, [isMobile, lastTap, project.link]);
+
+    const handleMouseEnter = useCallback(() => {
+        if (!isMobile) {
+            setIsHovered(true);
+        }
+    }, [isMobile]);
+
+    const handleMouseLeave = useCallback(() => {
+        if (!isMobile) {
+            setIsHovered(false);
+        }
+    }, [isMobile]);
 
     return (
         <div
@@ -101,8 +125,7 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
                     transform: 'translateX(-50%)',
                     backgroundColor: 'black',
                     color: 'white',
-                    // borderRadius: '8px',
-                    width: '250px',
+                    width: isMobile ? '200px' : '250px',
                     zIndex: 1000,
                     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                     marginBottom: '10px',
@@ -110,17 +133,30 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
                     overflow: 'hidden',
                 }}>
                     <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(255, 255, 255, 0.1)' }} />
-                    <div style={{ position: 'relative', zIndex: 1, padding: '15px' }}>
-                        <h3 style={{ fontSize: '18px', marginBottom: '8px', fontWeight: 'lighter' }}>{project.name}</h3>
-                        <p style={{ fontSize: '14px', marginBottom: '8px', fontWeight: 'lighter', color: 'rgba(255, 255, 255, 0.8)' }}>{project.description}</p>
+                    <div style={{ position: 'relative', zIndex: 1, padding: isMobile ? '12px' : '15px' }}>
+                        <h3 style={{ 
+                            fontSize: isMobile ? '14px' : '18px', 
+                            marginBottom: isMobile ? '6px' : '8px', 
+                            fontWeight: 'lighter' 
+                        }}>
+                            {project.name}
+                        </h3>
+                        <p style={{ 
+                            fontSize: isMobile ? '12px' : '14px', 
+                            marginBottom: isMobile ? '6px' : '8px', 
+                            fontWeight: 'lighter', 
+                            color: 'rgba(255, 255, 255, 0.8)' 
+                        }}>
+                            {project.description}
+                        </p>
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
                             {project.techStack.map((tech, index) => (
                                 <span key={index} style={{
                                     backgroundColor: 'rgba(255, 255, 255, 0.1)',
                                     color: '#ffffff',
-                                    padding: '2px 10px',
+                                    padding: '2px 8px',
                                     borderRadius: '8px',
-                                    fontSize: '10px',
+                                    fontSize: isMobile ? '8px' : '10px',
                                     display: 'inline-block',
                                     marginTop: '4px',
                                 }}>
@@ -128,6 +164,16 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
                                 </span>
                             ))}
                         </div>
+                        {isMobile && (
+                            <p style={{ 
+                                fontSize: '10px', 
+                                marginTop: '8px', 
+                                fontStyle: 'italic', 
+                                color: 'rgba(255, 255, 255, 0.6)' 
+                            }}>
+                                Tap again to visit website
+                            </p>
+                        )}
                     </div>
                 </div>
             )}
