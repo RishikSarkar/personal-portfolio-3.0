@@ -4,6 +4,7 @@ interface Project {
     name: string;
     description: string;
     techStack: string[];
+    link: string;
 }
 
 interface BrainNodeProps {
@@ -68,12 +69,17 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
     const handleMouseEnter = useCallback(() => setIsHovered(true), []);
     const handleMouseLeave = useCallback(() => setIsHovered(false), []);
 
+    const handleClick = useCallback(() => {
+        window.open(project.link, '_blank');
+    }, [project.link]);
+
     return (
         <div
             className="brain-node-container"
             style={containerStyle}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onClick={handleClick}
         >
             <div style={ringStyle} />
             <div style={nodeStyle} />

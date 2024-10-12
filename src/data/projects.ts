@@ -7,6 +7,7 @@ export interface Project {
     techStack: string[];
     nodeId: string;
     isActive: boolean;
+    link: string;
 }
 
 export const projects: Project[] = [
@@ -16,7 +17,8 @@ export const projects: Project[] = [
         description: 'An interactive cat app where you feed, play, and level up your virtual pet, unlocking new abilities and rewards.',
         techStack: ['Next.js', 'Tailwind', 'Firebase'],
         nodeId: 'n2',
-        isActive: true
+        isActive: true,
+        link: 'https://neko-sekai.vercel.app/'
     },
     {
         id: 'p2',
@@ -24,7 +26,8 @@ export const projects: Project[] = [
         description: 'An AI-powered bot navigating mazes to rescue crew members while evading alien threats.',
         techStack: ['PyTorch', 'Scikit-Learn', 'Pandas'],
         nodeId: 'n8',
-        isActive: true
+        isActive: true,
+        link: 'https://github.com/RishikSarkar/project-3-cs520'
     },
     {
         id: 'p3',
@@ -32,7 +35,8 @@ export const projects: Project[] = [
         description: 'An AI music app that recommends songs based on mood analysis from facial expressions and text.',
         techStack: ['Next.js', 'Keras', 'MySQL'],
         nodeId: 'n11',
-        isActive: true
+        isActive: true,
+        link: 'https://github.com/RishikSarkar/tch.ai'
     },
     {
         id: 'p4',
@@ -40,7 +44,8 @@ export const projects: Project[] = [
         description: 'A robust database of student profiles and courses with a Java interface for dynamic queries.',
         techStack: ['JDBC', 'BeautifulSoup', 'MySQL'],
         nodeId: 'n14',
-        isActive: true
+        isActive: true,
+        link: 'https://github.com/RishikSarkar/unidb-jdbc-mysql'
     },
 ];
 
