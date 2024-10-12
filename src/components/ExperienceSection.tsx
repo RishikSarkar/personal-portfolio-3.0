@@ -34,13 +34,13 @@ const ExperienceSection: React.FC = () => {
     ]);
 
     return (
-        <div className='w-full h-full flex flex-col max-w-[50vw] bg-black text-white'>
-            <h2 className='text-3xl font-light mb-8'>Experience</h2>
-            <div className='flex-grow overflow-y-auto pl-4' style={{ direction: 'rtl' }}>
+        <div className="w-full h-full flex flex-col max-w-[50vw] bg-black text-white">
+            <h2 className="text-3xl font-light mb-8">Experience</h2>
+            <div className="flex-grow overflow-y-auto pl-4 custom-scrollbar" style={{ direction: 'rtl' }}>
                 <div style={{ direction: 'ltr' }}>
                     <div>
                         {experiences.map((exp, index) => (
-                            <div 
+                            <div
                                 key={index}
                                 className='p-6 transition-colors duration-300 ease-in-out bg-black hover:bg-white hover:bg-opacity-10 cursor-pointer flex'
                             >
@@ -54,7 +54,7 @@ const ExperienceSection: React.FC = () => {
                                     <p className='text-base font-light mb-4 text-white/80 hover:text-white'>{exp.description}</p>
                                     <div className='flex flex-wrap gap-2'>
                                         {exp.skills.map((skill, skillIndex) => (
-                                            <span 
+                                            <span
                                                 key={skillIndex}
                                                 className='px-3 py-1 bg-white bg-opacity-10 text-white/80 hover:text-white text-sm rounded-full'
                                             >

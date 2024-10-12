@@ -128,3 +128,21 @@ html {
 .contact-button:hover {
   color: #333333;
 }
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: white transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 2px;
+}
