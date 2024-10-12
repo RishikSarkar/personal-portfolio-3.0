@@ -50,15 +50,24 @@ const ExperienceSection: React.FC = () => {
                         {experiences.map((exp, index) => (
                             <div
                                 key={index}
-                                className='p-6 transition-colors duration-300 ease-in-out bg-black hover:bg-white hover:bg-opacity-10 cursor-pointer flex'
+                                className='group p-6 transition-colors duration-300 ease-in-out bg-black hover:bg-white hover:bg-opacity-10 cursor-pointer flex'
                                 onClick={() => handleCompanyClick(exp.companyLink)}
                             >
                                 <div className='w-1/4 text-sm font-light text-white/50'>
                                     {exp.dateRange}
                                 </div>
                                 <div className='w-3/4'>
-                                    <h3 className='text-lg font-light mb-2 text-white'>
+                                    <h3 className='text-lg font-light mb-2 text-white flex items-center'>
                                         {exp.title} <span className="mx-2">•</span> {exp.company}
+                                        <svg 
+                                            className="ml-2 w-4 h-4 transition-transform duration-300 ease-in-out transform group-hover:translate-x-1" 
+                                            fill="none" 
+                                            stroke="currentColor" 
+                                            viewBox="0 0 24 24" 
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
                                     </h3>
                                     <p className='text-base font-light mb-4 text-white/80'>{exp.description}</p>
                                     <div className='flex flex-wrap gap-2'>
