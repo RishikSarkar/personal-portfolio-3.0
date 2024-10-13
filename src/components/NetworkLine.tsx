@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNetworkLines } from '../hooks/useNetworkLines';
 import { createNetworkLines } from '../hooks/createNetworkLines';
 import BrainNode from './BrainNode';
@@ -10,6 +10,7 @@ import { CreateLineFunction } from '../types/networkLines';
 
 const NetworkLine: React.FC = () => {
   const { lines, addLine, scrollY, mainLineFillY } = useNetworkLines();
+  const [activeNodeId, setActiveNodeId] = useState<string | null>(null);
 
   const createLine: CreateLineFunction = useCallback((
     startXPercent: number,
@@ -109,11 +110,14 @@ const NetworkLine: React.FC = () => {
         return (
           <BrainNode
             key={line.id}
+            id={line.id}
             x={line.startCoords.x}
             y={line.startCoords.y}
             project={project}
             scrollY={scrollY}
             mainLineFillY={mainLineFillY}
+            isActive={activeNodeId === line.id}
+            setActiveNodeId={setActiveNodeId}
           />
         );
       }
@@ -163,7 +167,7 @@ const NetworkLine: React.FC = () => {
         )}
       </div>
     );
-  }), [lines, calculateLength, calculateRotation, scrollY, mainLineFillY]);
+  }), [lines, calculateLength, calculateRotation, scrollY, mainLineFillY, activeNodeId, setActiveNodeId]);
 
   return <>{renderedLines}</>;
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 
 interface Project {
+    id: string;
     name: string;
     description: string;
     techStack: string[];
@@ -8,42 +9,38 @@ interface Project {
 }
 
 interface BrainNodeProps {
+    id: string;
     x: number;
     y: number;
     project: Project;
     scrollY: number;
     mainLineFillY: number;
+    isActive: boolean;
+    setActiveNodeId: (id: string | null) => void;
 }
 
-const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineFillY }) => {
-    const [isHovered, setIsHovered] = useState(false);
-    const [isFilled, setIsFilled] = useState(false);
+const BrainNode: React.FC<BrainNodeProps> = ({ id, x, y, project, scrollY, mainLineFillY, isActive, setActiveNodeId }) => {
     const [lastTap, setLastTap] = useState(0);
+    const [popupPosition, setPopupPosition] = useState({ left: '50%', right: 'auto', transform: 'translateX(-50%)' });
 
     const defaultSize = 12;
     const hoverSize = 20;
     const gapSize = 8;
 
-    const updateFilled = useCallback(() => {
-        setIsFilled(y - scrollY <= mainLineFillY);
-    }, [y, scrollY, mainLineFillY]);
-
-    useEffect(() => {
-        updateFilled();
-    }, [updateFilled]);
+    const isFilled = useMemo(() => y - scrollY <= mainLineFillY, [y, scrollY, mainLineFillY]);
 
     const containerStyle = useMemo(() => {
         return {
             position: 'absolute' as const,
             left: `${x}px`,
             top: `${y}px`,
-            width: `${isHovered ? hoverSize : defaultSize}px`,
-            height: `${isHovered ? hoverSize : defaultSize}px`,
+            width: `${isActive ? hoverSize : defaultSize}px`,
+            height: `${isActive ? hoverSize : defaultSize}px`,
             transform: `translate(-50%, -50%)`,
             transition: 'all 0.3s ease',
-            zIndex: 10,
+            zIndex: isActive ? 1000 : 10,
         };
-    }, [x, y, isHovered]);
+    }, [x, y, isActive, hoverSize, defaultSize]);
 
     const ringStyle = useMemo(() => ({
         position: 'absolute' as const,
@@ -80,29 +77,50 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
                 window.open(project.link, '_blank');
                 event.preventDefault();
             } else {
-                setIsHovered((prev) => !prev);
+                setActiveNodeId(isActive ? null : id);
             }
             setLastTap(currentTime);
         } else {
             window.open(project.link, '_blank');
         }
-    }, [isMobile, lastTap, project.link]);
+    }, [isMobile, lastTap, project.link, id, isActive, setActiveNodeId]);
 
     const handleMouseEnter = useCallback(() => {
         if (!isMobile) {
-            setIsHovered(true);
+            setActiveNodeId(id);
         }
-    }, [isMobile]);
+    }, [isMobile, id, setActiveNodeId]);
 
     const handleMouseLeave = useCallback(() => {
         if (!isMobile) {
-            setIsHovered(false);
+            setActiveNodeId(null);
         }
-    }, [isMobile]);
+    }, [isMobile, setActiveNodeId]);
+
+    const updatePopupPosition = useCallback(() => {
+        const screenWidth = window.innerWidth;
+        const nodePosition = x;
+        const popupWidth = isMobile ? 200 : 250;
+        const margin = 10;
+
+        if (nodePosition - popupWidth / 2 < margin) {
+            setPopupPosition({ left: `${margin}px`, right: 'auto', transform: 'none' });
+        } else if (nodePosition + popupWidth / 2 > screenWidth - margin) {
+            setPopupPosition({ left: 'auto', right: `${margin}px`, transform: 'none' });
+        } else {
+            setPopupPosition({ left: '50%', right: 'auto', transform: 'translateX(-50%)' });
+        }
+    }, [x, isMobile]);
+
+    useEffect(() => {
+        if (isActive) {
+            updatePopupPosition();
+        }
+    }, [isActive, updatePopupPosition]);
 
     return (
         <div
-            className="brain-node-container"
+            className="brain-node-container cursor-pointer"
             style={containerStyle}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -110,16 +128,15 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
         >
             <div style={ringStyle} />
             <div style={nodeStyle} />
-            {isHovered && (
+            {isActive && (
                 <div className="project-popup" style={{
                     position: 'absolute',
-                    left: '50%',
                     bottom: '100%',
-                    transform: 'translateX(-50%)',
+                    ...popupPosition,
                     backgroundColor: 'black',
                     color: 'white',
                     width: isMobile ? '200px' : '250px',
-                    zIndex: 1000,
+                    zIndex: 1001,
                     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                     marginBottom: '10px',
                     pointerEvents: 'none',
