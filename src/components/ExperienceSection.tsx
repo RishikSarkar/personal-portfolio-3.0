@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 interface ExperienceItem {
     title: string;
@@ -41,16 +42,19 @@ const ExperienceSection: React.FC = () => {
         window.open(link, '_blank');
     };
 
+    const displayedExperiences = experiences.slice(0, 4);
+    const hasMoreExperiences = experiences.length > 4;
+
     return (
         <div className='w-full h-full flex flex-col md:max-w-[50vw] bg-black text-white'>
             <h2 className='text-xl md:text-3xl md:font-light mb-8'>Experience</h2>
-            <div className='flex-grow overflow-y-auto md:pl-4 md:custom-scrollbar' style={{ direction: 'rtl' }}>
+            <div className='flex-grow md:overflow-y-auto md:pl-4 md:custom-scrollbar' style={{ direction: 'rtl' }}>
                 <div style={{ direction: 'ltr' }}>
-                    <div>
-                        {experiences.map((exp, index) => (
+                    <div className='space-y-12 md:space-y-0'>
+                        {displayedExperiences.map((exp, index) => (
                             <div
                                 key={index}
-                                className='group p-6 transition-colors duration-300 ease-in-out bg-black hover:bg-white hover:bg-opacity-10 cursor-pointer flex flex-col md:flex-row'
+                                className='group pr-6 md:p-6 transition-colors duration-300 ease-in-out bg-black md:hover:bg-white md:hover:bg-opacity-10 cursor-pointer flex flex-col md:flex-row'
                                 onClick={() => handleCompanyClick(exp.companyLink)}
                             >
                                 <div className='w-full md:w-1/4 text-xs md:text-sm font-light text-white/50 mb-2 md:mb-0'>
@@ -88,6 +92,13 @@ const ExperienceSection: React.FC = () => {
                     </div>
                 </div>
             </div>
+            {hasMoreExperiences && (
+                <div className='mt-6 text-center md:hidden'>
+                    <Link href="/experiences" className='px-4 py-2 bg-white/10 text-white font-light text-sm hover:bg-white/20 transition-colors duration-100'>
+                        View All Experiences
+                    </Link>
+                </div>
+            )}
         </div>
     );
 };
