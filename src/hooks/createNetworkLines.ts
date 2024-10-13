@@ -80,68 +80,68 @@ export const createNetworkLines = (createLine: CreateLineFunction) => {
   createLine(0.58, 3.7, 0.64, 3.8, 'd', 2, true, true, false);
 
   // Experience to Brain
-  createLine(0.64, 4.1, 0.46, 4.38, 'd', 2, true, false, true, -0.4, 2.5, 1.4, 0.75);
+  createLine(0.64, 4.1, 0.46, 4.38, 'd', 2, true, false, false);
   createLine(0.64, 4.1, 0.7, 4.2, 'd', 2, true, true, false);
 
   // Brain Outline
-  createLine(0.5, 4.5, 0.49, 4.62, '1', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.49, 4.62, 0.46, 4.72, '2', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.46, 4.72, 0.42, 4.74, '3', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.42, 4.74, 0.42, 4.84, '4', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.38, 4.70, 0.42, 4.84, '5', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.38, 4.70, 0.42, 4.74, '6', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.34, 4.69, 0.38, 4.70, '7', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.31, 4.62, 0.34, 4.69, '8', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.25, 4.6, 0.31, 4.62, '9', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.24, 4.5, 0.25, 4.6, '10', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.27, 4.4, 0.24, 4.5, '11', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.32, 4.34, 0.27, 4.4, '12', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.4, 4.33, 0.32, 4.34, '13', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.4, 4.33, 0.46, 4.38, '14', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.46, 4.38, 0.5, 4.5, '15', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
+  createLine(0.5, 4.5, 0.49, 4.62, '1', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.49, 4.62, 0.46, 4.72, '2', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.46, 4.72, 0.42, 4.74, '3', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.42, 4.74, 0.42, 4.84, '4', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.38, 4.70, 0.42, 4.84, '5', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.38, 4.70, 0.42, 4.74, '6', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.34, 4.69, 0.38, 4.70, '7', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.31, 4.62, 0.34, 4.69, '8', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.25, 4.6, 0.31, 4.62, '9', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.24, 4.5, 0.25, 4.6, '10', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.27, 4.4, 0.24, 4.5, '11', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.32, 4.34, 0.27, 4.4, '12', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.4, 4.33, 0.32, 4.34, '13', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.4, 4.33, 0.46, 4.38, '14', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.46, 4.38, 0.5, 4.5, '15', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
 
   // Brain Connections
-  createLine(0.27, 4.4, 0.3, 4.5, '1a', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.3, 4.5, 0.31, 4.62, '1b', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.3, 4.5, 0.24, 4.5, '1c', 2, false, true, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.3, 4.5, 0.25, 4.6, '1d', 2, false, true, true, -0.4, 2.5, 1.4, 0.75);
+  createLine(0.27, 4.4, 0.3, 4.5, '1a', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.3, 4.5, 0.31, 4.62, '1b', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.3, 4.5, 0.24, 4.5, '1c', 2, false, true, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.3, 4.5, 0.25, 4.6, '1d', 2, false, true, true, -0.4, 2.5, 1.3, 0.75);
 
-  createLine(0.5, 4.5, 0.44, 4.6, '2a', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.44, 4.6, 0.38, 4.70, '2b', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.44, 4.6, 0.49, 4.62, '2c', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.44, 4.6, 0.46, 4.72, '2d', 2, false, true, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.44, 4.6, 0.42, 4.74, '2e', 2, false, true, true, -0.4, 2.5, 1.4, 0.75);
+  createLine(0.5, 4.5, 0.44, 4.6, '2a', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.44, 4.6, 0.38, 4.70, '2b', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.44, 4.6, 0.49, 4.62, '2c', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.44, 4.6, 0.46, 4.72, '2d', 2, false, true, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.44, 4.6, 0.42, 4.74, '2e', 2, false, true, true, -0.4, 2.5, 1.3, 0.75);
 
-  createLine(0.4, 4.33, 0.43, 4.46, '3a', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.43, 4.46, 0.44, 4.6, '3b', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.46, 4.38, 0.43, 4.46, '3c', 2, true, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.43, 4.46, 0.5, 4.5, '3d', 2, false, true, true, -0.4, 2.5, 1.4, 0.75);
+  createLine(0.4, 4.33, 0.43, 4.46, '3a', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.43, 4.46, 0.44, 4.6, '3b', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.46, 4.38, 0.43, 4.46, '3c', 2, true, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.43, 4.46, 0.5, 4.5, '3d', 2, false, true, true, -0.4, 2.5, 1.3, 0.75);
 
-  createLine(0.36, 4.42, 0.43, 4.46, '4a', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.27, 4.4, 0.36, 4.42, '4b', 2, true, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.4, 4.33, 0.36, 4.42, '4c', 2, true, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.32, 4.34, 0.36, 4.42, '4d', 2, true, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.36, 4.42, 0.3, 4.5, '4e', 2, false, false, true, -0.4, 2.5, 1.4, 0.75);
+  createLine(0.36, 4.42, 0.43, 4.46, '4a', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.27, 4.4, 0.36, 4.42, '4b', 2, true, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.4, 4.33, 0.36, 4.42, '4c', 2, true, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.32, 4.34, 0.36, 4.42, '4d', 2, true, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.36, 4.42, 0.3, 4.5, '4e', 2, false, false, true, -0.4, 2.5, 1.3, 0.75);
 
-  createLine(0.375, 4.56, 0.44, 4.6, '5a', 2, false, true, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.3, 4.5, 0.375, 4.56, '5b', 2, true, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.36, 4.42, 0.375, 4.56, '5c', 2, true, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.43, 4.46, 0.375, 4.56, '5d', 2, true, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.375, 4.56, 0.38, 4.70, '5e', 2, false, true, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.375, 4.56, 0.31, 4.62, '5f', 2, false, true, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.375, 4.56, 0.34, 4.69, '5g', 2, true, true, true, -0.4, 2.5, 1.4, 0.75);
+  createLine(0.375, 4.56, 0.44, 4.6, '5a', 2, false, true, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.3, 4.5, 0.375, 4.56, '5b', 2, true, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.36, 4.42, 0.375, 4.56, '5c', 2, true, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.43, 4.46, 0.375, 4.56, '5d', 2, true, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.375, 4.56, 0.38, 4.70, '5e', 2, false, true, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.375, 4.56, 0.31, 4.62, '5f', 2, false, true, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.375, 4.56, 0.34, 4.69, '5g', 2, true, true, true, -0.4, 2.5, 1.3, 0.75);
 
   // Brain to Main
-  createLine(0.49, 4.62, 0.7, 4.8, 'd', 2, true, true, true, -0.4, 2.5, 1.4, 0.75);
+  createLine(0.49, 4.62, 0.7, 4.8, 'd', 2, true, true, true, -0.4, 2.5, 1.3, 0.75);
 
   // Brain to Contact
-  createLine(0.42, 4.84, 0.42, 5.4, 'v', 2, false, true, true, -0.4, 2.5, 1.4, 0.75);
+  createLine(0.42, 4.84, 0.42, 5.4, 'v', 2, false, true, true, -0.4, 2.5, 1.3, 0.75);
 
-  createLine(0.42, 4.84, 0.45, 4.94, 'd', 2, true, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.45, 4.94, 0.42, 5.04, 'd', 2, true, true, true, -0.4, 2.5, 1.4, 0.75);
+  createLine(0.42, 4.84, 0.45, 4.94, 'd', 2, true, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.45, 4.94, 0.42, 5.04, 'd', 2, true, true, true, -0.4, 2.5, 1.3, 0.75);
 
-  createLine(0.42, 4.94, 0.39, 5.04, 'd', 2, true, false, true, -0.4, 2.5, 1.4, 0.75);
-  createLine(0.39, 5.04, 0.42, 5.14, 'd', 2, true, true, true, -0.4, 2.5, 1.4, 0.75);
+  createLine(0.42, 4.94, 0.39, 5.04, 'd', 2, true, false, true, -0.4, 2.5, 1.3, 0.75);
+  createLine(0.39, 5.04, 0.42, 5.14, 'd', 2, true, true, true, -0.4, 2.5, 1.3, 0.75);
 
   createLine(0.42, 5.14, 0.35, 5.4, 'd', 2, false, true, false);
   createLine(0.42, 5.14, 0.49, 5.4, 'd', 2, true, true, false);
