@@ -64,6 +64,30 @@ export default function Home() {
               Specializing in NLP-driven mental healthcare solutions
             </span>
           </p>
+
+          <div className="px-3 py-10 space-x-6 md:hidden">
+            <button
+              onClick={() => window.open('https://github.com/rishik-sarkar', '_blank')}
+              className="contact-button"
+              aria-label="GitHub"
+            >
+              <FaGithub size={24} className='text-white/80 hover:text-white/30' />
+            </button>
+            <button
+              onClick={() => window.open('https://www.linkedin.com/in/rishik-sarkar/', '_blank')}
+              className="contact-button"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin size={24} className='text-white/80 hover:text-white/30' />
+            </button>
+            <button
+              onClick={() => window.location.href = 'mailto:rishiksarkar02@gmail.com'}
+              className="contact-button"
+              aria-label="Email"
+            >
+              <MdEmail size={24} className='text-white/80 hover:text-white/30' />
+            </button>
+          </div>
         </div>
       </section>
 
@@ -119,33 +143,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[5] = el }} className="section min-h-[100vh] md:h-screen flex items-center relative">
+      <section ref={el => { sectionRefs.current[5] = el }} className="section min-h-[50vh] md:h-screen flex items-center relative">
         <div className="pl-12 md:pl-16 pr-12 md:pr-16 w-full">
-          <h2 className="text-lg uppercase md:normal-case md:text-3xl mb-4 font-bold md:font-light">Connect <span className='hidden md:inline'>With Me</span></h2>
-          
-          <div className="flex flex-row justify-center space-x-6 mt-8 md:hidden">
-            <button
-              onClick={() => window.open('https://github.com/rishik-sarkar', '_blank')}
-              className="contact-button"
-              aria-label="GitHub"
-            >
-              <FaGithub size={24} className='text-white/80 hover:text-white/30' />
-            </button>
-            <button
-              onClick={() => window.open('https://www.linkedin.com/in/rishik-sarkar/', '_blank')}
-              className="contact-button"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedin size={24} className='text-white/80 hover:text-white/30' />
-            </button>
-            <button
-              onClick={() => window.location.href = 'mailto:rishiksarkar02@gmail.com'}
-              className="contact-button"
-              aria-label="Email"
-            >
-              <MdEmail size={24} className='text-white/80 hover:text-white/30' />
-            </button>
-          </div>
+          <h2 className="hidden md:inline text-lg uppercase md:normal-case md:text-3xl mb-4 font-bold md:font-light">Connect <span className='hidden md:inline'>With Me</span></h2>
 
           <div className="hidden md:block">
             <button

@@ -8,7 +8,7 @@ export interface LinePreset {
 export const linePresets: Record<string, LinePreset> = {
   default: { xShift: 0, xScale: 1, yShift: 0, yScale: 1 },
   main: { xShift: 0.3, xScale: 1, yShift: 0, yScale: 1 },
-  titleToAbout: { xShift: -0.1, xScale: 3, yShift: -0.3, yScale: 1 },
+  titleToAbout: { xShift: -0.1, xScale: 3, yShift: -0.25, yScale: 1 },
   about: { xShift: -0.1, xScale: 3, yShift: -0.3, yScale: 1 },
   aboutToResume: { xShift: -0.1, xScale: 2, yShift: -0.22, yScale: 1 },
   resumeToExperience: { xShift: -0.1, xScale: 2, yShift: -0.25, yScale: 1 },
