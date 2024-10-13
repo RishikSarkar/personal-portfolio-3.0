@@ -13,13 +13,9 @@ interface BrainNodeProps {
     project: Project;
     scrollY: number;
     mainLineFillY: number;
-    xShift?: number;
-    xScale?: number;
-    yShift?: number;
-    yScale?: number;
 }
 
-const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineFillY, xShift = -0.4, xScale = 2.5, yShift = 1.4, yScale = 0.75 }) => {
+const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineFillY }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isFilled, setIsFilled] = useState(false);
     const [lastTap, setLastTap] = useState(0);
@@ -29,7 +25,7 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
     const gapSize = 8;
 
     const updateFilled = useCallback(() => {
-        setIsFilled(y * window.innerHeight - scrollY <= mainLineFillY);
+        setIsFilled(y - scrollY <= mainLineFillY);
     }, [y, scrollY, mainLineFillY]);
 
     useEffect(() => {
@@ -37,20 +33,17 @@ const BrainNode: React.FC<BrainNodeProps> = ({ x, y, project, scrollY, mainLineF
     }, [updateFilled]);
 
     const containerStyle = useMemo(() => {
-        const isMobile = window.innerWidth < 768;
-        const adjustedX = isMobile ? (x * xScale + xShift) * window.innerWidth : x * window.innerWidth;
-        const adjustedY = isMobile ? (y * yScale + yShift) * window.innerHeight : y * window.innerHeight;
-        
         return {
             position: 'absolute' as const,
-            left: `${adjustedX - (isHovered ? hoverSize : defaultSize) / 2}px`,
-            top: `${adjustedY - (isHovered ? hoverSize : defaultSize) / 2}px`,
+            left: `${x}px`,
+            top: `${y}px`,
             width: `${isHovered ? hoverSize : defaultSize}px`,
             height: `${isHovered ? hoverSize : defaultSize}px`,
+            transform: `translate(-50%, -50%)`,
             transition: 'all 0.3s ease',
-            cursor: 'pointer',
+            zIndex: 10,
         };
-    }, [x, y, xShift, xScale, yShift, yScale, isHovered]);
+    }, [x, y, isHovered]);
 
     const ringStyle = useMemo(() => ({
         position: 'absolute' as const,

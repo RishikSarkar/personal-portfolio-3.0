@@ -75,18 +75,23 @@ const NetworkLine: React.FC = () => {
     activeProjects.forEach((project) => {
       const node = getProjectNode(project);
       if (node) {
-        addLine({
-          startCoords: { x: window.innerWidth * node.x, y: window.innerHeight * node.y },
-          endCoords: { x: window.innerWidth * node.x, y: window.innerHeight * node.y },
-          tag: `brain-node-${project.id}`,
-          thickness: 0,
-          nodeLeft: false,
-          nodeRight: false,
-          fillChange: false,
-        });
+        createLine(
+          node.x,
+          node.y,
+          node.x,
+          node.y,
+          `brain-node-${project.id}`,
+          0,
+          false,
+          false,
+          true,
+          'brain',
+          0,
+          false
+        );
       }
     });
-  }, [createLine, addLine]);
+  }, [createLine]);
 
   const calculateRotation = useCallback((startX: number, startY: number, endX: number, endY: number) => {
     return Math.atan2(endY - startY, endX - startX);
@@ -104,15 +109,11 @@ const NetworkLine: React.FC = () => {
         return (
           <BrainNode
             key={line.id}
-            x={line.startCoords.x / window.innerWidth}
-            y={line.startCoords.y / window.innerHeight}
+            x={line.startCoords.x}
+            y={line.startCoords.y}
             project={project}
             scrollY={scrollY}
             mainLineFillY={mainLineFillY}
-            xShift={-0.4}
-            xScale={2.5}
-            yShift={1.4}
-            yScale={0.75}
           />
         );
       }
