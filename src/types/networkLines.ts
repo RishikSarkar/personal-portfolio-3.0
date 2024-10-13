@@ -1,3 +1,5 @@
+import { LinePreset } from '../data/linePresets';
+
 export type CreateLineFunction = (
   startXPercent: number,
   startYPercent: number,
@@ -8,11 +10,7 @@ export type CreateLineFunction = (
   nodeLeft?: boolean,
   nodeRight?: boolean,
   mobileVisible?: boolean,
-  xShift?: number,
-  xScale?: number,
-  yShift?: number,
-  yScale?: number,
+  preset?: string | Partial<LinePreset>,
   fillPercentage?: number,
   fillChange?: boolean
 ) => void;
-

@@ -5,11 +5,13 @@ import { useNetworkLines } from '../hooks/useNetworkLines';
 import { createNetworkLines } from '../hooks/createNetworkLines';
 import BrainNode from './BrainNode';
 import { getActiveProjects, getProjectNode } from '../data/projects';
+import { linePresets, LinePreset } from '../data/linePresets';
+import { CreateLineFunction } from '../types/networkLines';
 
 const NetworkLine: React.FC = () => {
   const { lines, addLine, scrollY, mainLineFillY } = useNetworkLines();
 
-  const createLine = useCallback((
+  const createLine: CreateLineFunction = useCallback((
     startXPercent: number,
     startYPercent: number,
     endXPercent: number,
@@ -19,10 +21,7 @@ const NetworkLine: React.FC = () => {
     nodeLeft: boolean = true,
     nodeRight: boolean = true,
     mobileVisible: boolean = true,
-    xShift: number = 0,
-    xScale: number = 1,
-    yShift: number = 0,
-    yScale: number = 1,
+    preset: string | Partial<LinePreset> = 'default',
     fillPercentage: number = 0,
     fillChange: boolean = true
   ) => {
@@ -34,17 +33,30 @@ const NetworkLine: React.FC = () => {
       return;
     }
 
+    let adjustments: LinePreset;
+
+    if (typeof preset === 'string') {
+      adjustments = linePresets[preset];
+    } else {
+      adjustments = {
+        xShift: preset.xShift ?? 0,
+        xScale: preset.xScale ?? 1,
+        yShift: preset.yShift ?? 0,
+        yScale: preset.yScale ?? 1
+      };
+    }
+
     const adjustCoord = (coord: number, shift: number, scale: number) => 
       isMobile ? coord * scale + shift : coord;
 
     addLine({
       startCoords: { 
-        x: w * adjustCoord(startXPercent, xShift, xScale), 
-        y: h * adjustCoord(startYPercent, yShift, yScale)
+        x: w * adjustCoord(startXPercent, adjustments.xShift, adjustments.xScale), 
+        y: h * adjustCoord(startYPercent, adjustments.yShift, adjustments.yScale)
       },
       endCoords: { 
-        x: w * adjustCoord(endXPercent, xShift, xScale), 
-        y: h * adjustCoord(endYPercent, yShift, yScale)
+        x: w * adjustCoord(endXPercent, adjustments.xShift, adjustments.xScale), 
+        y: h * adjustCoord(endYPercent, adjustments.yShift, adjustments.yScale)
       },
       tag,
       thickness,
