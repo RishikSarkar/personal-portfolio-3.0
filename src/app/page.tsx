@@ -69,7 +69,7 @@ export default function Home() {
 
       <section ref={el => { sectionRefs.current[1] = el }} className="section min-h-[80vh] md:h-screen flex items-center relative">
         <div className="md:max-w-[calc(70%-20rem)] pl-12 md:pl-16 pr-12 md:pr-2">
-          <h2 className="text-xl md:text-3xl mb-4 md:font-light">About Me</h2>
+          <h2 className="text-lg uppercase md:normal-case md:text-3xl mb-4 font-bold md:font-light">About <span className='hidden md:inline'>Me</span></h2>
           <p className="text-sm md:text-lg font-light leading-relaxed pb-8 text-white/80">
             <i>&ldquo;If you could train an AI to be a Buddhist, it would probably be pretty good.&rdquo;<br /></i> - Reid Hoffman<br /><br />
             I am currently pursuing a Master of Engineering in Computer Science at Cornell University. Prior to this, I graduated Summa Cum Laude with honors from Rutgers University-New Brunswick with a B.S. in Computer Science and Cognitive Science and was inducted into Phi Beta Kappa. I also worked as an ML Full-Stack Developer Intern at a fintech scaleup and as a research assistant at a joint Rutgers-Princeton laboratory, where I focused on data integration and machine learning.<br /><br />
@@ -80,7 +80,7 @@ export default function Home() {
 
       <section ref={el => { sectionRefs.current[2] = el }} className="section min-h-[90vh] md:h-screen flex items-center relative">
         <div className="pl-12 md:pl-16 pr-12 md:pr-16">
-          <h2 className="text-xl md:text-3xl mb-4 md:font-light">Documents</h2>
+          <h2 className="text-lg uppercase md:normal-case md:text-3xl mb-4 font-bold md:font-light">Documents</h2>
           <p className="text-sm md:text-lg mb-6 font-light text-white/80">Check out my professional experience and qualifications:</p>
           <div className="flex space-x-6">
             <a
@@ -111,7 +111,7 @@ export default function Home() {
 
       <section ref={el => { sectionRefs.current[4] = el }} className="section min-h-[80vh] md:h-screen flex items-center relative">
         <div className="pl-12 md:pl-16 pr-12 md:pr-16">
-          <h2 className="text-xl md:text-3xl md:font-light mb-4">Projects</h2>
+          <h2 className="text-lg uppercase md:normal-case md:text-3xl mb-4 font-bold md:font-light">Projects</h2>
           <h4 className="text-sm md:text-lg font-light mb-4 text-white/80">
             <span className="md:hidden">Tap nodes to explore</span>
             <span className="hidden md:inline">Hover nodes to explore</span>
@@ -119,9 +119,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[5] = el }} className="section min-h-[80vh] md:h-screen flex items-center relative">
+      <section ref={el => { sectionRefs.current[5] = el }} className="section min-h-[100vh] md:h-screen flex items-center relative">
         <div className="pl-12 md:pl-16 pr-12 md:pr-16 w-full">
-          <h2 className="text-xl md:text-3xl md:font-light mb-4">Connect With Me</h2>
+          <h2 className="text-lg uppercase md:normal-case md:text-3xl mb-4 font-bold md:font-light">Connect <span className='hidden md:inline'>With Me</span></h2>
           
           <div className="flex flex-row justify-center space-x-6 mt-8 md:hidden">
             <button
@@ -185,7 +185,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[6] = el }} className="section h-[250px] flex items-center relative" />
+      <section ref={el => { sectionRefs.current[6] = el }} className="hidden section h-[250px] md:flex items-center relative" />
 
       {/* <section
         ref={el => { sectionRefs.current[7] = el }}

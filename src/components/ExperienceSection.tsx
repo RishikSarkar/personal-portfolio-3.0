@@ -47,7 +47,7 @@ const ExperienceSection: React.FC = () => {
 
     return (
         <div className='w-full h-full flex flex-col md:max-w-[50vw] bg-black text-white'>
-            <h2 className='text-xl md:text-3xl md:font-light mb-8'>Experience</h2>
+            <h2 className='text-lg uppercase md:normal-case md:text-3xl mb-8 font-bold md:font-light'>Experience</h2>
             <div className='flex-grow md:overflow-y-auto md:pl-4 md:custom-scrollbar' style={{ direction: 'rtl' }}>
                 <div style={{ direction: 'ltr' }}>
                     <div className='space-y-12 md:space-y-0'>
