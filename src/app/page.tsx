@@ -47,19 +47,27 @@ export default function Home() {
 
   return (
     <div className="flex flex-col font-[family-name:var(--font-geist-sans)]">
-      <section ref={el => { sectionRefs.current[0] = el }} className="section h-screen flex items-center relative">
-        <div className="md:max-w-[calc(70%-20rem)] pl-12 md:pl-16 pr-12 md:pr-4">
-          <h1 className="text-3xl md:text-5xl md:font-light mb-4">Rishik Sarkar</h1>
+      <section ref={el => { sectionRefs.current[0] = el }} className="section h-[65vh] md:h-screen flex md:items-center relative">
+        <div className="md:max-w-[calc(70%-20rem)] pl-12 md:pl-16 pr-12 md:pr-4 pt-12 md:pt-0">
+          <h1 className="text-4xl md:text-5xl font-bold md:font-light mb-4">Rishik Sarkar</h1>
           <p className="text-sm md:text-xl font-light text-white/80">
-            M.Eng. in Computer Science at Cornell University<br />
-            B.S. in Computer Science (Honors) at Rutgers University-New Brunswick<br />
-            B.S. in Cognitive Science at Rutgers University-New Brunswick<br /><br />
-            Specializing in NLP-driven mental healthcare solutions
+            <span className="md:hidden">
+              M.Eng. Computer Science at Cornell University<br />
+              B.S. Computer Science at Rutgers University<br />
+              B.S. Cognitive Science at Rutgers University<br /><br />
+              <strong>Specializing in NLP-driven mental healthcare solutions</strong>
+            </span>
+            <span className="hidden md:inline">
+              M.Eng. in Computer Science at Cornell University<br />
+              B.S. in Computer Science (Honors) at Rutgers University-New Brunswick<br />
+              B.S. in Cognitive Science at Rutgers University-New Brunswick<br /><br />
+              Specializing in NLP-driven mental healthcare solutions
+            </span>
           </p>
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[1] = el }} className="section h-screen flex items-center relative">
+      <section ref={el => { sectionRefs.current[1] = el }} className="section min-h-[80vh] md:h-screen flex items-center relative">
         <div className="md:max-w-[calc(70%-20rem)] pl-12 md:pl-16 pr-12 md:pr-2">
           <h2 className="text-xl md:text-3xl mb-4 md:font-light">About Me</h2>
           <p className="text-sm md:text-lg font-light leading-relaxed pb-8 text-white/80">
@@ -70,7 +78,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[2] = el }} className="section h-screen flex items-center relative">
+      <section ref={el => { sectionRefs.current[2] = el }} className="section min-h-[80vh] md:h-screen flex items-center relative">
         <div className="pl-12 md:pl-16 pr-12 md:pr-16">
           <h2 className="text-xl md:text-3xl mb-4 md:font-light">Documents</h2>
           <p className="text-sm md:text-lg mb-6 font-light text-white/80">Check out my professional experience and qualifications:</p>
@@ -95,13 +103,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[3] = el }} className="section h-screen flex items-center relative">
-        <div className="pl-12 md:pl-16 pr-12 md:pr-16 w-full h-[calc(100vh-200px)]">
+      <section ref={el => { sectionRefs.current[3] = el }} className="section min-h-[80vh] md:h-screen flex items-center relative">
+        <div className="pl-12 md:pl-16 pr-12 md:pr-16 w-full h-[calc(100vh-200px)] md:h-[calc(100vh-200px)]">
           <ExperienceSection />
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[4] = el }} className="section h-screen flex items-center relative">
+      <section ref={el => { sectionRefs.current[4] = el }} className="section min-h-[80vh] md:h-screen flex items-center relative">
         <div className="pl-12 md:pl-16 pr-12 md:pr-16">
           <h2 className="text-xl md:text-3xl md:font-light mb-4">Projects</h2>
           <h4 className="text-sm md:text-lg font-light mb-4 text-white/80">
@@ -111,7 +119,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[5] = el }} className="section h-screen flex items-center relative">
+      <section ref={el => { sectionRefs.current[5] = el }} className="section min-h-[80vh] md:h-screen flex items-center relative">
         <div className="pl-12 md:pl-16 pr-12 md:pr-16 w-full">
           <h2 className="text-xl md:text-3xl md:font-light mb-4">Connect With Me</h2>
           
