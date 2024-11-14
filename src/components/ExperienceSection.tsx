@@ -13,6 +13,14 @@ interface ExperienceItem {
 const ExperienceSection: React.FC = () => {
     const [experiences] = useState<ExperienceItem[]>([
         {
+            title: 'Software Engineer (Contract)',
+            company: 'AllAboutID',
+            companyLink: 'https://www.allaboutid.io/',
+            dateRange: 'Oct 2024 - Nov 2024',
+            description: 'Built a secure asset management system for an interior design startup, integrating MongoDB Atlas for data storage and SVG handling for furniture assets, with a Next.js and Tailwind CSS frontend to enhance asset display and user experience.',
+            skills: ['MongoDB', 'Next.js', 'TypeScript', 'Node.js']
+        },
+        {
             title: 'Research Assistant',
             company: 'Princeton University',
             companyLink: 'https://ccnp.princeton.edu/about-ccnp/',
@@ -32,7 +40,7 @@ const ExperienceSection: React.FC = () => {
             title: 'ML Research Intern',
             company: 'Abraira Lab',
             companyLink: 'https://www.abrairalab.org/',
-            dateRange: 'May 2022 - Jun 2022',
+            dateRange: 'May 2022 - Jun 2023',
             description: 'Created a high-quality dataset of 10,000+ samples using Motion Sequencing for an unsupervised ML model in a study on spinal cord injuries in mice, enhancing data accuracy by analyzing and correcting behavioral patterns.',
             skills: ['Python', 'MoSeq2', 'Unsupervised Learning', 'Research']
         },
