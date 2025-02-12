@@ -8,6 +8,7 @@ const CursorCat: React.FC = () => {
     const [direction, setDirection] = useState<Direction>('e');
     const [isIdle, setIsIdle] = useState(true);
     const [frame, setFrame] = useState(0);
+    const [imagesLoaded, setImagesLoaded] = useState(false);
 
     const constants = useMemo(() => ({
         FRAME_COUNT: 20,
@@ -21,12 +22,26 @@ const CursorCat: React.FC = () => {
 
     useEffect(() => {
         const directions: Direction[] = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw'];
-        directions.forEach(dir => {
+        const imageCache: Record<string, HTMLImageElement> = {};
+        let loadedCount = 0;
+
+        [...directions, 'idle'].forEach(dir => {
             const img = new Image();
-            img.src = `/cat/spritesheets/cat-${dir}.png`;
+            img.src = `/cat/spritesheets/cat${dir === 'idle' ? '' : '-' + dir}.png`;
+            
+            img.onload = () => {
+                imageCache[dir] = img;
+                loadedCount++;
+                if (loadedCount === directions.length + 1) {
+                    setImagesLoaded(true);
+                }
+            };
         });
-        const idleImg = new Image();
-        idleImg.src = '/cat/spritesheets/cat.png';
+
+        Object.defineProperty(window, '__catImageCache', {
+            value: imageCache,
+            configurable: true
+        });
     }, []);
 
     useEffect(() => {
@@ -121,6 +136,10 @@ const CursorCat: React.FC = () => {
             willChange: 'background-image, background-position'
         };
     }, [isIdle, direction, frame, constants]);
+
+    if (!imagesLoaded) {
+        return null;
+    }
 
     return (
         <div 
