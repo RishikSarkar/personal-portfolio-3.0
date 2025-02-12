@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useCallback, useMemo, useRef } from 'react';
+import throttle from 'lodash/throttle';
 
 interface CursorEffectProps {
     initialSize?: number;
@@ -17,12 +18,15 @@ const CursorEffect: React.FC<CursorEffectProps> = ({
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
 
-    const updatePosition = useCallback((e: MouseEvent) => {
-        if (containerRef.current) {
-            containerRef.current.style.setProperty('--mouse-x', `${e.clientX}px`);
-            containerRef.current.style.setProperty('--mouse-y', `${e.clientY}px`);
-        }
-    }, []);
+    const updatePosition = useCallback(
+        throttle((e: MouseEvent) => {
+            if (containerRef.current) {
+                containerRef.current.style.setProperty('--mouse-x', `${e.clientX}px`);
+                containerRef.current.style.setProperty('--mouse-y', `${e.clientY}px`);
+            }
+        }, 16),
+        [containerRef]
+    );
 
     useEffect(() => {
         window.addEventListener('mousemove', updatePosition);

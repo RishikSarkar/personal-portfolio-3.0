@@ -57,14 +57,12 @@ const ExperienceSection: React.FC = () => {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
+        setIsMobile(window.innerWidth < 768);
         
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        
-        return () => window.removeEventListener('resize', checkMobile);
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        const resizeObserver = new ResizeObserver(checkMobile);
+        resizeObserver.observe(document.body);
+        return () => resizeObserver.disconnect();
     }, []);
 
     const handleCompanyClick = (link: string) => {

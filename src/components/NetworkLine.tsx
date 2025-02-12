@@ -1,12 +1,13 @@
 "use client"
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState, CSSProperties } from 'react';
 import { useNetworkLines } from '../hooks/useNetworkLines';
 import { createNetworkLines } from '../hooks/createNetworkLines';
 import BrainNode from './BrainNode';
 import { getActiveProjects, getProjectNode } from '../data/projects';
 import { linePresets, LinePreset } from '../data/linePresets';
 import { CreateLineFunction } from '../types/networkLines';
+import { LineProps } from '../hooks/useNetworkLines';
 
 const NetworkLine: React.FC = () => {
   const { lines, addLine, scrollY, mainLineFillY } = useNetworkLines();
@@ -102,7 +103,33 @@ const NetworkLine: React.FC = () => {
     return Math.hypot(endX - startX, endY - startY);
   }, []);
 
+  const getLineStyles = useMemo(() => (line: LineProps, length: number, rotation: number): CSSProperties => ({
+    position: line.tag === 'main-line' ? 'fixed' : 'absolute',
+    left: `${line.startCoords.x}px`,
+    top: line.tag === 'main-line' ? '0px' : `${line.startCoords.y}px`,
+    width: `${length}px`,
+    height: `${line.thickness}px`,
+    backgroundColor: '#333333',
+    transform: `rotate(${rotation}rad)`,
+    transformOrigin: 'top left'
+  }), []);
+
   const renderedLines = useMemo(() => lines.map(line => {
+    const lineGeometry = {
+      length: calculateLength(
+        line.startCoords.x,
+        line.startCoords.y,
+        line.endCoords.x,
+        line.endCoords.y
+      ),
+      rotation: calculateRotation(
+        line.startCoords.x,
+        line.startCoords.y,
+        line.endCoords.x,
+        line.endCoords.y
+      )
+    };
+
     if (line.tag.startsWith('brain-node-')) {
       const projectId = line.tag.split('-')[2];
       const project = getActiveProjects().find(p => p.id === projectId);
@@ -127,26 +154,7 @@ const NetworkLine: React.FC = () => {
       <div
         key={line.id}
         className={`network-line ${line.tag}`}
-        style={{
-          position: line.tag === 'main-line' ? 'fixed' : 'absolute',
-          left: `${line.startCoords.x}px`,
-          top: line.tag === 'main-line' ? '0px' : `${line.startCoords.y}px`,
-          width: `${calculateLength(
-            line.startCoords.x,
-            line.startCoords.y,
-            line.endCoords.x,
-            line.endCoords.y
-          )}px`,
-          height: `${line.thickness}px`,
-          backgroundColor: '#333333',
-          transform: `rotate(${calculateRotation(
-            line.startCoords.x,
-            line.startCoords.y,
-            line.endCoords.x,
-            line.endCoords.y
-          )}rad)`,
-          transformOrigin: 'top left'
-        }}
+        style={getLineStyles(line, lineGeometry.length, lineGeometry.rotation)}
       >
         <div
           style={{
@@ -167,7 +175,7 @@ const NetworkLine: React.FC = () => {
         )}
       </div>
     );
-  }), [lines, calculateLength, calculateRotation, scrollY, mainLineFillY, activeNodeId, setActiveNodeId]);
+  }), [lines, calculateLength, calculateRotation, scrollY, mainLineFillY, activeNodeId, setActiveNodeId, getLineStyles]);
 
   return <>{renderedLines}</>;
 };

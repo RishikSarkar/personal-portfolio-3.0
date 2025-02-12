@@ -3,7 +3,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
-import ExperienceSection from '@/components/ExperienceSection';
+import dynamic from 'next/dynamic';
+
+const ExperienceSection = dynamic(() => import('@/components/ExperienceSection'), {
+  loading: () => <div className="loading-placeholder" />,
+  ssr: false
+});
 
 export default function Home() {
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
@@ -67,7 +72,7 @@ export default function Home() {
 
           <div className="px-3 py-10 space-x-6 md:hidden">
             <button
-              onClick={() => window.open('https://github.com/rishik-sarkar', '_blank')}
+              onClick={() => window.open('https://github.com/RishikSarkar', '_blank')}
               className="contact-button"
               aria-label="GitHub"
             >
@@ -157,7 +162,7 @@ export default function Home() {
 
           <div className="hidden md:block">
             <button
-              onClick={() => window.open('https://github.com/rishik-sarkar', '_blank')}
+              onClick={() => window.open('https://github.com/RishikSarkar', '_blank')}
               className="contact-button absolute"
               style={{
                 left: windowSize.width * 0.35,

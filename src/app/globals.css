@@ -43,6 +43,8 @@ html {
   background-color: #333333;
   border-radius: 50%;
   transition: all 0.3s ease-out;
+  transform: translate(-50%, -50%) translateZ(0);
+  will-change: transform, background-color;
 }
 
 .node.left {
@@ -105,6 +107,7 @@ html {
   transition: box-shadow 0.3s ease, opacity 0.3s ease;
   box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.95);
   opacity: 0.1;
+  will-change: opacity, box-shadow;
 }
 
 .section.visible {
