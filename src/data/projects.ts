@@ -34,7 +34,7 @@ export const projects: Project[] = [
         name: 'Tch.ai',
         description: 'An AI music app that recommends songs based on mood analysis from facial expressions and text.',
         techStack: ['Next.js', 'Keras', 'MySQL'],
-        nodeId: 'n11',
+        nodeId: 'n10',
         isActive: true,
         link: 'https://github.com/RishikSarkar/tch.ai'
     },
@@ -47,6 +47,24 @@ export const projects: Project[] = [
         isActive: true,
         link: 'https://github.com/RishikSarkar/unidb-jdbc-mysql'
     },
+    {
+        id: 'p5',
+        name: 'MiniTorch',
+        description: 'A reimplementation of the PyTorch API featuring autodiff, broadcasting, and CUDA-accelerated tensor operations.',
+        techStack: ['Python', 'PyTorch', 'CUDA', 'Numba'],
+        nodeId: 'n1',
+        isActive: true,
+        link: 'https://github.com/RishikSarkar/minitorch'
+    },
+    {
+        id: 'p6',
+        name: 'Protoclear',
+        description: 'An AI-powered compliance toolkit that analyzes IRB regulations using NLP and provides context-aware recommendations.',
+        techStack: ['Next.js', 'FastAPI', 'LlamaIndex'],
+        nodeId: 'n3',
+        isActive: true,
+        link: 'https://github.com/RishikSarkar/protoclear'
+    }
 ];
 
 const activeProjects = projects.filter(project => project.isActive);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 interface ExperienceItem {
@@ -12,6 +12,14 @@ interface ExperienceItem {
 
 const ExperienceSection: React.FC = () => {
     const [experiences] = useState<ExperienceItem[]>([
+        {
+            title: 'Independent Researcher',
+            company: 'Cornell XR Collaboratory',
+            companyLink: 'https://xrcollaboratory.tech.cornell.edu/',
+            dateRange: 'Jan 2025 - Present',
+            description: 'Developed innovative 3D interaction techniques for ML-driven AR/VR research under Prof. Harald Haraldsson, utilizing Unity, UPM, and the XR Interaction Toolkit, while leveraging Ollama (DeepSeek 7B) LLMs to automate object selection and power an AI-driven mindmap system.',
+            skills: ['Unity', 'UPM', 'XR Interaction Toolkit', 'Ollama', 'DeepSeek 7B']
+        },
         {
             title: 'Software Engineer (Contract)',
             company: 'AllAboutID',
@@ -46,11 +54,24 @@ const ExperienceSection: React.FC = () => {
         },
     ]);
 
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     const handleCompanyClick = (link: string) => {
         window.open(link, '_blank');
     };
 
-    const displayedExperiences = experiences.slice(0, 4);
+    const displayedExperiences = isMobile ? experiences.slice(0, 4) : experiences;
     const hasMoreExperiences = experiences.length > 4;
 
     return (
