@@ -98,22 +98,29 @@ const CursorCat: React.FC = () => {
         return () => window.removeEventListener('mousemove', throttledHandler);
     }, [handleMouseMove]);
 
-    const style = useMemo(() => ({
-        position: 'absolute' as const,
-        left: `${0.85 * 100}%`,
-        top: `${4.8 * 100}vh`,
-        transform: `translate(-50%, calc(-50% - ${constants.FRAME_HEIGHT * constants.DISPLAY_SCALE / 2}px)) scale(${constants.DISPLAY_SCALE})`,
-        transformOrigin: 'center center',
-        zIndex: 1000,
-        pointerEvents: 'none' as const,
-        width: constants.FRAME_WIDTH,
-        height: constants.FRAME_HEIGHT,
-        backgroundImage: `url(/cat/spritesheets/${isIdle ? 'cat' : `cat-${direction}`}.png)`,
-        backgroundPosition: `-${frame * constants.FRAME_WIDTH}px 0px`,
-        backgroundRepeat: 'no-repeat',
-        transition: 'background-image 0.1s ease-out',
-        willChange: 'background-image, background-position'
-    }), [isIdle, direction, frame, constants]);
+    const style = useMemo(() => {
+        const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+        
+        return {
+            position: 'absolute' as const,
+            left: isMobile ? '50%' : `${0.85 * 100}%`,
+            top: isMobile ? 'auto' : `${4.8 * 100}vh`,
+            bottom: isMobile ? '40px' : 'auto',
+            transform: isMobile 
+                ? `translate(-50%, 0) scale(${constants.DISPLAY_SCALE})`
+                : `translate(-50%, calc(-50% - ${constants.FRAME_HEIGHT * constants.DISPLAY_SCALE / 2}px)) scale(${constants.DISPLAY_SCALE})`,
+            transformOrigin: 'center center',
+            zIndex: 1000,
+            pointerEvents: 'none' as const,
+            width: constants.FRAME_WIDTH,
+            height: constants.FRAME_HEIGHT,
+            backgroundImage: `url(/cat/spritesheets/${isIdle ? 'cat' : `cat-${direction}`}.png)`,
+            backgroundPosition: `-${frame * constants.FRAME_WIDTH}px 0px`,
+            backgroundRepeat: 'no-repeat',
+            transition: 'background-image 0.1s ease-out',
+            willChange: 'background-image, background-position'
+        };
+    }, [isIdle, direction, frame, constants]);
 
     return (
         <div 

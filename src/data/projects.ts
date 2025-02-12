@@ -54,7 +54,7 @@ export const projects: Project[] = [
         techStack: ['Python', 'PyTorch', 'CUDA', 'Numba'],
         nodeId: 'n1',
         isActive: true,
-        link: 'https://github.com/RishikSarkar/minitorch'
+        link: 'https://minitorch.github.io/'
     },
     {
         id: 'p6',
@@ -63,7 +63,25 @@ export const projects: Project[] = [
         techStack: ['Next.js', 'FastAPI', 'LlamaIndex'],
         nodeId: 'n11',
         isActive: true,
-        link: 'https://github.com/RishikSarkar/protoclear'
+        link: 'https://www.linkedin.com/in/rishik-sarkar/details/projects/'
+    },
+    {
+        id: 'p7',
+        name: 'ReddiGist',
+        description: 'A discussion analyzer that processes Reddit threads to extract key insights using NLP and multi-threaded processing.',
+        techStack: ['Next.js', 'Flask', 'NLTK'],
+        nodeId: 'n16',
+        isActive: true,
+        link: 'https://reddi-gist.vercel.app/'
+    },
+    {
+        id: 'p8',
+        name: 'PIU Prediction Analysis',
+        description: 'A machine learning pipeline that predicts internet usage severity in youth using physical activity data and advanced ML models.',
+        techStack: ['PyTorch', 'XGBoost', 'TabNet'],
+        nodeId: 'n13',
+        isActive: true,
+        link: '/documents/aml_final_paper.pdf'
     }
 ];
 

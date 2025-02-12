@@ -113,7 +113,7 @@ export default function Home() {
           <p className="text-sm md:text-lg mb-6 font-light text-white/80">Check out my professional experience and qualifications:</p>
           <div className="flex space-x-6">
             <a
-              href="/rishik_sarkar_swe_resume.pdf"
+              href="/resume/rishik_sarkar_swe_resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 bg-white/10 text-white font-light text-sm md:text-lg hover:bg-white/20 transition-colors duration-100"
@@ -121,7 +121,7 @@ export default function Home() {
               SWE Resume
             </a>
             <a
-              href="/rishik_sarkar_mle_resume.pdf"
+              href="/resume/rishik_sarkar_mle_resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 bg-white/10 text-white font-light text-sm md:text-lg hover:bg-white/20 transition-colors duration-100"
@@ -129,7 +129,7 @@ export default function Home() {
               MLE Resume
             </a>
             <a
-              href="/rishik_sarkar_cv.pdf"
+              href="/resume/rishik_sarkar_cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 bg-white/10 text-white font-light text-sm md:text-lg hover:bg-white/20 transition-colors duration-100"
