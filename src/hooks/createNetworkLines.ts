@@ -134,6 +134,8 @@ export const createNetworkLines = (createLine: CreateLineFunction) => {
   // Brain to Main
   createLine(0.49, 4.62, 0.7, 4.8, 'd', 2, true, true, true, 'brain');
 
+  createLine(0.7, 4.8, 1.0, 4.8, 'h', 2, true, false, true, 'brain');
+
   // Brain to Contact
   createLine(0.42, 4.84, 0.42, 5.4, 'v', 2, false, true, true, 'brainToContact');
 

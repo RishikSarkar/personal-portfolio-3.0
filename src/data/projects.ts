@@ -16,7 +16,7 @@ export const projects: Project[] = [
         name: 'Neko Sekai',
         description: 'An interactive cat app where you feed, play, and level up your virtual pet, unlocking new abilities and rewards.',
         techStack: ['Next.js', 'Tailwind', 'Firebase'],
-        nodeId: 'n2',
+        nodeId: 'n17',
         isActive: true,
         link: 'https://neko-sekai.vercel.app/'
     },
@@ -25,7 +25,7 @@ export const projects: Project[] = [
         name: 'Invasion of the Bot-Grabbers',
         description: 'An AI-powered bot navigating mazes to rescue crew members while evading alien threats.',
         techStack: ['PyTorch', 'Scikit-Learn', 'Pandas'],
-        nodeId: 'n8',
+        nodeId: 'n7',
         isActive: true,
         link: 'https://github.com/RishikSarkar/project-3-cs520'
     },
@@ -34,7 +34,7 @@ export const projects: Project[] = [
         name: 'Tch.ai',
         description: 'An AI music app that recommends songs based on mood analysis from facial expressions and text.',
         techStack: ['Next.js', 'Keras', 'MySQL'],
-        nodeId: 'n10',
+        nodeId: 'n14',
         isActive: true,
         link: 'https://github.com/RishikSarkar/tch.ai'
     },
@@ -43,7 +43,7 @@ export const projects: Project[] = [
         name: 'UniDB',
         description: 'A robust database of student profiles and courses with a Java interface for dynamic queries.',
         techStack: ['JDBC', 'BeautifulSoup', 'MySQL'],
-        nodeId: 'n14',
+        nodeId: 'n9',
         isActive: true,
         link: 'https://github.com/RishikSarkar/unidb-jdbc-mysql'
     },
@@ -61,7 +61,7 @@ export const projects: Project[] = [
         name: 'Protoclear',
         description: 'An AI-powered compliance toolkit that analyzes IRB regulations using NLP and provides context-aware recommendations.',
         techStack: ['Next.js', 'FastAPI', 'LlamaIndex'],
-        nodeId: 'n3',
+        nodeId: 'n11',
         isActive: true,
         link: 'https://github.com/RishikSarkar/protoclear'
     }

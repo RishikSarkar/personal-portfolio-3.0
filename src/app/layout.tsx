@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import NetworkLine from '@/components/NetworkLine';
 import CursorEffect from '@/components/CursorEffect';
+import CursorCat from '@/components/CursorCat';
 
 const geistSans = localFont({
   src: "../../public/fonts/GeistVF.woff",
@@ -42,6 +43,7 @@ export default function RootLayout({
         <div className="max-w-[100vw] overflow-x-hidden">
           <NetworkLine />
           <CursorEffect />
+          <CursorCat />
           {children}
         </div>
       </body>
