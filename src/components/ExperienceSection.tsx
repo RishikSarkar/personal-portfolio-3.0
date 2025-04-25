@@ -13,12 +13,20 @@ interface ExperienceItem {
 const ExperienceSection: React.FC = () => {
     const [experiences] = useState<ExperienceItem[]>([
         {
+            title: 'Machine Learning Engineer',
+            company: 'Instalily AI',
+            companyLink: 'https://instalily.ai/',
+            dateRange: 'Mar 2025 - Present',
+            description: 'Building an agent for United Rentals leveraging RAG, semantic search, Azure AI Search, MCP, and a custom LangChain-like framework with UR APIs, optimized embedding and vector database workflows, and implemented PostgreSQL logging for performance monitoring.',
+            skills: ['RAG', 'Semantic Search', 'LangChain', 'PostgreSQL', 'React']
+        },
+        {
             title: 'Independent Researcher',
             company: 'Cornell XR Collaboratory',
             companyLink: 'https://xrcollaboratory.tech.cornell.edu/',
             dateRange: 'Jan 2025 - Present',
-            description: 'Developed innovative 3D interaction techniques for ML-driven AR/VR research under Prof. Harald Haraldsson, utilizing Unity, UPM, and the XR Interaction Toolkit, while leveraging Ollama (DeepSeek 7B) LLMs to automate object selection and power an AI-driven mindmap system.',
-            skills: ['Unity', 'UPM', 'XR Interaction Toolkit', 'Ollama', 'DeepSeek 7B']
+            description: 'Conducting ML-driven AR/VR research for Quest by building a Unity package with 3D interaction techniques using UPM and the XR Interaction Toolkit, and leveraging Microsoft.Extensions.AI and Ollama LLMs in .NET microservices to power an AI-driven mind-mapping tool.',
+            skills: ['Unity', 'UPM', 'XR Interaction Toolkit', 'Ollama', 'Gemma3']
         },
         {
             title: 'Software Engineer (Contract)',
