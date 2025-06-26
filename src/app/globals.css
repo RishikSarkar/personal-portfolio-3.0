@@ -32,6 +32,47 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Mobile-specific scroll fixes */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  body {
+    min-height: 100vh;
+    overscroll-behavior: none;
+    /* Hide all scrollbars on mobile */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbars for all elements on mobile */
+  * {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  *::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Ensure proper document height calculation for scroll detection */
+  html {
+    height: auto;
+    min-height: 100vh;
+  }
+}
+
 .experimental-line {
   position: fixed;
 }
@@ -154,4 +195,16 @@ html {
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: white;
   border-radius: 2px;
+}
+
+/* Mobile scrollbar optimization - hide completely */
+@media (max-width: 768px) {
+  .custom-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }

@@ -1,58 +1,143 @@
 "use client"
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import dynamic from 'next/dynamic';
 
+// Optimized dynamic import with better loading strategy
 const ExperienceSection = dynamic(() => import('@/components/ExperienceSection'), {
   loading: () => <div className="loading-placeholder" />,
   ssr: false
 });
 
+// Debounce utility function
+const debounce = (func: Function, wait: number) => {
+  let timeout: NodeJS.Timeout;
+  return function executedFunction(...args: any[]) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+
+// Memoized contact button data to prevent recreating objects
+const CONTACT_BUTTONS = [
+  {
+    onClick: () => window.open('https://github.com/RishikSarkar', '_blank'),
+    icon: FaGithub,
+    label: 'GitHub',
+    desktopPosition: { leftMultiplier: 0.35, topMultiplier: 0.5 }
+  },
+  {
+    onClick: () => window.open('https://www.linkedin.com/in/rishik-sarkar/', '_blank'),
+    icon: FaLinkedin,
+    label: 'LinkedIn',
+    desktopPosition: { leftMultiplier: 0.42, topMultiplier: 0.5 }
+  },
+  {
+    onClick: () => window.location.href = 'mailto:rishiksarkar02@gmail.com',
+    icon: MdEmail,
+    label: 'Email',
+    desktopPosition: { leftMultiplier: 0.49, topMultiplier: 0.5 }
+  }
+] as const;
+
 export default function Home() {
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const resizeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Memoized intersection observer callback
+  const intersectionCallback = useCallback((entries: IntersectionObserverEntry[]) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        if (entry.target.classList.contains('last-section')) {
+          entry.target.classList.add('visible-last');
+        }
+      } else {
+        entry.target.classList.remove('visible');
+        entry.target.classList.remove('visible-last');
+      }
+    });
+  }, []);
+
+  // Memoized intersection observer options
+  const observerOptions = useMemo(() => ({
+    threshold: 0.5,
+    rootMargin: '0px'
+  }), []);
+
+  // Debounced resize handler
+  const debouncedHandleResize = useMemo(
+    () => debounce(() => {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    }, 100),
+    []
+  );
+
+  // Memoized contact button handlers
+  const contactHandlers = useMemo(() => ({
+    github: () => window.open('https://github.com/RishikSarkar', '_blank'),
+    linkedin: () => window.open('https://www.linkedin.com/in/rishik-sarkar/', '_blank'),
+    email: () => window.location.href = 'mailto:rishiksarkar02@gmail.com'
+  }), []);
+
+  // Memoized desktop contact positions
+  const desktopContactPositions = useMemo(() => [
+    { left: windowSize.width * 0.35, top: windowSize.height * 0.5 },
+    { left: windowSize.width * 0.42, top: windowSize.height * 0.5 },
+    { left: windowSize.width * 0.49, top: windowSize.height * 0.5 }
+  ], [windowSize.width, windowSize.height]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          if (entry.target.classList.contains('last-section')) {
-            entry.target.classList.add('visible-last');
-          }
-        } else {
-          entry.target.classList.remove('visible');
-          entry.target.classList.remove('visible-last');
-        }
-      });
-    }, { threshold: 0.5 });
-
+    // Create intersection observer
+    observerRef.current = new IntersectionObserver(intersectionCallback, observerOptions);
+    
     const currentRefs = sectionRefs.current;
+    const observer = observerRef.current;
 
+    // Observe all sections
     currentRefs.forEach(section => {
       if (section) observer.observe(section);
     });
 
+    // Initial window size setup
     const handleResize = () => {
       setWindowSize({ width: window.innerWidth, height: window.innerHeight });
     };
-
+    
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', debouncedHandleResize);
 
+    // Cleanup function
     return () => {
-      currentRefs.forEach(section => {
-        if (section) observer.unobserve(section);
-      });
-      window.removeEventListener('resize', handleResize);
+      if (observer) {
+        currentRefs.forEach(section => {
+          if (section) observer.unobserve(section);
+        });
+        observer.disconnect();
+      }
+      window.removeEventListener('resize', debouncedHandleResize);
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
     };
+  }, [intersectionCallback, observerOptions, debouncedHandleResize]);
+
+  // Memoized section ref handler
+  const getSectionRef = useCallback((index: number) => (el: HTMLElement | null) => {
+    sectionRefs.current[index] = el;
   }, []);
 
   return (
     <div className="flex flex-col font-[family-name:var(--font-geist-sans)]">
-      <section ref={el => { sectionRefs.current[0] = el }} className="section h-[70vh] md:h-screen flex md:items-center relative">
+      <section ref={getSectionRef(0)} className="section h-[70vh] md:h-screen flex md:items-center relative">
         <div className="md:max-w-[calc(70%-20rem)] pl-12 md:pl-16 pr-12 md:pr-4 pt-12 md:pt-0">
           <h1 className="text-4xl md:text-5xl font-bold md:font-light mb-4">Rishik Sarkar</h1>
           <p className="text-sm md:text-xl font-light text-white/80">
@@ -72,21 +157,21 @@ export default function Home() {
 
           <div className="px-3 py-10 space-x-6 md:hidden">
             <button
-              onClick={() => window.open('https://github.com/RishikSarkar', '_blank')}
+              onClick={contactHandlers.github}
               className="contact-button"
               aria-label="GitHub"
             >
               <FaGithub size={24} className='text-white/80 hover:text-white/30' />
             </button>
             <button
-              onClick={() => window.open('https://www.linkedin.com/in/rishik-sarkar/', '_blank')}
+              onClick={contactHandlers.linkedin}
               className="contact-button"
               aria-label="LinkedIn"
             >
               <FaLinkedin size={24} className='text-white/80 hover:text-white/30' />
             </button>
             <button
-              onClick={() => window.location.href = 'mailto:rishiksarkar02@gmail.com'}
+              onClick={contactHandlers.email}
               className="contact-button"
               aria-label="Email"
             >
@@ -96,7 +181,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[1] = el }} className="section min-h-[80vh] md:h-screen flex items-center relative">
+      <section ref={getSectionRef(1)} className="section min-h-[80vh] md:h-screen flex items-center relative">
         <div className="md:max-w-[calc(70%-20rem)] pl-12 md:pl-16 pr-12 md:pr-2">
           <h2 className="text-lg uppercase md:normal-case md:text-3xl mb-4 font-bold md:font-light">About <span className='hidden md:inline'>Me</span></h2>
           <p className="text-sm md:text-lg font-light leading-relaxed pb-8 text-white/80">
@@ -107,7 +192,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[2] = el }} className="section min-h-[90vh] md:h-screen flex items-center relative">
+      <section ref={getSectionRef(2)} className="section min-h-[90vh] md:h-screen flex items-center relative">
         <div className="pl-12 md:pl-16 pr-12 md:pr-16">
           <h2 className="text-lg uppercase md:normal-case md:text-3xl mb-4 font-bold md:font-light">Documents</h2>
           <p className="text-sm md:text-lg mb-6 font-light text-white/80">Check out my professional experience and qualifications:</p>
@@ -140,13 +225,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[3] = el }} className="section min-h-[100vh] md:h-screen flex items-center relative">
+      <section ref={getSectionRef(3)} className="section min-h-[100vh] md:h-screen flex items-center relative">
         <div className="pl-12 md:pl-16 pr-12 md:pr-16 w-full h-[calc(100vh-200px)] md:h-[calc(100vh-200px)]">
           <ExperienceSection />
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[4] = el }} className="section min-h-[80vh] md:h-screen flex items-center relative">
+      <section ref={getSectionRef(4)} className="section min-h-[80vh] md:h-screen flex items-center relative">
         <div className="pl-12 md:pl-16 pr-12 md:pr-16">
           <h2 className="text-lg uppercase md:normal-case md:text-3xl mb-4 font-bold md:font-light">Projects</h2>
           <h4 className="text-sm md:text-lg font-light mb-4 text-white/80">
@@ -156,40 +241,31 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[5] = el }} className="section min-h-[50vh] md:h-screen flex items-center relative">
+      <section ref={getSectionRef(5)} className="section min-h-[50vh] md:h-screen flex items-center relative">
         <div className="pl-12 md:pl-16 pr-12 md:pr-16 w-full">
           <h2 className="hidden md:inline text-lg uppercase md:normal-case md:text-3xl mb-4 font-bold md:font-light">Connect <span className='hidden md:inline'>With Me</span></h2>
 
           <div className="hidden md:block">
             <button
-              onClick={() => window.open('https://github.com/RishikSarkar', '_blank')}
+              onClick={contactHandlers.github}
               className="contact-button absolute"
-              style={{
-                left: windowSize.width * 0.35,
-                top: windowSize.height * 0.5,
-              }}
+              style={desktopContactPositions[0]}
               aria-label="GitHub"
             >
               <FaGithub size={40} className='text-white/80 hover:text-white/30' />
             </button>
             <button
-              onClick={() => window.open('https://www.linkedin.com/in/rishik-sarkar/', '_blank')}
+              onClick={contactHandlers.linkedin}
               className="contact-button absolute"
-              style={{
-                left: windowSize.width * 0.42,
-                top: windowSize.height * 0.5,
-              }}
+              style={desktopContactPositions[1]}
               aria-label="LinkedIn"
             >
               <FaLinkedin size={40} className='text-white/80 hover:text-white/30' />
             </button>
             <button
-              onClick={() => window.location.href = 'mailto:rishiksarkar02@gmail.com'}
+              onClick={contactHandlers.email}
               className="contact-button absolute"
-              style={{
-                left: windowSize.width * 0.49,
-                top: windowSize.height * 0.5,
-              }}
+              style={desktopContactPositions[2]}
               aria-label="Email"
             >
               <MdEmail size={40} className='text-white/80 hover:text-white/30' />
@@ -198,12 +274,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={el => { sectionRefs.current[6] = el }} className="hidden section h-[250px] md:flex items-center relative" />
 
-      {/* <section
-        ref={el => { sectionRefs.current[7] = el }}
-        className="section last-section h-[250px] flex items-center relative bg-red-500"
-      /> */}
     </div>
   );
 }

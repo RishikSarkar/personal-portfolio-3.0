@@ -103,16 +103,24 @@ const NetworkLine: React.FC = () => {
     return Math.hypot(endX - startX, endY - startY);
   }, []);
 
-  const getLineStyles = useMemo(() => (line: LineProps, length: number, rotation: number): CSSProperties => ({
-    position: line.tag === 'main-line' ? 'fixed' : 'absolute',
-    left: `${line.startCoords.x}px`,
-    top: line.tag === 'main-line' ? '0px' : `${line.startCoords.y}px`,
-    width: `${length}px`,
-    height: `${line.thickness}px`,
-    backgroundColor: '#333333',
-    transform: `rotate(${rotation}rad)`,
-    transformOrigin: 'top left'
-  }), []);
+  const getLineStyles = useMemo(() => (line: LineProps, length: number, rotation: number): CSSProperties => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+    
+    return {
+      position: line.tag === 'main-line' ? 'fixed' : 'absolute',
+      left: `${line.startCoords.x}px`,
+      top: line.tag === 'main-line' ? '0px' : `${line.startCoords.y}px`,
+      width: `${length}px`,
+      height: `${line.thickness}px`,
+      backgroundColor: '#333333',
+      transform: `rotate(${rotation}rad)`,
+      transformOrigin: 'top left',
+      ...(isMobile && {
+        zIndex: 10,
+        opacity: 1,
+      })
+    };
+  }, []);
 
   const renderedLines = useMemo(() => lines.map(line => {
     const lineGeometry = {
@@ -164,7 +172,11 @@ const NetworkLine: React.FC = () => {
             width: `${line.fillPercentage}%`,
             height: '100%',
             backgroundColor: 'white',
-            boxShadow: line.fillPercentage > 0 ? '0 0 8px 2px rgba(255, 255, 255, 0.2)' : 'none'
+            boxShadow: line.fillPercentage > 0 ? '0 0 8px 2px rgba(255, 255, 255, 0.2)' : 'none',
+            // Subtle enhancement for mobile visibility without being too bright
+            ...(typeof window !== 'undefined' && window.innerWidth <= 768 && {
+              boxShadow: line.fillPercentage > 0 ? '0 0 6px 1px rgba(255, 255, 255, 0.25)' : 'none',
+            })
           }}
         />
         {line.nodeLeft && !line.tag.startsWith('project-') && (
