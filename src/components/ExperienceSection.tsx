@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import Link from 'next/link';
 
 interface ExperienceItem {
     title: string;
@@ -141,15 +140,12 @@ const ExperienceSection: React.FC = () => {
     }, []);
 
     // Memoized displayed experiences calculation
-    const { displayedExperiences, hasMoreExperiences } = useMemo(() => {
+    const displayedExperiences = useMemo(() => {
         if (!isClient) {
-            return { displayedExperiences: EXPERIENCE_DATA, hasMoreExperiences: false };
+            return EXPERIENCE_DATA;
         }
         
-        const displayed = isMobile ? EXPERIENCE_DATA.slice(0, 3) : EXPERIENCE_DATA;
-        const hasMore = EXPERIENCE_DATA.length > 3;
-        
-        return { displayedExperiences: displayed, hasMoreExperiences: hasMore };
+        return isMobile ? EXPERIENCE_DATA.slice(0, 3) : EXPERIENCE_DATA;
     }, [isMobile, isClient]);
 
     // Prevent hydration mismatch by not rendering until client-side
@@ -179,7 +175,7 @@ const ExperienceSection: React.FC = () => {
             <div className='flex-grow md:overflow-y-auto md:pl-4 md:custom-scrollbar' style={{ direction: 'rtl' }}>
                 <div style={{ direction: 'ltr' }}>
                     <div className='space-y-12 md:space-y-0'>
-                        {displayedExperiences.map((exp, index) => (
+                        {displayedExperiences.map((exp) => (
                             <ExperienceItem
                                 key={`${exp.company}-${exp.dateRange}`}
                                 experience={exp}

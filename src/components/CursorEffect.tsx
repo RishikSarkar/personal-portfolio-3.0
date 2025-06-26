@@ -18,22 +18,24 @@ const CursorEffect: React.FC<CursorEffectProps> = ({
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
 
-    const updatePosition = useCallback(
-        throttle((e: MouseEvent) => {
-            if (containerRef.current) {
-                containerRef.current.style.setProperty('--mouse-x', `${e.clientX}px`);
-                containerRef.current.style.setProperty('--mouse-y', `${e.clientY}px`);
-            }
-        }, 16),
-        [containerRef]
+    const updatePosition = useCallback((e: MouseEvent) => {
+        if (containerRef.current) {
+            containerRef.current.style.setProperty('--mouse-x', `${e.clientX}px`);
+            containerRef.current.style.setProperty('--mouse-y', `${e.clientY}px`);
+        }
+    }, []);
+
+    const throttledUpdatePosition = useMemo(
+        () => throttle(updatePosition, 16),
+        [updatePosition]
     );
 
     useEffect(() => {
-        window.addEventListener('mousemove', updatePosition);
+        window.addEventListener('mousemove', throttledUpdatePosition);
         return () => {
-            window.removeEventListener('mousemove', updatePosition);
+            window.removeEventListener('mousemove', throttledUpdatePosition);
         };
-    }, [updatePosition]);
+    }, [throttledUpdatePosition]);
 
     const circles = useMemo(() =>
         [...Array(numCircles)].map((_, index) => ({

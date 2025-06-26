@@ -12,9 +12,9 @@ const ExperienceSection = dynamic(() => import('@/components/ExperienceSection')
 });
 
 // Debounce utility function
-const debounce = (func: Function, wait: number) => {
+const debounce = (func: (...args: unknown[]) => void, wait: number) => {
   let timeout: NodeJS.Timeout;
-  return function executedFunction(...args: any[]) {
+  return function executedFunction(...args: unknown[]) {
     const later = () => {
       clearTimeout(timeout);
       func(...args);
@@ -24,27 +24,7 @@ const debounce = (func: Function, wait: number) => {
   };
 };
 
-// Memoized contact button data to prevent recreating objects
-const CONTACT_BUTTONS = [
-  {
-    onClick: () => window.open('https://github.com/RishikSarkar', '_blank'),
-    icon: FaGithub,
-    label: 'GitHub',
-    desktopPosition: { leftMultiplier: 0.35, topMultiplier: 0.5 }
-  },
-  {
-    onClick: () => window.open('https://www.linkedin.com/in/rishik-sarkar/', '_blank'),
-    icon: FaLinkedin,
-    label: 'LinkedIn',
-    desktopPosition: { leftMultiplier: 0.42, topMultiplier: 0.5 }
-  },
-  {
-    onClick: () => window.location.href = 'mailto:rishiksarkar02@gmail.com',
-    icon: MdEmail,
-    label: 'Email',
-    desktopPosition: { leftMultiplier: 0.49, topMultiplier: 0.5 }
-  }
-] as const;
+
 
 export default function Home() {
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
@@ -124,8 +104,9 @@ export default function Home() {
         observer.disconnect();
       }
       window.removeEventListener('resize', debouncedHandleResize);
-      if (resizeTimeoutRef.current) {
-        clearTimeout(resizeTimeoutRef.current);
+      const currentTimeout = resizeTimeoutRef.current;
+      if (currentTimeout) {
+        clearTimeout(currentTimeout);
       }
     };
   }, [intersectionCallback, observerOptions, debouncedHandleResize]);
