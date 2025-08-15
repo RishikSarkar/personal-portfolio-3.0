@@ -12,19 +12,35 @@ interface ExperienceItem {
 // Memoized experience data to prevent recreation
 const EXPERIENCE_DATA: ExperienceItem[] = [
     {
+        title: 'Software Development Engineer',
+        company: 'Amazon',
+        companyLink: 'https://amazon.com/',
+        dateRange: 'Aug 2025 - Present',
+        description: 'Incoming Software Development Engineer at Amazon.',
+        skills: ['Java', 'Python', 'Kotlin', 'AWS']
+    },
+    {
         title: 'Machine Learning Engineer',
         company: 'Instalily AI',
         companyLink: 'https://instalily.ai/',
-        dateRange: 'Mar 2025 - Present',
-        description: 'Building an agent for United Rentals leveraging RAG, semantic search, Azure AI Search, MCP, and a custom LangChain-like framework with UR APIs, optimized embedding and vector database workflows, and implemented PostgreSQL logging for performance monitoring.',
-        skills: ['RAG', 'Semantic Search', 'LangChain', 'PostgreSQL', 'React']
+        dateRange: 'Mar 2025 - Aug 2025',
+        description: 'Led teams and worked with 3 clients to engineer AI agents: clienteling agent for sales automation, RAG-based VSA agent with Azure AI Search, voice customer service agent with Gemini Live API, and internal autonomous Jira resolution agent for DevOps workflows.',
+        skills: ['ADK', 'MCP', 'GCP', 'Microsoft Azure', 'Next.js']
+    },
+    {
+        title: 'Research Assistant',
+        company: 'Princeton University',
+        companyLink: 'https://ccnp.princeton.edu/about-ccnp/',
+        dateRange: 'Sep 2023 - Jun 2025',
+        description: 'Developed ETL pipeline consolidating data from five clinical studies (HDRS, BPRS, PANSS scales) into SQLite with Tkinter GUI, then built a comprehensive EMR system using PostgreSQL, Docker, Django, and Vite.js centralizing clinical research data management for CCNP.',
+        skills: ['Python', 'Django', 'PostgreSQL', 'Docker', 'Vite.js']
     },
     {
         title: 'Independent Researcher',
         company: 'Cornell XR Collaboratory',
         companyLink: 'https://xrcollaboratory.tech.cornell.edu/',
-        dateRange: 'Jan 2025 - Present',
-        description: 'Conducting ML-driven AR/VR research for Quest by building a Unity package with 3D interaction techniques using UPM and the XR Interaction Toolkit, and leveraging Microsoft.Extensions.AI and Ollama LLMs in .NET microservices to power an AI-driven mind-mapping tool.',
+        dateRange: 'Jan 2025 - May 2025',
+        description: 'Conducted ML-driven AR/VR research for Quest by building a Unity package with 3D interaction techniques using UPM and the XR Interaction Toolkit, and leveraged Microsoft.Extensions.AI and Ollama LLMs in .NET microservices to power an AI-driven mind-mapping tool.',
         skills: ['Unity', 'UPM', 'XR Interaction Toolkit', 'Ollama', 'Gemma3']
     },
     {
@@ -34,14 +50,6 @@ const EXPERIENCE_DATA: ExperienceItem[] = [
         dateRange: 'Oct 2024 - Nov 2024',
         description: 'Built a secure asset management system for an interior design startup, integrating MongoDB Atlas for data storage and SVG handling for furniture assets, with a Next.js and Tailwind CSS frontend to enhance asset display and user experience.',
         skills: ['MongoDB', 'Next.js', 'TypeScript', 'Node.js']
-    },
-    {
-        title: 'Research Assistant',
-        company: 'Princeton University',
-        companyLink: 'https://ccnp.princeton.edu/about-ccnp/',
-        dateRange: 'Sep 2023 - Aug 2024',
-        description: 'Developed Python scripts to consolidate data from 800+ files into an SQLite database, automating schema generation, and created a Tkinter-based GUI to facilitate custom SQL queries and database interactions for researchers.',
-        skills: ['Python', 'Pandas', 'SQLite', 'Tkinter', 'Research']
     },
     {
         title: 'ML Full-Stack Developer Intern',

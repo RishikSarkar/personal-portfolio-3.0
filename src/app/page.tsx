@@ -123,15 +123,13 @@ export default function Home() {
           <h1 className="text-4xl md:text-5xl font-bold md:font-light mb-4">Rishik Sarkar</h1>
           <p className="text-sm md:text-xl font-light text-white/80">
             <span className="md:hidden">
-              M.Eng. Computer Science at Cornell University<br />
-              B.S. Computer Science at Rutgers University<br />
-              B.S. Cognitive Science at Rutgers University<br /><br />
+              <strong>SDE @ Amazon | Ex-ML Engineer @ InstaLILY AI</strong><br />
+              M.Eng CS @ Cornell, B.S. CS & CogSci @ Rutgers<br /><br />
               <strong>Specializing in NLP-driven mental healthcare solutions</strong>
             </span>
             <span className="hidden md:inline">
-              M.Eng. in Computer Science at Cornell University<br />
-              B.S. in Computer Science (Honors) at Rutgers University-New Brunswick<br />
-              B.S. in Cognitive Science at Rutgers University-New Brunswick<br /><br />
+              <strong>SDE @ Amazon | Ex-ML Engineer @ InstaLILY AI</strong><br />
+              M.Eng CS @ Cornell, B.S. CS & CogSci @ Rutgers<br /><br />
               Specializing in NLP-driven mental healthcare solutions
             </span>
           </p>
@@ -167,8 +165,8 @@ export default function Home() {
           <h2 className="text-lg uppercase md:normal-case md:text-3xl mb-4 font-bold md:font-light">About <span className='hidden md:inline'>Me</span></h2>
           <p className="text-sm md:text-lg font-light leading-relaxed pb-8 text-white/80">
             <i>&ldquo;If you could train an AI to be a Buddhist, it would probably be pretty good.&rdquo;<br /></i> - Reid Hoffman<br /><br />
-            I am currently pursuing a Master of Engineering in Computer Science at Cornell University. Prior to this, I graduated Summa Cum Laude with honors from Rutgers University-New Brunswick with a B.S. in Computer Science and Cognitive Science and was inducted into Phi Beta Kappa. I also worked as an ML Full-Stack Developer Intern at a fintech scaleup and as a research assistant at a joint Rutgers-Princeton laboratory, where I focused on data integration and machine learning.<br /><br />
-            My passions lie at the intersection of artificial intelligence and psychology, and I am keen to explore computational linguistics, cognitive neuropsychiatry, and new LLM frameworks for natural language understanding, including transformer models and fine-tuning for sentiment and emotional analysis. In the future, I aim to establish a startup and develop NLP-driven solutions in the mental healthcare space.
+            My work is at the intersection of machine learning, psychology, and human-centered design. I have successfully launched machine learning products at a fintech scale-up and led significant contributions at a vertical AI startup. Currently, I am part of a FAANG team, contributing to a mission that builds systems impacting millions of people. My primary focus is on mental healthcare, a field that is not only professional but also deeply personal to me. This personal connection fuels my passion, influences my choice of projects and collaborations, and drives me to make a meaningful difference in this area.<br /><br />
+            I hold a Master's degree in Computer Science from Cornell University and a summa cum laude Bachelor's degree in Computer Science and Cognitive Science from Rutgers University, which provides me with a strong academic foundation for my work. My research examines how AI, cognitive neuroscience, XR interaction, and natural language processing can support care in practical and effective ways. Ultimately, I aspire to start a company that transforms these tools into resources people can actually use. I speak English, Bengali, Hindi, and some Japanese and German, so feel free to say hello in any of those languages.
           </p>
         </div>
       </section>
