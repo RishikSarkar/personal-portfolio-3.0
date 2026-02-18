@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 interface Project {
     id: string;
@@ -67,7 +68,7 @@ const BrainNode: React.FC<BrainNodeProps> = ({ id, x, y, project, scrollY, mainL
         zIndex: 12,
     }), [isFilled]);
 
-    const isMobile = window.innerWidth < 768;
+    const isMobile = useIsMobile();
 
     const handleClick = useCallback((event: React.MouseEvent) => {
         if (isMobile) {
@@ -98,6 +99,7 @@ const BrainNode: React.FC<BrainNodeProps> = ({ id, x, y, project, scrollY, mainL
     }, [isMobile, setActiveNodeId]);
 
     const updatePopupPosition = useCallback(() => {
+        if (typeof window === 'undefined') return;
         const screenWidth = window.innerWidth;
         const nodePosition = x;
         const popupWidth = isMobile ? 200 : 250;

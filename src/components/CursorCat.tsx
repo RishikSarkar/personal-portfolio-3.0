@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useState, useCallback, useMemo, useRef } from 'react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 type Direction = 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'nw';
 
@@ -64,6 +65,7 @@ const CursorCat: React.FC = () => {
     const [frame, setFrame] = useState(0);
     const [imagesLoaded, setImagesLoaded] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
+    const isMobile = useIsMobile();
     
     // Refs for cleanup and optimization
     const animationFrameRef = useRef<number>();
@@ -181,8 +183,6 @@ const CursorCat: React.FC = () => {
     const style = useMemo(() => {
         if (!isMounted) return {};
 
-        const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
-        
         return {
             position: isMobile ? 'fixed' as const : 'absolute' as const,
             left: isMobile ? 'auto' : `${0.85 * 100}%`,
@@ -204,7 +204,7 @@ const CursorCat: React.FC = () => {
             willChange: 'background-position',
             contain: 'layout style paint',
         };
-    }, [isIdle, direction, frame, isMounted]);
+    }, [isIdle, direction, frame, isMounted, isMobile]);
 
     // Don't render until images are loaded and component is mounted
     if (!imagesLoaded || !isMounted) {

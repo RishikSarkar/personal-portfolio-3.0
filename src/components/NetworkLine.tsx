@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useMemo, useState, CSSProperties } from 'react';
 import { useNetworkLines } from '../hooks/useNetworkLines';
+import { useIsMobile } from '../hooks/useIsMobile';
 import { createNetworkLines } from '../hooks/createNetworkLines';
 import BrainNode from './BrainNode';
 import { getActiveProjects, getProjectNode } from '../data/projects';
@@ -12,6 +13,7 @@ import { LineProps } from '../hooks/useNetworkLines';
 const NetworkLine: React.FC = () => {
   const { lines, addLine, scrollY, mainLineFillY } = useNetworkLines();
   const [activeNodeId, setActiveNodeId] = useState<string | null>(null);
+  const isMobile = useIsMobile();
 
   const createLine: CreateLineFunction = useCallback((
     startXPercent: number,
@@ -103,9 +105,7 @@ const NetworkLine: React.FC = () => {
     return Math.hypot(endX - startX, endY - startY);
   }, []);
 
-  const getLineStyles = useMemo(() => (line: LineProps, length: number, rotation: number): CSSProperties => {
-    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
-    
+  const getLineStyles = useCallback((line: LineProps, length: number, rotation: number): CSSProperties => {
     return {
       position: line.tag === 'main-line' ? 'fixed' : 'absolute',
       left: `${line.startCoords.x}px`,
@@ -120,7 +120,7 @@ const NetworkLine: React.FC = () => {
         opacity: 1,
       })
     };
-  }, []);
+  }, [isMobile]);
 
   const renderedLines = useMemo(() => lines.map(line => {
     const lineGeometry = {
@@ -172,11 +172,9 @@ const NetworkLine: React.FC = () => {
             width: `${line.fillPercentage}%`,
             height: '100%',
             backgroundColor: 'white',
-            boxShadow: line.fillPercentage > 0 ? '0 0 8px 2px rgba(255, 255, 255, 0.2)' : 'none',
-            // Subtle enhancement for mobile visibility without being too bright
-            ...(typeof window !== 'undefined' && window.innerWidth <= 768 && {
-              boxShadow: line.fillPercentage > 0 ? '0 0 6px 1px rgba(255, 255, 255, 0.25)' : 'none',
-            })
+            boxShadow: line.fillPercentage > 0
+              ? (isMobile ? '0 0 6px 1px rgba(255, 255, 255, 0.25)' : '0 0 8px 2px rgba(255, 255, 255, 0.2)')
+              : 'none',
           }}
         />
         {line.nodeLeft && !line.tag.startsWith('project-') && (
@@ -187,7 +185,7 @@ const NetworkLine: React.FC = () => {
         )}
       </div>
     );
-  }), [lines, calculateLength, calculateRotation, scrollY, mainLineFillY, activeNodeId, setActiveNodeId, getLineStyles]);
+  }), [lines, calculateLength, calculateRotation, scrollY, mainLineFillY, activeNodeId, setActiveNodeId, getLineStyles, isMobile]);
 
   return <>{renderedLines}</>;
 };

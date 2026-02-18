@@ -25,19 +25,6 @@ const nextConfig = {
       };
     }
     
-    // PDF handling optimization
-    config.module.rules.push({
-      test: /\.pdf$/,
-      use: {
-        loader: 'file-loader',
-        options: {
-          name: '[name].[hash].[ext]',
-          publicPath: '/_next/static/files/',
-          outputPath: 'static/files/',
-        },
-      },
-    });
-    
     return config;
   },
   

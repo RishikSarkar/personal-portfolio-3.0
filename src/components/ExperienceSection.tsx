@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 interface ExperienceItem {
     title: string;
@@ -16,12 +17,12 @@ const EXPERIENCE_DATA: ExperienceItem[] = [
         company: 'Amazon',
         companyLink: 'https://amazon.com/',
         dateRange: 'Aug 2025 - Present',
-        description: 'Incoming Software Development Engineer at Amazon.',
-        skills: ['Java', 'Python', 'Kotlin', 'AWS']
+        description: 'Owned the Contracts & Agreements platform processing millions of records for multi-country workflows. Built event-driven systems on AWS with DynamoDB, SQS, and Lambda. Automated incident triage from 20 minutes to under 5 seconds. Co-led Collective Bargaining Agreements launch for Italy.',
+        skills: ['Java', 'Python', 'AWS', 'DynamoDB', 'Lambda', 'SQS']
     },
     {
         title: 'Machine Learning Engineer',
-        company: 'Instalily AI',
+        company: 'InstaLILY AI',
         companyLink: 'https://instalily.ai/',
         dateRange: 'Mar 2025 - Aug 2025',
         description: 'Led teams and worked with 3 clients to engineer AI agents: clienteling agent for sales automation, RAG-based VSA agent with Azure AI Search, voice customer service agent with Gemini Live API, and internal autonomous Jira resolution agent for DevOps workflows.',
@@ -120,7 +121,7 @@ const ExperienceItem = React.memo<{
 ExperienceItem.displayName = 'ExperienceItem';
 
 const ExperienceSection: React.FC = () => {
-    const [isMobile, setIsMobile] = useState(false);
+    const isMobile = useIsMobile();
     const [isClient, setIsClient] = useState(false);
 
     // Memoized company click handler
@@ -128,23 +129,8 @@ const ExperienceSection: React.FC = () => {
         window.open(link, '_blank', 'noopener,noreferrer');
     }, []);
 
-    // Optimized mobile detection with ResizeObserver
     useEffect(() => {
         setIsClient(true);
-        
-        const updateMobileState = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-        
-        updateMobileState();
-        
-        // Use ResizeObserver for more efficient viewport monitoring
-        const resizeObserver = new ResizeObserver(updateMobileState);
-        resizeObserver.observe(document.documentElement);
-        
-        return () => {
-            resizeObserver.disconnect();
-        };
     }, []);
 
     // Memoized displayed experiences calculation

@@ -30,7 +30,6 @@ export default function Home() {
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const observerRef = useRef<IntersectionObserver | null>(null);
-  const resizeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Memoized intersection observer callback
   const intersectionCallback = useCallback((entries: IntersectionObserverEntry[]) => {
@@ -68,12 +67,15 @@ export default function Home() {
     email: () => window.location.href = 'mailto:rishiksarkar02@gmail.com'
   }), []);
 
-  // Memoized desktop contact positions
-  const desktopContactPositions = useMemo(() => [
-    { left: windowSize.width * 0.35, top: windowSize.height * 0.5 },
-    { left: windowSize.width * 0.42, top: windowSize.height * 0.5 },
-    { left: windowSize.width * 0.49, top: windowSize.height * 0.5 }
-  ], [windowSize.width, windowSize.height]);
+  // Memoized desktop contact positions (only use when dimensions are known to avoid 0,0 placement)
+  const desktopContactPositions = useMemo(() => {
+    if (windowSize.width === 0 || windowSize.height === 0) return null;
+    return [
+      { left: windowSize.width * 0.35, top: windowSize.height * 0.5 },
+      { left: windowSize.width * 0.42, top: windowSize.height * 0.5 },
+      { left: windowSize.width * 0.49, top: windowSize.height * 0.5 }
+    ];
+  }, [windowSize.width, windowSize.height]);
 
   useEffect(() => {
     // Create intersection observer
@@ -104,10 +106,6 @@ export default function Home() {
         observer.disconnect();
       }
       window.removeEventListener('resize', debouncedHandleResize);
-      const currentTimeout = resizeTimeoutRef.current;
-      if (currentTimeout) {
-        clearTimeout(currentTimeout);
-      }
     };
   }, [intersectionCallback, observerOptions, debouncedHandleResize]);
 
@@ -166,7 +164,7 @@ export default function Home() {
           <p className="text-sm md:text-lg font-light leading-relaxed pb-8 text-white/80">
             <i>&ldquo;If you could train an AI to be a Buddhist, it would probably be pretty good.&rdquo;<br /></i> - Reid Hoffman<br /><br />
             My work is at the intersection of machine learning, psychology, and human-centered design. I have successfully launched machine learning products at a fintech scale-up and led significant contributions at a vertical AI startup. Currently, I am part of a FAANG team, contributing to a mission that builds systems impacting millions of people. My primary focus is on mental healthcare, a field that is not only professional but also deeply personal to me. This personal connection fuels my passion, influences my choice of projects and collaborations, and drives me to make a meaningful difference in this area.<br /><br />
-            I hold a Master's degree in Computer Science from Cornell University and a summa cum laude Bachelor's degree in Computer Science and Cognitive Science from Rutgers University, which provides me with a strong academic foundation for my work. My research examines how AI, cognitive neuroscience, XR interaction, and natural language processing can support care in practical and effective ways. Ultimately, I aspire to start a company that transforms these tools into resources people can actually use. I speak English, Bengali, Hindi, and some Japanese and German, so feel free to say hello in any of those languages.
+            I hold a Master&apos;s degree in Computer Science from Cornell University and a summa cum laude Bachelor&apos;s degree in Computer Science and Cognitive Science from Rutgers University, which provides me with a strong academic foundation for my work. My research examines how AI, cognitive neuroscience, XR interaction, and natural language processing can support care in practical and effective ways. Ultimately, I aspire to start a company that transforms these tools into resources people can actually use. I speak English, Bengali, Hindi, and some Japanese and German, so feel free to say hello in any of those languages.
           </p>
         </div>
       </section>
@@ -174,33 +172,15 @@ export default function Home() {
       <section ref={getSectionRef(2)} className="section min-h-[90vh] md:h-screen flex items-center relative">
         <div className="pl-12 md:pl-16 pr-12 md:pr-16">
           <h2 className="text-lg uppercase md:normal-case md:text-3xl mb-4 font-bold md:font-light">Documents</h2>
-          <p className="text-sm md:text-lg mb-6 font-light text-white/80">Check out my professional experience and qualifications:</p>
-          <div className="flex space-x-6">
-            <a
-              href="/resume/rishik_sarkar_swe_resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 bg-white/10 text-white font-light text-sm md:text-lg hover:bg-white/20 transition-colors duration-100"
-            >
-              SWE Resume
-            </a>
-            <a
-              href="/resume/rishik_sarkar_mle_resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 bg-white/10 text-white font-light text-sm md:text-lg hover:bg-white/20 transition-colors duration-100"
-            >
-              MLE Resume
-            </a>
-            <a
-              href="/resume/rishik_sarkar_cv.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 bg-white/10 text-white font-light text-sm md:text-lg hover:bg-white/20 transition-colors duration-100"
-            >
-              CV
-            </a>
-          </div>
+          <p className="text-sm md:text-lg mb-8 font-light text-white/80">View my professional experience and technical background:</p>
+          <a
+            href="/resume/rishik_sarkar_swe_resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-2 bg-white/10 text-white font-light text-xs md:text-base hover:bg-white/20 transition-colors duration-100"
+          >
+            View Resume (PDF)
+          </a>
         </div>
       </section>
 
@@ -225,30 +205,34 @@ export default function Home() {
           <h2 className="hidden md:inline text-lg uppercase md:normal-case md:text-3xl mb-4 font-bold md:font-light">Connect <span className='hidden md:inline'>With Me</span></h2>
 
           <div className="hidden md:block">
-            <button
-              onClick={contactHandlers.github}
-              className="contact-button absolute"
-              style={desktopContactPositions[0]}
-              aria-label="GitHub"
-            >
-              <FaGithub size={40} className='text-white/80 hover:text-white/30' />
-            </button>
-            <button
-              onClick={contactHandlers.linkedin}
-              className="contact-button absolute"
-              style={desktopContactPositions[1]}
-              aria-label="LinkedIn"
-            >
-              <FaLinkedin size={40} className='text-white/80 hover:text-white/30' />
-            </button>
-            <button
-              onClick={contactHandlers.email}
-              className="contact-button absolute"
-              style={desktopContactPositions[2]}
-              aria-label="Email"
-            >
-              <MdEmail size={40} className='text-white/80 hover:text-white/30' />
-            </button>
+            {desktopContactPositions && (
+              <>
+                <button
+                  onClick={contactHandlers.github}
+                  className="contact-button absolute"
+                  style={desktopContactPositions[0]}
+                  aria-label="GitHub"
+                >
+                  <FaGithub size={40} className='text-white/80 hover:text-white/30' />
+                </button>
+                <button
+                  onClick={contactHandlers.linkedin}
+                  className="contact-button absolute"
+                  style={desktopContactPositions[1]}
+                  aria-label="LinkedIn"
+                >
+                  <FaLinkedin size={40} className='text-white/80 hover:text-white/30' />
+                </button>
+                <button
+                  onClick={contactHandlers.email}
+                  className="contact-button absolute"
+                  style={desktopContactPositions[2]}
+                  aria-label="Email"
+                >
+                  <MdEmail size={40} className='text-white/80 hover:text-white/30' />
+                </button>
+              </>
+            )}
           </div>
         </div>
       </section>

@@ -24,6 +24,7 @@ const geistMono = localFont({
 
 // Enhanced metadata for better SEO and performance
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
   title: "Rishik Sarkar | ML Engineer & Computer Science Graduate",
   description: "M.Eng. Computer Science at Cornell University specializing in NLP-driven mental healthcare solutions. Experience in ML, full-stack development, and AI research.",
   keywords: ["Rishik Sarkar", "Machine Learning Engineer", "Cornell University", "NLP", "Mental Healthcare", "AI Research", "Full Stack Developer"],
@@ -51,9 +52,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'google-site-verification-code', // Replace with actual verification code
-  },
 };
 
 export default function RootLayout({
@@ -72,22 +70,6 @@ export default function RootLayout({
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://github.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://linkedin.com" crossOrigin="anonymous" />
-        
-        {/* Optimized font preloading */}
-        <link 
-          rel="preload" 
-          href="/fonts/GeistVF.woff" 
-          as="font" 
-          type="font/woff" 
-          crossOrigin="anonymous" 
-        />
-        <link 
-          rel="preload" 
-          href="/fonts/GeistMonoVF.woff" 
-          as="font" 
-          type="font/woff" 
-          crossOrigin="anonymous" 
-        />
         
         {/* Critical resource hints */}
         <link rel="preload" href="/cat/spritesheets/cat.png" as="image" />
