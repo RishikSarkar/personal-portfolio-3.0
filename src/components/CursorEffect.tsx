@@ -1,70 +1,71 @@
-"use client"
+'use client';
 
 import React, { useEffect, useCallback, useMemo, useRef } from 'react';
 import throttle from 'lodash/throttle';
 
 interface CursorEffectProps {
-    initialSize?: number;
-    growthRate?: number;
-    numCircles?: number;
-    opacity?: number;
+  initialSize?: number;
+  growthRate?: number;
+  numCircles?: number;
+  opacity?: number;
 }
 
 const CursorEffect: React.FC<CursorEffectProps> = ({
-    initialSize = 4,
-    growthRate = 8,
-    numCircles = 8,
-    opacity = 0.01
+  initialSize = 4,
+  growthRate = 8,
+  numCircles = 8,
+  opacity = 0.01,
 }) => {
-    const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-    const updatePosition = useCallback((e: MouseEvent) => {
-        if (containerRef.current) {
-            containerRef.current.style.setProperty('--mouse-x', `${e.clientX}px`);
-            containerRef.current.style.setProperty('--mouse-y', `${e.clientY}px`);
-        }
-    }, []);
+  const updatePosition = useCallback((e: MouseEvent) => {
+    if (containerRef.current) {
+      containerRef.current.style.setProperty('--mouse-x', `${e.clientX}px`);
+      containerRef.current.style.setProperty('--mouse-y', `${e.clientY}px`);
+    }
+  }, []);
 
-    const throttledUpdatePosition = useMemo(
-        () => throttle(updatePosition, 16),
-        [updatePosition]
-    );
+  const throttledUpdatePosition = useMemo(() => throttle(updatePosition, 16), [updatePosition]);
 
-    useEffect(() => {
-        window.addEventListener('mousemove', throttledUpdatePosition);
-        return () => {
-            window.removeEventListener('mousemove', throttledUpdatePosition);
-        };
-    }, [throttledUpdatePosition]);
+  useEffect(() => {
+    window.addEventListener('mousemove', throttledUpdatePosition);
+    return () => {
+      window.removeEventListener('mousemove', throttledUpdatePosition);
+    };
+  }, [throttledUpdatePosition]);
 
-    const circles = useMemo(() =>
-        [...Array(numCircles)].map((_, index) => ({
-            key: index,
-            style: {
-                width: `${initialSize + index * growthRate}vh`,
-                height: `${initialSize + index * growthRate}vh`,
-                backgroundColor: `rgba(255, 255, 255, ${opacity})`,
-            }
-        })),
-        [initialSize, growthRate, numCircles, opacity]
-    );
+  const circles = useMemo(
+    () =>
+      [...Array(numCircles)].map((_, index) => ({
+        key: index,
+        style: {
+          width: `${initialSize + index * growthRate}vh`,
+          height: `${initialSize + index * growthRate}vh`,
+          backgroundColor: `color-mix(in srgb, var(--line-active) ${opacity * 100}%, transparent)`,
+        },
+      })),
+    [initialSize, growthRate, numCircles, opacity]
+  );
 
-    return (
-        <div ref={containerRef} className="fixed inset-0 w-screen h-screen pointer-events-none z-[9999]">
-            {circles.map(({ key, style }) => (
-                <div
-                    key={key}
-                    className="absolute rounded-full"
-                    style={{
-                        ...style,
-                        top: 'var(--mouse-y)',
-                        left: 'var(--mouse-x)',
-                        transform: 'translate(-50%, -50%)',
-                    }}
-                />
-            ))}
-        </div>
-    );
+  return (
+    <div
+      ref={containerRef}
+      className="fixed inset-0 w-screen h-screen pointer-events-none z-[9999]"
+    >
+      {circles.map(({ key, style }) => (
+        <div
+          key={key}
+          className="absolute rounded-full"
+          style={{
+            ...style,
+            top: 'var(--mouse-y)',
+            left: 'var(--mouse-x)',
+            transform: 'translate(-50%, -50%)',
+          }}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default React.memo(CursorEffect);

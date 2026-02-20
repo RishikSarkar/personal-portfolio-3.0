@@ -11,23 +11,23 @@ export const createNetworkLines = (createLine: CreateLineFunction) => {
 
   // Title to About
   createLine(0.15, 0.75, 0.15, 0.875, 'v', 2, false, false, true, 'titleToAbout');
-  createLine(0.20, 0.75, 0.20, 0.875, 'v', 2, false, false, true, 'titleToAbout');
+  createLine(0.2, 0.75, 0.2, 0.875, 'v', 2, false, false, true, 'titleToAbout');
   createLine(0.25, 0.75, 0.25, 0.875, 'v', 2, false, false, true, 'titleToAbout');
 
-  createLine(0.15, 0.75, 0.20, 0.875, 'd', 2, false, false, true, 'titleToAbout');
+  createLine(0.15, 0.75, 0.2, 0.875, 'd', 2, false, false, true, 'titleToAbout');
   createLine(0.15, 0.75, 0.25, 0.875, 'd', 2, true, false, true, 'titleToAbout');
 
-  createLine(0.20, 0.75, 0.15, 0.875, 'd', 2, false, false, true, 'titleToAbout');
-  createLine(0.20, 0.75, 0.25, 0.875, 'd', 2, true, false, true, 'titleToAbout');
+  createLine(0.2, 0.75, 0.15, 0.875, 'd', 2, false, false, true, 'titleToAbout');
+  createLine(0.2, 0.75, 0.25, 0.875, 'd', 2, true, false, true, 'titleToAbout');
 
   createLine(0.25, 0.75, 0.15, 0.875, 'd', 2, false, false, true, 'titleToAbout');
-  createLine(0.25, 0.75, 0.20, 0.875, 'd', 2, true, false, true, 'titleToAbout');
+  createLine(0.25, 0.75, 0.2, 0.875, 'd', 2, true, false, true, 'titleToAbout');
 
   createLine(0.15, 0.875, 0.175, 1.0, 'd', 2, false, false, true, 'titleToAbout');
   createLine(0.15, 0.875, 0.225, 1.0, 'd', 2, true, false, true, 'titleToAbout');
 
-  createLine(0.20, 0.875, 0.175, 1.0, 'd', 2, false, false, true, 'titleToAbout');
-  createLine(0.20, 0.875, 0.225, 1.0, 'd', 2, true, false, true, 'titleToAbout');
+  createLine(0.2, 0.875, 0.175, 1.0, 'd', 2, false, false, true, 'titleToAbout');
+  createLine(0.2, 0.875, 0.225, 1.0, 'd', 2, true, false, true, 'titleToAbout');
 
   createLine(0.25, 0.875, 0.175, 1.0, 'd', 2, false, true, true, 'titleToAbout');
   createLine(0.25, 0.875, 0.225, 1.0, 'd', 2, false, true, true, 'titleToAbout');
@@ -88,9 +88,9 @@ export const createNetworkLines = (createLine: CreateLineFunction) => {
   createLine(0.49, 4.62, 0.46, 4.72, '2', 2, false, false, true, 'brain');
   createLine(0.46, 4.72, 0.42, 4.74, '3', 2, false, false, true, 'brain');
   createLine(0.42, 4.74, 0.42, 4.84, '4', 2, false, false, true, 'brain');
-  createLine(0.38, 4.70, 0.42, 4.84, '5', 2, false, false, true, 'brain');
-  createLine(0.38, 4.70, 0.42, 4.74, '6', 2, false, false, true, 'brain');
-  createLine(0.34, 4.69, 0.38, 4.70, '7', 2, false, false, true, 'brain');
+  createLine(0.38, 4.7, 0.42, 4.84, '5', 2, false, false, true, 'brain');
+  createLine(0.38, 4.7, 0.42, 4.74, '6', 2, false, false, true, 'brain');
+  createLine(0.34, 4.69, 0.38, 4.7, '7', 2, false, false, true, 'brain');
   createLine(0.31, 4.62, 0.34, 4.69, '8', 2, false, false, true, 'brain');
   createLine(0.25, 4.6, 0.31, 4.62, '9', 2, false, false, true, 'brain');
   createLine(0.24, 4.5, 0.25, 4.6, '10', 2, false, false, true, 'brain');
@@ -107,7 +107,7 @@ export const createNetworkLines = (createLine: CreateLineFunction) => {
   createLine(0.3, 4.5, 0.25, 4.6, '1d', 2, false, true, true, 'brain');
 
   createLine(0.5, 4.5, 0.44, 4.6, '2a', 2, false, false, true, 'brain');
-  createLine(0.44, 4.6, 0.38, 4.70, '2b', 2, false, false, true, 'brain');
+  createLine(0.44, 4.6, 0.38, 4.7, '2b', 2, false, false, true, 'brain');
   createLine(0.44, 4.6, 0.49, 4.62, '2c', 2, false, false, true, 'brain');
   createLine(0.44, 4.6, 0.46, 4.72, '2d', 2, false, true, true, 'brain');
   createLine(0.44, 4.6, 0.42, 4.74, '2e', 2, false, true, true, 'brain');
@@ -127,7 +127,7 @@ export const createNetworkLines = (createLine: CreateLineFunction) => {
   createLine(0.3, 4.5, 0.375, 4.56, '5b', 2, true, false, true, 'brain');
   createLine(0.36, 4.42, 0.375, 4.56, '5c', 2, true, false, true, 'brain');
   createLine(0.43, 4.46, 0.375, 4.56, '5d', 2, true, false, true, 'brain');
-  createLine(0.375, 4.56, 0.38, 4.70, '5e', 2, false, true, true, 'brain');
+  createLine(0.375, 4.56, 0.38, 4.7, '5e', 2, false, true, true, 'brain');
   createLine(0.375, 4.56, 0.31, 4.62, '5f', 2, false, true, true, 'brain');
   createLine(0.375, 4.56, 0.34, 4.69, '5g', 2, true, true, true, 'brain');
 

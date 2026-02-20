@@ -3,7 +3,7 @@ const nextConfig = {
   // Performance optimizations
   compress: true,
   poweredByHeader: false,
-  
+
   // Image optimization
   images: {
     formats: ['image/webp', 'image/avif'],
@@ -13,27 +13,24 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-  
-  // Bundle optimization
+
+  // Bundle optimization (usedExports only; sideEffects: false can break some deps)
   webpack: (config, { dev, isServer }) => {
-    // Production optimizations
     if (!dev) {
       config.optimization = {
         ...config.optimization,
         usedExports: true,
-        sideEffects: false,
       };
     }
-    
     return config;
   },
-  
+
   // Runtime optimization
   experimental: {
     optimizePackageImports: ['react-icons'],
     webpackBuildWorker: true,
   },
-  
+
   // Headers for better caching
   async headers() {
     return [
